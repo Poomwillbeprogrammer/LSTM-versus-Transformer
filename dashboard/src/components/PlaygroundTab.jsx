@@ -50,6 +50,10 @@ const NEGATORS = new Set([
   'not', "n't", 'never', 'no', 'barely', 'hardly', 'without', 'lack', 'lacks'
 ]);
 
+const CONTRAST_WORDS = new Set([
+  'but', 'however', 'although', 'though', 'yet', 'nevertheless', 'nonetheless', 'despite'
+]);
+
 export default function PlaygroundTab() {
   const [inputText, setInputText] = useState(DEMO_PRESETS[0].text);
 
@@ -105,11 +109,11 @@ export default function PlaygroundTab() {
         tVal = -tVal * 0.9; // flip sentiment cleanly
       }
 
-      // Check for contrastive pivot 'but', 'however', 'although'
-      // Words after 'but' carry more global weight in sentiment classification
+      // Check for contrastive pivot (e.g. 'but', 'however', 'although', 'yet', 'nevertheless')
+      // Words after contrastive connectors carry more global weight in sentiment classification
       let positionMultiplier = 1.0;
       for (let k = 0; k < i; k++) {
-        if (cleanTokens[k] === 'but' || cleanTokens[k] === 'however' || cleanTokens[k] === 'although') {
+        if (CONTRAST_WORDS.has(cleanTokens[k])) {
           positionMultiplier = 1.8;
         }
       }
@@ -277,7 +281,7 @@ export default function PlaygroundTab() {
             const isPos = POSITIVE_WORDS.has(tok.clean);
             const isNeg = NEGATIVE_WORDS.has(tok.clean);
             const isNegator = NEGATORS.has(tok.clean);
-            const isContrast = tok.clean === 'but' || tok.clean === 'however' || tok.clean === 'although';
+            const isContrast = CONTRAST_WORDS.has(tok.clean);
 
             return (
               <span
