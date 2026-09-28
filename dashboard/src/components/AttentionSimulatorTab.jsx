@@ -120,16 +120,16 @@ export default function AttentionSimulatorTab() {
   return (
     <div className="space-y-8 animate-fadeIn">
       {/* Intro Banner */}
-      <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6">
+      <div className="bg-[#16120e]/95 border border-[#2e251b] rounded-2xl p-6 shadow-lg">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <span className="text-xs font-mono text-indigo-400 font-bold uppercase tracking-wider">
+            <span className="text-xs font-mono text-[#d99f3d] font-bold uppercase tracking-wider">
               Mechanistic Comparison
             </span>
-            <h2 className="text-xl font-bold text-white mt-1">
+            <h2 className="text-xl font-bold text-[#fdfbf7] mt-1">
               จำลองกลไกการทำงาน: Recurrent Step-by-Step vs Multi-Head Self-Attention
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-[#ab9b87] mt-1">
               ทดลองดูการไหลของข้อมูลและความจำภายในโมเดล เพื่อเข้าใจว่าทำไม BERT จึงแก้ปัญหา Long-term Dependency ได้เบ็ดเสร็จ
             </p>
           </div>
@@ -141,8 +141,8 @@ export default function AttentionSimulatorTab() {
                 onClick={() => handlePresetChange(p)}
                 className={`px-3 py-1.5 rounded-xl text-xs font-medium cursor-pointer transition-all border ${
                   selectedPreset.id === p.id
-                    ? 'bg-indigo-600 border-indigo-500 text-white shadow-lg shadow-indigo-600/30'
-                    : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-slate-200'
+                    ? 'bg-[#c58a2e] border-[#f0c674] text-[#0c0a08] font-bold shadow-md shadow-[#8d5c1a]/30'
+                    : 'bg-[#0c0a08] border-[#2e251b] text-[#9e917f] hover:text-[#fdfbf7]'
                 }`}
               >
                 {p.title}
@@ -152,10 +152,10 @@ export default function AttentionSimulatorTab() {
         </div>
 
         {/* Input Sentence & Current Note */}
-        <div className="mt-4 p-4 bg-slate-950/70 border border-slate-800 rounded-xl space-y-2">
+        <div className="mt-4 p-4 bg-[#0c0a08]/80 border border-[#2e251b] rounded-xl space-y-2">
           <div className="flex items-center justify-between text-xs">
-            <span className="text-slate-400 font-medium">ประโยคที่ใช้จำลอง (Interactive Input):</span>
-            <span className="text-indigo-400 font-mono text-[11px]">{tokens.length} โทเคน</span>
+            <span className="text-[#9e917f] font-medium">ประโยคที่ใช้จำลอง (Interactive Input):</span>
+            <span className="text-[#d99f3d] font-mono text-[11px]">{tokens.length} โทเคน</span>
           </div>
           <input
             type="text"
@@ -165,10 +165,10 @@ export default function AttentionSimulatorTab() {
               setLstmStep(0);
               setSelectedTokenIdx(null);
             }}
-            className="w-full bg-slate-900 border border-slate-700/80 rounded-lg px-3 py-2 text-sm text-white font-mono focus:outline-none focus:border-indigo-500 transition-colors"
+            className="w-full bg-[#16120e] border border-[#382f25] rounded-lg px-3 py-2 text-sm text-[#fdfbf7] font-mono focus:outline-none focus:border-[#c58a2e] transition-colors"
           />
-          <div className="text-xs text-amber-300/90 flex items-start gap-1.5 pt-1">
-            <Info className="w-4 h-4 shrink-0 mt-0.5 text-amber-400" />
+          <div className="text-xs text-[#f0c674] flex items-start gap-1.5 pt-1">
+            <Info className="w-4 h-4 shrink-0 mt-0.5 text-[#d99f3d]" />
             <span>{selectedPreset.note}</span>
           </div>
         </div>
@@ -177,23 +177,23 @@ export default function AttentionSimulatorTab() {
       {/* Side-by-Side Mechanism Comparators */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
         {/* ===================== Left: LSTM Recurrent Flow ===================== */}
-        <div className="bg-slate-900/90 border border-amber-900/40 rounded-2xl p-6 space-y-5">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div className="bg-[#16120e]/95 border border-[#4d3716] rounded-2xl p-6 space-y-5 shadow-lg">
+          <div className="flex items-center justify-between border-b border-[#2e251b] pb-3">
             <div>
               <span className="text-xs font-mono uppercase text-amber-400 font-bold">กระบวนทัศน์เดิม</span>
-              <h3 className="text-lg font-bold text-white">LSTM: การอ่านทีละขั้น & Context Decay</h3>
+              <h3 className="text-lg font-bold text-[#fdfbf7]">LSTM: การอ่านทีละขั้น & Context Decay</h3>
             </div>
             <div className="flex items-center gap-1.5">
               <button
                 onClick={handleNextStep}
-                className="px-2.5 py-1 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 rounded-lg text-xs font-mono cursor-pointer transition-all flex items-center gap-1"
+                className="px-2.5 py-1 bg-[#d97706]/20 hover:bg-[#d97706]/30 text-amber-300 border border-[#d97706]/40 rounded-lg text-xs font-mono cursor-pointer transition-all flex items-center gap-1"
               >
                 <span>Step: {lstmStep + 1}/{tokens.length}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
               <button
                 onClick={() => setLstmStep(0)}
-                className="p-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs cursor-pointer"
+                className="p-1.5 bg-[#221a12] hover:bg-[#2e2319] text-[#e2d7c5] rounded-lg text-xs cursor-pointer border border-[#2e251b]"
                 title="Reset step"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
@@ -203,14 +203,14 @@ export default function AttentionSimulatorTab() {
 
           {/* Sequential Tape */}
           <div>
-            <div className="text-xs text-slate-400 mb-2 flex items-center justify-between">
+            <div className="text-xs text-[#9e917f] mb-2 flex items-center justify-between">
               <span>สายพานลำดับคำ (Sequential Unrolling):</span>
               <span className="text-[11px] font-mono text-amber-400">
                 ประมวลผลคำที่: <strong>{tokens[lstmStep] || '-'}</strong> (t = {lstmStep + 1})
               </span>
             </div>
 
-            <div className="flex flex-wrap gap-2 p-3 bg-slate-950/80 border border-slate-800 rounded-xl min-h-[70px] items-center">
+            <div className="flex flex-wrap gap-2 p-3 bg-[#0c0a08]/80 border border-[#2e251b] rounded-xl min-h-[70px] items-center">
               {tokens.map((tok, idx) => {
                 const isCurrent = idx === lstmStep;
                 const isPast = idx < lstmStep;
@@ -222,10 +222,10 @@ export default function AttentionSimulatorTab() {
                     onClick={() => setLstmStep(idx)}
                     className={`px-2.5 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer relative border ${
                       isCurrent
-                        ? 'bg-amber-500 text-slate-950 font-bold border-amber-300 shadow-md shadow-amber-500/30 scale-105'
+                        ? 'bg-[#d97706] text-[#0c0a08] font-bold border-[#fbbf24] shadow-md shadow-[#d97706]/30 scale-105'
                         : isPast
-                        ? 'bg-slate-900 border-slate-700 text-slate-200'
-                        : 'bg-slate-950/40 border-slate-900 text-slate-600'
+                        ? 'bg-[#221a12] border-[#382f25] text-[#e2d7c5]'
+                        : 'bg-[#0c0a08]/50 border-[#262019] text-[#716556]'
                     }`}
                   >
                     <span>{tok}</span>
@@ -233,8 +233,8 @@ export default function AttentionSimulatorTab() {
                       <span 
                         className="absolute -top-1.5 -right-1.5 text-[9px] px-1 rounded-full font-bold"
                         style={{
-                          backgroundColor: `rgba(245, 158, 11, ${retention})`,
-                          color: retention > 0.4 ? '#000' : '#fff'
+                          backgroundColor: `rgba(217, 119, 6, ${retention})`,
+                          color: retention > 0.4 ? '#0c0a08' : '#fdfbf7'
                         }}
                       >
                         {(retention * 100).toFixed(0)}%
@@ -247,45 +247,45 @@ export default function AttentionSimulatorTab() {
           </div>
 
           {/* Memory Signal Retention Gauge */}
-          <div className="p-4 bg-slate-950/70 border border-slate-800 rounded-xl space-y-3">
+          <div className="p-4 bg-[#0c0a08]/80 border border-[#2e251b] rounded-xl space-y-3">
             <div className="flex items-center justify-between text-xs">
-              <span className="font-semibold text-slate-300">ระดับสัญญาณความจำของคำแรก (First Token Retention):</span>
+              <span className="font-semibold text-[#e2d7c5]">ระดับสัญญาณความจำของคำแรก (First Token Retention):</span>
               <span className="font-mono text-amber-400 font-bold">
                 {(lstmDecayAtStep(0, lstmStep) * 100).toFixed(1)}%
               </span>
             </div>
 
-            <div className="w-full bg-slate-900 h-3 rounded-full overflow-hidden border border-slate-800">
+            <div className="w-full bg-[#16120e] h-3 rounded-full overflow-hidden border border-[#2e251b]">
               <div
                 className="h-full bg-gradient-to-r from-amber-500 to-rose-500 transition-all duration-300"
                 style={{ width: `${lstmDecayAtStep(0, lstmStep) * 100}%` }}
               />
             </div>
 
-            <p className="text-[11px] text-slate-400 leading-relaxed">
+            <p className="text-[11px] text-[#ab9b87] leading-relaxed">
               เมื่อโมเดลอ่านมาถึงขั้นตอนที่ {lstmStep + 1} ข้อมูลของคำต้นประโยค (<strong>"{tokens[0]}"</strong>) จะถูกเจือจางลงเรื่อยๆ ตามฟังก์ชัน Forget Gate ($f_t$) หากมีข้อความยาวเกินกว่า 50-100 โทเคน สารสนเทศสำคัญจะลดลงจนแทบไม่มีอิทธิพลต่อผลลัพธ์สุดท้าย
             </p>
           </div>
 
           {/* Gate Formula Card */}
-          <div className="p-3.5 bg-amber-500/10 border border-amber-500/20 rounded-xl text-xs font-mono text-slate-300 space-y-1">
+          <div className="p-3.5 bg-amber-500/10 border border-amber-500/20 rounded-xl text-xs font-mono text-[#e2d7c5] space-y-1">
             <span className="text-amber-400 font-bold block">สมการควบคุมเกต (Hochreiter & Schmidhuber, 1997):</span>
-            <div className="text-[11px] text-slate-300 pt-1">
+            <div className="text-[11px] text-[#e2d7c5] pt-1">
               C_t = f_t ⊙ C_(t-1) + i_t ⊙ C̃_t <br />
               h_t = o_t ⊙ tanh(C_t)
             </div>
-            <span className="text-[10px] text-slate-400 block pt-1">
+            <span className="text-[10px] text-[#9e917f] block pt-1">
               *ข้อจำกัด: ต้องรอคำนวณ t-1 เสร็จก่อน จึงไม่สามารถคำนวณคู่ขนานบน GPU ได้อย่างเต็มศักยภาพ
             </span>
           </div>
         </div>
 
         {/* ===================== Right: BERT Self-Attention ===================== */}
-        <div className="bg-slate-900/90 border border-emerald-900/40 rounded-2xl p-6 space-y-5">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div className="bg-[#16120e]/95 border border-[#c58a2e]/40 rounded-2xl p-6 space-y-5 shadow-lg">
+          <div className="flex items-center justify-between border-b border-[#2e251b] pb-3">
             <div>
-              <span className="text-xs font-mono uppercase text-emerald-400 font-bold">กระบวนทัศน์ใหม่</span>
-              <h3 className="text-lg font-bold text-white">BERT: Multi-Head Self-Attention Matrix</h3>
+              <span className="text-xs font-mono uppercase text-[#d99f3d] font-bold">กระบวนทัศน์ใหม่</span>
+              <h3 className="text-lg font-bold text-[#fdfbf7]">BERT: Multi-Head Self-Attention Matrix</h3>
             </div>
             <div className="flex items-center gap-1">
               {[1, 2, 3, 4].map((head) => (
@@ -294,8 +294,8 @@ export default function AttentionSimulatorTab() {
                   onClick={() => setActiveHead(head)}
                   className={`px-2 py-0.5 rounded text-[11px] font-mono cursor-pointer transition-all ${
                     activeHead === head
-                      ? 'bg-emerald-600 text-white font-bold'
-                      : 'bg-slate-800 text-slate-400 hover:text-white'
+                      ? 'bg-[#c58a2e] text-[#0c0a08] font-bold shadow-sm'
+                      : 'bg-[#221a12] text-[#9e917f] hover:text-[#fdfbf7] border border-[#2e251b]'
                   }`}
                 >
                   Head {head}
@@ -306,14 +306,14 @@ export default function AttentionSimulatorTab() {
 
           {/* Token Selector for Attention Spotlight */}
           <div>
-            <div className="text-xs text-slate-400 mb-2 flex items-center justify-between">
+            <div className="text-xs text-[#9e917f] mb-2 flex items-center justify-between">
               <span>คลิกโทเคนเพื่อส่องดู Attention Weights:</span>
-              <span className="text-[11px] font-mono text-emerald-400">
+              <span className="text-[11px] font-mono text-[#f0c674]">
                 {selectedTokenIdx !== null ? `Query Token: "${tokens[selectedTokenIdx]}"` : 'คลิกคำใดก็ได้ด้านล่าง'}
               </span>
             </div>
 
-            <div className="flex flex-wrap gap-1.5 p-3 bg-slate-950/80 border border-slate-800 rounded-xl min-h-[70px] items-center">
+            <div className="flex flex-wrap gap-1.5 p-3 bg-[#0c0a08]/80 border border-[#2e251b] rounded-xl min-h-[70px] items-center">
               {tokens.map((tok, idx) => {
                 const isSelected = selectedTokenIdx === idx;
                 const attentionWeight = selectedTokenIdx !== null && attentionMatrix[selectedTokenIdx] 
@@ -326,15 +326,15 @@ export default function AttentionSimulatorTab() {
                     onClick={() => setSelectedTokenIdx(isSelected ? null : idx)}
                     className={`px-2.5 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer border ${
                       isSelected
-                        ? 'bg-emerald-500 text-slate-950 font-bold border-emerald-300 shadow-md shadow-emerald-500/30 scale-105'
+                        ? 'bg-[#d99f3d] text-[#0c0a08] font-bold border-[#f0c674] shadow-md shadow-[#8d5c1a]/30 scale-105'
                         : attentionWeight !== null && attentionWeight > 0.15
-                        ? 'bg-emerald-950/80 border-emerald-500/60 text-emerald-200'
-                        : 'bg-slate-900 border-slate-800 text-slate-300 hover:border-slate-700'
+                        ? 'bg-[#3a2815] border-[#c58a2e]/60 text-[#f0c674]'
+                        : 'bg-[#221a12] border-[#2e251b] text-[#e2d7c5] hover:border-[#382f25]'
                     }`}
                   >
                     <span>{tok}</span>
                     {attentionWeight !== null && (
-                      <span className="text-[9px] block text-emerald-400 font-bold">
+                      <span className="text-[9px] block text-[#f0c674] font-bold">
                         {(attentionWeight * 100).toFixed(0)}%
                       </span>
                     )}
@@ -345,16 +345,16 @@ export default function AttentionSimulatorTab() {
           </div>
 
           {/* Attention Explanation Spotlight */}
-          <div className="p-4 bg-slate-950/70 border border-slate-800 rounded-xl space-y-2">
-            <span className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
-              <Zap className="w-3.5 h-3.5 text-emerald-400" />
+          <div className="p-4 bg-[#0c0a08]/80 border border-[#2e251b] rounded-xl space-y-2">
+            <span className="text-xs font-semibold text-[#e2d7c5] flex items-center gap-1.5">
+              <Zap className="w-3.5 h-3.5 text-[#d99f3d]" />
               <span>การเชื่อมโยงบริบทแบบสองทิศทาง (Bidirectional Binding):</span>
             </span>
 
             {selectedTokenIdx !== null ? (
-              <div className="space-y-2 text-xs text-slate-300">
+              <div className="space-y-2 text-xs text-[#e2d7c5]">
                 <p>
-                  คำว่า <strong className="text-emerald-400">"{tokens[selectedTokenIdx]}"</strong> ให้ความสนใจสูงสุดกับ:
+                  คำว่า <strong className="text-[#f0c674]">"{tokens[selectedTokenIdx]}"</strong> ให้ความสนใจสูงสุดกับ:
                 </p>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 font-mono text-[11px]">
                   {tokens.map((targetTok, targetIdx) => {
@@ -363,7 +363,7 @@ export default function AttentionSimulatorTab() {
                       <div 
                         key={targetIdx} 
                         className={`p-2 rounded border flex items-center justify-between ${
-                          w > 0.15 ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-300 font-bold' : 'bg-slate-900 border-slate-800/80 text-slate-400'
+                          w > 0.15 ? 'bg-[#c58a2e]/15 border-[#c58a2e]/40 text-[#f0c674] font-bold' : 'bg-[#16120e] border-[#2e251b] text-[#9e917f]'
                         }`}
                       >
                         <span>{targetTok}</span>
@@ -374,19 +374,19 @@ export default function AttentionSimulatorTab() {
                 </div>
               </div>
             ) : (
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <p className="text-xs text-[#ab9b87] leading-relaxed">
                 ใน Transformer ทุกคู่คำในประโยคเชื่อมต่อถึงกันโดยตรงด้วยระยะทาง Path Length = 1 เช่น คำปฏิเสธ <em>"not"</em> สามารถผูกติดกับ <em>"bad"</em> ได้ทันทีแม้จะอยู่ห่างกัน และ <em>"barely"</em> เชื่อมโยงกับ <em>"watchable"</em> โดยไม่สนลำดับก่อนหลัง
               </p>
             )}
           </div>
 
           {/* Scaled Dot-Product Formula */}
-          <div className="p-3.5 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-xs font-mono text-slate-300 space-y-1">
-            <span className="text-emerald-400 font-bold block">สมการ Self-Attention (Vaswani et al., 2017):</span>
-            <div className="text-[11px] text-slate-300 pt-1">
+          <div className="p-3.5 bg-[#c58a2e]/10 border border-[#c58a2e]/30 rounded-xl text-xs font-mono text-[#e2d7c5] space-y-1">
+            <span className="text-[#d99f3d] font-bold block">สมการ Self-Attention (Vaswani et al., 2017):</span>
+            <div className="text-[11px] text-[#e2d7c5] pt-1">
               Attention(Q, K, V) = softmax( (Q × K^T) / √d_k ) × V
             </div>
-            <span className="text-[10px] text-slate-400 block pt-1">
+            <span className="text-[10px] text-[#9e917f] block pt-1">
               *จุดเด่น: คำนวณเป็น Matrix Multiplication ขนาดใหญ่รวดเดียวบน GPU Tensor Cores ได้พร้อมกันทุกคำ
             </span>
           </div>
@@ -394,12 +394,12 @@ export default function AttentionSimulatorTab() {
       </div>
 
       {/* Structural Summary Callout */}
-      <div className="p-5 bg-gradient-to-r from-slate-900 via-indigo-950/30 to-slate-900 border border-indigo-900/40 rounded-2xl">
-        <h4 className="text-sm font-bold text-white mb-2 flex items-center gap-2">
-          <Activity className="w-4 h-4 text-indigo-400" />
+      <div className="p-5 bg-gradient-to-r from-[#20170e] via-[#2a1d0f] to-[#16120e] border border-[#4d3716] rounded-2xl shadow-lg">
+        <h4 className="text-sm font-bold text-[#fdfbf7] mb-2 flex items-center gap-2">
+          <Activity className="w-4 h-4 text-[#d99f3d]" />
           <span>บทสรุปเชิงสถาปัตยกรรม (Architecture Takeaway)</span>
         </h4>
-        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+        <p className="text-xs sm:text-sm text-[#e2d7c5] leading-relaxed">
           ความแตกต่างของ Accuracy กว่า <strong>30.40% (85.60% vs 55.20%)</strong> ในการทดลองนี้ ไม่ได้เกิดจากความบังเอิญ แต่เกิดจากความเหนือกว่าเชิงโครงสร้างของ <strong>Self-Attention</strong> ที่ไม่ถูกจำกัดด้วยคอขวดลำดับเวลา (Time-step bottleneck) และการสูญเสียข้อมูลระยะไกล (Context Decay) เหมือนในสถาปัตยกรรมเดิมอย่าง LSTM
         </p>
       </div>

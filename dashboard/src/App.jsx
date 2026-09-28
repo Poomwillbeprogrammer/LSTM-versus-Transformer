@@ -12,7 +12,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState('overview');
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-indigo-500 selection:text-white">
+    <div className="min-h-screen bg-[#0c0a08] text-[#fdfbf7] flex flex-col selection:bg-[#c58a2e]/40 selection:text-[#f0c674]">
       {/* Navigation Header */}
       <Header activeTab={activeTab} setActiveTab={setActiveTab} />
 
@@ -30,31 +30,31 @@ export default function App() {
         {activeTab === 'playground' && <PlaygroundTab />}
       </main>
 
-      {/* Academic Footer */}
-      <footer className="border-t border-slate-800 bg-slate-900/60 mt-12 py-8 px-4 text-xs text-slate-400">
+      {/* Academic Footer in RMUTL Theme */}
+      <footer className="border-t border-[#2e251b] bg-[#120f0b]/90 mt-12 py-8 px-4 text-xs text-[#9e917f]">
         <div className="max-w-7xl mx-auto space-y-6">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-800/80 pb-6">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-[#2e251b] pb-6">
             <div>
-              <div className="font-semibold text-slate-200 text-sm">
-                {academicInfo.titleTh}
+              <div className="font-semibold text-[#f0c674] text-sm flex items-center gap-2">
+                <span>{academicInfo.titleTh}</span>
               </div>
-              <div className="text-slate-400 mt-0.5">
-                {academicInfo.courseCode} {academicInfo.courseName} — {academicInfo.university}
+              <div className="text-[#ab9b87] mt-0.5">
+                {academicInfo.courseCode} {academicInfo.courseName} — <strong className="text-[#d4af37]">{academicInfo.university}</strong>
               </div>
             </div>
-            <div className="flex flex-wrap items-center gap-4 text-slate-300">
-              <span>อาจารย์ผู้สอน: <strong className="text-white">{academicInfo.instructor}</strong></span>
-              <span>•</span>
-              <span>ผู้จัดทำ: <strong className="text-white">{academicInfo.student}</strong> ({academicInfo.studentId})</span>
+            <div className="flex flex-wrap items-center gap-4 text-[#e2d7c5]">
+              <span>อาจารย์ผู้สอน: <strong className="text-[#fdfbf7]">{academicInfo.instructor}</strong></span>
+              <span className="text-[#544637]">•</span>
+              <span>ผู้จัดทำ: <strong className="text-[#fdfbf7]">{academicInfo.student}</strong> ({academicInfo.studentId})</span>
             </div>
           </div>
 
           {/* Academic References */}
           <div className="space-y-2">
-            <span className="font-semibold text-slate-300 block uppercase tracking-wider text-[11px]">
+            <span className="font-semibold text-[#c58a2e] block uppercase tracking-wider text-[11px]">
               เอกสารอ้างอิงทางวิชาการ (Academic References):
             </span>
-            <ul className="space-y-1 font-mono text-[11px] text-slate-400">
+            <ul className="space-y-1 font-mono text-[11px] text-[#9e917f]">
               <li>[1] S. Hochreiter and J. Schmidhuber, "Long short-term memory," <em>Neural Computation</em>, vol. 9, no. 8, pp. 1735–1780, 1997.</li>
               <li>[2] A. Vaswani et al., "Attention is all you need," in <em>Advances in Neural Information Processing Systems (NeurIPS)</em>, vol. 30, 2017.</li>
               <li>[3] J. Devlin, M. W. Chang, K. Lee, and K. Toutanova, "BERT: Pre-training of deep bidirectional transformers for language understanding," in <em>Proc. NAACL-HLT</em>, pp. 4171–4186, 2019.</li>
@@ -63,10 +63,10 @@ export default function App() {
             </ul>
           </div>
 
-          <div className="pt-4 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-500">
+          <div className="pt-4 border-t border-[#262019] flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-[#76634e]">
             <span>© 2026 ENGCE 408 Term Project · Faculty of Engineering, RMUTL Chiang Mai</span>
-            <span className="flex items-center gap-1 text-emerald-400 font-mono">
-              <CheckCircle2 className="w-3.5 h-3.5" /> Standalone Single-File Bundle Verified
+            <span className="flex items-center gap-1 text-[#f0c674] font-mono">
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#c58a2e]" /> RMUTL Golden Brown Identity Edition
             </span>
           </div>
         </div>

@@ -135,24 +135,24 @@ export default function PlaygroundTab() {
   return (
     <div className="space-y-8 animate-fadeIn">
       {/* Intro Box */}
-      <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6">
+      <div className="bg-[#16120e]/95 border border-[#2e251b] rounded-2xl p-6 shadow-lg">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <span className="text-xs font-mono text-amber-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
+            <span className="text-xs font-mono text-[#d99f3d] font-bold uppercase tracking-wider flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5" />
               Live Interactive Playground
             </span>
-            <h2 className="text-xl font-bold text-white mt-1">
+            <h2 className="text-xl font-bold text-[#fdfbf7] mt-1">
               ทดสอบวิเคราะห์ความรู้สึกแบบ Real-Time (Playground & Saliency)
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-[#ab9b87] mt-1">
               พิมพ์ประโยคภาษาอังกฤษใดๆ เพื่อทดสอบดูว่า LSTM (จำลอง Context Decay) กับ BERT (จำลอง Bidirectional Attention) จะให้ผลทำนายอย่างไร
             </p>
           </div>
 
           <button
             onClick={() => setInputText('')}
-            className="px-3 py-1.5 bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-xl text-xs text-slate-400 hover:text-white flex items-center gap-1.5 cursor-pointer shrink-0"
+            className="px-3 py-1.5 bg-[#0c0a08] hover:bg-[#221a12] border border-[#2e251b] rounded-xl text-xs text-[#9e917f] hover:text-[#fdfbf7] flex items-center gap-1.5 cursor-pointer shrink-0 transition-colors"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>ล้างข้อความ</span>
@@ -165,9 +165,9 @@ export default function PlaygroundTab() {
             <button
               key={idx}
               onClick={() => setInputText(p.text)}
-              className="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 hover:border-indigo-500 text-xs text-slate-300 hover:text-white transition-all cursor-pointer text-left"
+              className="px-3 py-1.5 rounded-lg bg-[#0c0a08] border border-[#2e251b] hover:border-[#c58a2e]/60 text-xs text-[#e2d7c5] hover:text-[#fdfbf7] transition-all cursor-pointer text-left"
             >
-              <span className="font-semibold text-indigo-400 mr-1.5">#{idx + 1}</span>
+              <span className="font-semibold text-[#d99f3d] mr-1.5">#{idx + 1}</span>
               <span>{p.title}</span>
             </button>
           ))}
@@ -180,7 +180,7 @@ export default function PlaygroundTab() {
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             placeholder="Type any English movie review sentence here..."
-            className="w-full bg-slate-950 border border-slate-700/80 rounded-xl p-3.5 text-sm text-white focus:outline-none focus:border-indigo-500 font-mono transition-colors"
+            className="w-full bg-[#0c0a08] border border-[#382f25] rounded-xl p-3.5 text-sm text-[#fdfbf7] focus:outline-none focus:border-[#c58a2e] font-mono transition-colors"
           />
         </div>
       </div>
@@ -188,15 +188,15 @@ export default function PlaygroundTab() {
       {/* Side-by-Side Model Prediction Comparison */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* LSTM Score Card */}
-        <div className="bg-slate-900/90 border border-amber-900/40 rounded-2xl p-6 space-y-4">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div className="bg-[#16120e]/95 border border-[#4d3716] rounded-2xl p-6 space-y-4 shadow-lg">
+          <div className="flex items-center justify-between border-b border-[#2e251b] pb-3">
             <div>
               <span className="text-xs font-mono uppercase text-amber-400 font-bold">Baseline Model</span>
-              <h3 className="text-lg font-bold text-white">LSTM Classifier</h3>
+              <h3 className="text-lg font-bold text-[#fdfbf7]">LSTM Classifier</h3>
             </div>
             <span className={`px-2.5 py-1 rounded-full text-xs font-bold font-mono ${
               analysis.lstmPred === 1 
-                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' 
+                ? 'bg-emerald-500/20 text-[#34d399] border border-emerald-500/30' 
                 : 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
             }`}>
               {analysis.lstmPred === 1 ? 'Positive (เชิงบวก)' : 'Negative (เชิงลบ)'}
@@ -204,13 +204,13 @@ export default function PlaygroundTab() {
           </div>
 
           <div>
-            <div className="flex items-center justify-between text-xs text-slate-400 mb-1.5">
+            <div className="flex items-center justify-between text-xs text-[#9e917f] mb-1.5">
               <span>ความน่าจะเป็นเชิงบวก (Positive Probability):</span>
               <span className="font-mono text-amber-400 font-bold text-sm">
                 {(analysis.lstmProb * 100).toFixed(1)}%
               </span>
             </div>
-            <div className="w-full bg-slate-950 h-3 rounded-full overflow-hidden border border-slate-800">
+            <div className="w-full bg-[#0c0a08] h-3 rounded-full overflow-hidden border border-[#2e251b]">
               <div 
                 className="h-full bg-amber-500 transition-all duration-300"
                 style={{ width: `${analysis.lstmProb * 100}%` }}
@@ -218,22 +218,22 @@ export default function PlaygroundTab() {
             </div>
           </div>
 
-          <div className="p-3.5 bg-slate-950/70 border border-slate-800 rounded-xl text-xs text-slate-300 leading-relaxed">
+          <div className="p-3.5 bg-[#0c0a08]/80 border border-[#2e251b] rounded-xl text-xs text-[#e2d7c5] leading-relaxed">
             <span className="text-amber-400 font-bold block mb-1">พฤติกรรมการตัดสินใจของ LSTM:</span>
             ประมวลผลคำจากซ้ายไปขวา โดยคำที่อยู่ตอนท้ายประโยคจะมีน้ำหนักกดดันมากกว่าคำตอนต้นเนื่องจาก Context Decay หากคำปฏิเสธ (เช่น "not") อยู่ห่างจากคำคุณศัพท์ โมเดลอาจจับคู่ไม่ทัน
           </div>
         </div>
 
         {/* BERT Score Card */}
-        <div className="bg-slate-900/90 border border-emerald-900/40 rounded-2xl p-6 space-y-4">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div className="bg-[#16120e]/95 border border-[#c58a2e]/40 rounded-2xl p-6 space-y-4 shadow-lg">
+          <div className="flex items-center justify-between border-b border-[#2e251b] pb-3">
             <div>
-              <span className="text-xs font-mono uppercase text-emerald-400 font-bold">Fine-tuned Model</span>
-              <h3 className="text-lg font-bold text-white">BERT Classifier</h3>
+              <span className="text-xs font-mono uppercase text-[#d99f3d] font-bold">Fine-tuned Model</span>
+              <h3 className="text-lg font-bold text-[#fdfbf7]">BERT Classifier</h3>
             </div>
             <span className={`px-2.5 py-1 rounded-full text-xs font-bold font-mono ${
               analysis.bertPred === 1 
-                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' 
+                ? 'bg-emerald-500/20 text-[#34d399] border border-emerald-500/30' 
                 : 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
             }`}>
               {analysis.bertPred === 1 ? 'Positive (เชิงบวก)' : 'Negative (เชิงลบ)'}
@@ -241,38 +241,38 @@ export default function PlaygroundTab() {
           </div>
 
           <div>
-            <div className="flex items-center justify-between text-xs text-slate-400 mb-1.5">
+            <div className="flex items-center justify-between text-xs text-[#9e917f] mb-1.5">
               <span>ความน่าจะเป็นเชิงบวก (Positive Probability):</span>
-              <span className="font-mono text-emerald-400 font-bold text-sm">
+              <span className="font-mono text-[#f0c674] font-bold text-sm">
                 {(analysis.bertProb * 100).toFixed(1)}%
               </span>
             </div>
-            <div className="w-full bg-slate-950 h-3 rounded-full overflow-hidden border border-slate-800">
+            <div className="w-full bg-[#0c0a08] h-3 rounded-full overflow-hidden border border-[#2e251b]">
               <div 
-                className="h-full bg-emerald-500 transition-all duration-300"
+                className="h-full bg-gradient-to-r from-[#b87d24] to-[#f0c674] transition-all duration-300"
                 style={{ width: `${analysis.bertProb * 100}%` }}
               />
             </div>
           </div>
 
-          <div className="p-3.5 bg-slate-950/70 border border-slate-800 rounded-xl text-xs text-slate-300 leading-relaxed">
-            <span className="text-emerald-400 font-bold block mb-1">พฤติกรรมการตัดสินใจของ BERT:</span>
+          <div className="p-3.5 bg-[#0c0a08]/80 border border-[#2e251b] rounded-xl text-xs text-[#e2d7c5] leading-relaxed">
+            <span className="text-[#d99f3d] font-bold block mb-1">พฤติกรรมการตัดสินใจของ BERT:</span>
             Self-Attention ตรวจจับบริบทสองทิศทางพร้อมกัน คำปฏิเสธอย่าง "barely" หรือ "not" จะถูกผูกเข้ากับคำเป้าหมายโดยตรง และให้น้ำหนักกับ clause สำคัญหลังคำเชื่อม "but" ได้อย่างแม่นยำ
           </div>
         </div>
       </div>
 
       {/* Token Saliency / Heatmap Breakdown */}
-      <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6">
-        <h3 className="text-sm font-bold text-white mb-2 flex items-center gap-2">
-          <Zap className="w-4 h-4 text-indigo-400" />
+      <div className="bg-[#16120e]/95 border border-[#2e251b] rounded-2xl p-6 shadow-lg">
+        <h3 className="text-sm font-bold text-[#fdfbf7] mb-2 flex items-center gap-2">
+          <Zap className="w-4 h-4 text-[#d99f3d]" />
           <span>การวิเคราะห์คำสำคัญในประโยค (Token Saliency & Lexicon Breakdown)</span>
         </h3>
-        <p className="text-xs text-slate-400 mb-4">
-          คำที่มีอิทธิพลต่อความรู้สึก: <span className="text-emerald-400 font-bold">สีเขียว = เชิงบวก</span>, <span className="text-rose-400 font-bold">สีแดง = เชิงลบ</span>, <span className="text-amber-400 font-bold">สีส้ม = คำปฏิเสธ/เชื่อม</span>
+        <p className="text-xs text-[#9e917f] mb-4">
+          คำที่มีอิทธิพลต่อความรู้สึก: <span className="text-[#34d399] font-bold">สีเขียว = เชิงบวก</span>, <span className="text-rose-400 font-bold">สีแดง = เชิงลบ</span>, <span className="text-[#f0c674] font-bold">สีทอง/ส้ม = คำปฏิเสธ/เชื่อม</span>
         </p>
 
-        <div className="flex flex-wrap gap-2 p-4 bg-slate-950 border border-slate-800 rounded-xl">
+        <div className="flex flex-wrap gap-2 p-4 bg-[#0c0a08] border border-[#2e251b] rounded-xl">
           {analysis.tokens.map((tok, idx) => {
             const isPos = POSITIVE_WORDS.has(tok.clean);
             const isNeg = NEGATIVE_WORDS.has(tok.clean);
@@ -284,12 +284,12 @@ export default function PlaygroundTab() {
                 key={idx}
                 className={`px-2.5 py-1 rounded-lg text-xs font-mono border ${
                   isPos
-                    ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40 font-bold'
+                    ? 'bg-emerald-500/20 text-[#34d399] border-emerald-500/40 font-bold'
                     : isNeg
                     ? 'bg-rose-500/20 text-rose-300 border-rose-500/40 font-bold'
                     : isNegator || isContrast
-                    ? 'bg-amber-500/20 text-amber-300 border-amber-500/40 font-bold'
-                    : 'bg-slate-900 text-slate-400 border-slate-800'
+                    ? 'bg-[#c58a2e]/20 text-[#f0c674] border-[#c58a2e]/40 font-bold'
+                    : 'bg-[#16120e] text-[#9e917f] border-[#2e251b]'
                 }`}
               >
                 {tok.raw}

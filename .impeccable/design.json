@@ -1,14 +1,14 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-28T22:04:00.000Z",
-  "title": "Design System: Sentiment Analysis Visual Lab",
+  "generatedAt": "2026-09-28T22:08:15.000Z",
+  "title": "Design System: Sentiment Analysis Visual Lab (RMUTL Golden Brown Edition)",
   "extensions": {
     "colorMeta": {
       "primary": {
         "role": "primary",
-        "displayName": "Observatory Indigo",
-        "canonical": "#4f46e5",
-        "tonalRamp": ["#1e1b4b", "#312e81", "#3730a3", "#4338ca", "#4f46e5", "#6366f1", "#818cf8", "#c7d2fe"]
+        "displayName": "RMUTL Golden Brown (สีน้ำตาลทอง มทร.ล้านนา)",
+        "canonical": "#c58a2e",
+        "tonalRamp": ["#362208", "#59390d", "#7c4f13", "#9f6619", "#c58a2e", "#d99f3d", "#f0c674", "#faeccd"]
       },
       "secondary-positive": {
         "role": "secondary",
@@ -18,26 +18,26 @@
       },
       "tertiary-baseline": {
         "role": "tertiary",
-        "displayName": "Recurrent Amber",
-        "canonical": "#f59e0b",
-        "tonalRamp": ["#451a03", "#78350f", "#92400e", "#b45309", "#f59e0b", "#fbbf24", "#fcd34d", "#fde68a"]
+        "displayName": "Recurrent Bronze",
+        "canonical": "#d97706",
+        "tonalRamp": ["#451a03", "#78350f", "#92400e", "#b45309", "#d97706", "#fbbf24", "#fcd34d", "#fde68a"]
       },
       "neutral-surface": {
         "role": "neutral",
-        "displayName": "Lab Slate Surface",
-        "canonical": "#0f172a",
-        "tonalRamp": ["#020617", "#0f172a", "#1e293b", "#334155", "#475569", "#64748b", "#94a3b8", "#cbd5e1"]
+        "displayName": "Rich Espresso Surface",
+        "canonical": "#16130f",
+        "tonalRamp": ["#0c0a08", "#16130f", "#221d17", "#382f25", "#544637", "#76634e", "#9e917f", "#e2d7c5"]
       }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "Hero statistics and main research title." },
+      "display": { "displayName": "Display", "purpose": "Hero statistics and RMUTL research title." },
       "headline": { "displayName": "Headline", "purpose": "Section and category headings." },
       "body": { "displayName": "Body", "purpose": "Academic explanations and analysis prose." },
       "label": { "displayName": "Label Mono", "purpose": "Metrics, accuracy percentages, and parameters." }
     },
     "shadows": [
-      { "name": "accent-glow", "value": "0 10px 15px -3px rgba(79, 70, 229, 0.3)", "purpose": "Active tab and primary interactive glow." },
-      { "name": "modal-elevation", "value": "0 25px 50px -12px rgba(0, 0, 0, 0.75)", "purpose": "Elevates review inspection modal above dark backdrop." }
+      { "name": "gold-glow", "value": "0 10px 20px -3px rgba(197, 138, 46, 0.25)", "purpose": "Active tab and primary RMUTL gold glow." },
+      { "name": "modal-elevation", "value": "0 25px 50px -12px rgba(0, 0, 0, 0.85)", "purpose": "Elevates review inspection modal above dark backdrop." }
     ],
     "motion": [
       { "name": "ease-standard", "value": "cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Default easing for tab switching and card hover." }
@@ -50,52 +50,53 @@
   },
   "components": [
     {
-      "name": "Active Navigation Tab",
+      "name": "RMUTL Active Navigation Tab",
       "kind": "nav",
       "refersTo": "button-primary",
-      "description": "Primary tab navigation pill showing active section.",
-      "html": "<button class=\"ds-tab-active\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M3 3v18h18\"/><path d=\"M18 9l-5 5-4-4-3 3\"/></svg><span>ผลการทดลองเชิงประจักษ์</span></button>",
-      "css": ".ds-tab-active { display: inline-flex; align-items: center; gap: 8px; background: #4f46e5; color: #ffffff; padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 500; border: none; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); cursor: pointer; transition: background 0.2s; } .ds-tab-active:hover { background: #6366f1; }"
+      "description": "Primary tab navigation pill in RMUTL Golden Brown.",
+      "html": "<button class=\"ds-tab-active-gold\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M3 3v18h18\"/><path d=\"M18 9l-5 5-4-4-3 3\"/></svg><span>ผลการทดลองเชิงประจักษ์</span></button>",
+      "css": ".ds-tab-active-gold { display: inline-flex; align-items: center; gap: 8px; background: #c58a2e; color: #0c0a08; padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 700; border: none; box-shadow: 0 4px 14px rgba(197, 138, 46, 0.35); cursor: pointer; transition: background 0.2s; } .ds-tab-active-gold:hover { background: #d99f3d; }"
     },
     {
-      "name": "Status Badge",
+      "name": "Lanna Gold Status Badge",
       "kind": "chip",
       "refersTo": "chip-badge",
-      "description": "Semantic pill indicating prediction correctness or model category.",
-      "html": "<span class=\"ds-chip-positive\">✓ BERT ชนะ (162)</span>",
-      "css": ".ds-chip-positive { display: inline-flex; align-items: center; gap: 4px; padding: 2px 10px; border-radius: 9999px; font-size: 11px; font-weight: 600; font-family: ui-monospace, monospace; background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }"
+      "description": "Status pill with golden brown tint for university branding.",
+      "html": "<span class=\"ds-chip-gold\">★ มทร.ล้านนา เชียงใหม่</span>",
+      "css": ".ds-chip-gold { display: inline-flex; align-items: center; gap: 4px; padding: 2px 10px; border-radius: 9999px; font-size: 11px; font-weight: 600; font-family: ui-monospace, monospace; background: rgba(197, 138, 46, 0.15); color: #f0c674; border: 1px solid rgba(197, 138, 46, 0.35); }"
     },
     {
       "name": "Metric Comparison Card",
       "kind": "card",
       "refersTo": "card-surface",
-      "description": "Laboratory stat card showing high-level percentage gains.",
+      "description": "Warm espresso stat card with RMUTL gold typography.",
       "html": "<div class=\"ds-metric-card\"><div class=\"ds-metric-label\">ACCURACY GAIN</div><div class=\"ds-metric-val\">+30.40%</div><p class=\"ds-metric-sub\">BERT 85.60% vs LSTM 55.20%</p></div>",
-      "css": ".ds-metric-card { background: #0f172a; border: 1px solid #1e293b; border-radius: 16px; padding: 20px; color: #f8fafc; font-family: system-ui, sans-serif; } .ds-metric-label { font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.05em; } .ds-metric-val { font-size: 32px; font-weight: 900; font-family: ui-monospace, monospace; color: #ffffff; margin-top: 4px; } .ds-metric-sub { font-size: 12px; color: #34d399; margin-top: 8px; }"
+      "css": ".ds-metric-card { background: #16130f; border: 1px solid #382f25; border-radius: 16px; padding: 20px; color: #fdfbf7; font-family: system-ui, sans-serif; } .ds-metric-label { font-size: 11px; color: #9e917f; font-weight: 600; letter-spacing: 0.05em; } .ds-metric-val { font-size: 32px; font-weight: 900; font-family: ui-monospace, monospace; color: #f0c674; margin-top: 4px; } .ds-metric-sub { font-size: 12px; color: #34d399; margin-top: 8px; }"
     }
   ],
   "narrative": {
-    "northStar": "The Rigorous Machine Learning Observatory",
-    "overview": "ระบบงานออกแบบนี้สร้างขึ้นเพื่อสื่อสารข้อเท็จจริงทางวิทยาศาสตร์และการวิจัยคอมพิวเตอร์อย่างลึกซึ้ง (Rigorous Academic Grounding) มุ่งเน้นการให้ข้อมูลที่เฉียบคม ตรงไปตรงมา ปราศจากการตกแต่งที่รกรุงรัง โดยใช้บรรยากาศแบบห้องแล็บวิจัย AI ยุคใหม่ (Dark Mode AI Observatory)",
+    "northStar": "The Lanna Gold Machine Learning Observatory",
+    "overview": "ระบบงานออกแบบนี้ได้รับการถ่ายทอดอัตลักษณ์อันทรงเกียรติของ มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา (RMUTL) โดยใช้ สีน้ำตาลทอง (Golden Brown / Lanna Gold) ซึ่งเป็นสีประจำมหาวิทยาลัย ผสานเข้ากับบรรยากาศห้องวิจัยปัญญาประดิษฐ์ระดับสากล เพื่อสะท้อนความเจริญรุ่งเรืองทางวิชาการ ความสุขุมรอบคอบ และรากเหง้าวัฒนธรรมวิศวกรรมล้านนา",
     "keyCharacteristics": [
-      "High-Density Legibility: จัดวางสถิติและตัวเลขขนาดใหญ่ด้วยฟอนต์ Monospace",
-      "Semantic Color Coding: สีทุกสีมีหน้าที่เฉพาะเจาะจง ห้ามใช้สีพร่ำเพรื่อ",
-      "Tactile Diagnostic Micro-interactions: การโต้ตอบที่ฉับไว เช่น การเลื่อนสเต็ปสายพาน LSTM"
+      "RMUTL Golden Brown Identity: สีน้ำตาลทองล้านนาเป็นตัวขับเคลื่อนสายตา บ่งบอกสถานะการกระทำหลัก",
+      "Warm Obsidian Backgrounds: พื้นหลังโทนเอสเปรสโซเข้มช่วยให้กราฟข้อมูลและตัวเลขสีทองเปล่งประกาย",
+      "Rigorous Data Presentation: ตัวเลขสถิติ ผลลัพธ์ และสมการคณิตศาสตร์จัดแสดงด้วยฟอนต์ Monospace ชัดเจน เที่ยงตรง 100%"
     ],
     "rules": [
-      { "name": "The Strict Semantic Color Rule", "body": "ห้ามใช้สีเขียว Emerald หรือสีแดง Rose สำหรับตกแต่งทั่วไปเด็ดขาด สีเขียวสงวนไว้สำหรับความถูกต้อง/เชิงบวก และสีแดงสงวนไว้สำหรับความผิดพลาด/เชิงลบ", "section": "colors" },
-      { "name": "The Monospace Empirical Rule", "body": "ตัวเลขวัดผลทุกตัว (Accuracy, Loss, Time, Tokens, ID) ต้องแสดงผลด้วยชุดฟอนต์ Monospace เสมอ", "section": "typography" },
-      { "name": "The Stroke-First Depth Rule", "body": "พื้นผิวทุกชั้นต้องถูกกำหนดขอบเขตด้วยเส้นสโตรกสี Slate-800 ที่แน่นอน", "section": "elevation" }
+      { "name": "The RMUTL Gold Sovereignty Rule", "body": "สีน้ำตาลทอง มทร.ล้านนา (#c58a2e) เป็นสีหลักเดียวที่บ่งบอกถึงสถานะความเป็นเลิศและจุดโฟกัสของการวิจัย ห้ามนำสีฟ้าหรือสีม่วงสังเคราะห์เข้ามาปะปนในพาเล็ตต์", "section": "colors" },
+      { "name": "The Monospace Rigor Rule", "body": "ทุกตัวเลขทางสถิติ (55.20%, 85.60%, 42.07s, 0.82s) ต้องใช้ฟอนต์ Monospace เสมอ เพื่อสะท้อนความเป็นเลิศทางวิศวกรรม", "section": "typography" },
+      { "name": "The Stroke-First Depth Rule", "body": "พื้นผิวทุกชั้นต้องถูกกำหนดขอบเขตด้วยเส้นสโตรกสีบรอนซ์ทอง Slate (#382f25) ที่แน่นอน", "section": "elevation" }
     ],
     "dos": [
-      "ใช้ Monospace กับตัวเลขสถิติ ผลเปอร์เซ็นต์ และ ID ตัวอย่างเสมอ",
-      "จัดวางเนื้อหาเปรียบเทียบในรูปแบบเคียงข้างกัน (Side-by-side) เสมอเมื่อพูดถึง LSTM เทียบกับ BERT",
-      "แสดงสัดส่วนตัวอย่างจริง 500 ตัวอย่างพร้อมข้อมูล Seed 42 ในทุกจุดที่มีการอ้างอิงชุดทดสอบ"
+      "ใช้สีน้ำตาลทอง RMUTL (#c58a2e) เป็นสี Accent หลักของระบบ",
+      "ใช้พื้นหลังโทนอุ่น (Warm Espresso #0c0a08 / #16130f) แทนสีเทาดำธรรมดา",
+      "แสดงผลตัวเลขผลการทดลองด้วยฟอนต์ Monospace อย่างเคร่งครัด",
+      "ระบุชื่อมหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา เชียงใหม่ ให้สมเกียรติในส่วนหัวและท้าย"
     ],
     "donts": [
-      "ใช้เอฟเฟกต์สีรุ้ง แอนิเมชันหวือหวาที่ไม่เกี่ยวข้องกับการอธิบายโมเดล",
-      "ซ่อนตัวเลขความคลาดเคลื่อนหรือจุดอ่อนของ BERT",
-      "ใช้ฟอนต์แบบ Comic หรือฟอนต์ลายมือที่ทำลายความน่าเชื่อถือทางวิชาการ"
+      "ใช้สีม่วงหรือสีน้ำเงินนีออนสังเคราะห์ที่ขัดแย้งกับอัตลักษณ์น้ำตาลทองของ มทร.ล้านนา",
+      "ปรับสีทองให้อ่อนจนเป็นสีเหลืองแสบตา (ต้องรักษาน้ำหนักสีน้ำตาลทองอันสง่างาม)",
+      "ใช้พื้นหลังสีขาวสว่างจ้าในส่วนจัดแสดงกราฟ"
     ]
   }
 }

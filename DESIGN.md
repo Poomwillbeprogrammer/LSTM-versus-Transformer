@@ -1,24 +1,25 @@
 ---
-name: Sentiment Analysis Visual Lab
-description: Modern AI research evaluation dashboard comparing LSTM and Transformer BERT architectures
+name: Sentiment Analysis Visual Lab (RMUTL Golden Brown Edition)
+description: Empirical AI evaluation dashboard in RMUTL Golden Brown university identity
 colors:
-  primary: "#4f46e5"
-  primary-hover: "#6366f1"
-  primary-light: "#818cf8"
+  primary: "#c58a2e"
+  primary-hover: "#d99f3d"
+  primary-light: "#f0c674"
+  primary-deep: "#8d5c1a"
   secondary-positive: "#10b981"
   secondary-positive-light: "#34d399"
-  tertiary-baseline: "#f59e0b"
+  tertiary-baseline: "#d97706"
   tertiary-baseline-light: "#fbbf24"
   danger-negative: "#f43f5e"
   danger-negative-light: "#fb7185"
-  neutral-bg-darkest: "#020617"
-  neutral-surface: "#0f172a"
-  neutral-surface-hover: "#1e293b"
-  neutral-border: "#334155"
-  neutral-border-subtle: "#1e293b"
-  neutral-text-primary: "#f8fafc"
-  neutral-text-secondary: "#cbd5e1"
-  neutral-text-muted: "#94a3b8"
+  neutral-bg-darkest: "#0c0a08"
+  neutral-surface: "#16130f"
+  neutral-surface-hover: "#221d17"
+  neutral-border: "#382f25"
+  neutral-border-subtle: "#262019"
+  neutral-text-primary: "#fdfbf7"
+  neutral-text-secondary: "#e2d7c5"
+  neutral-text-muted: "#9e917f"
 typography:
   display:
     fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans Thai', sans-serif"
@@ -66,7 +67,7 @@ spacing:
 components:
   button-primary:
     backgroundColor: "{colors.primary}"
-    textColor: "{colors.neutral-text-primary}"
+    textColor: "{colors.neutral-bg-darkest}"
     rounded: "{rounded.lg}"
     padding: "8px 16px"
   button-primary-hover:
@@ -78,119 +79,102 @@ components:
     padding: "24px"
   chip-badge:
     backgroundColor: "{colors.neutral-surface-hover}"
-    textColor: "{colors.neutral-text-primary}"
+    textColor: "{colors.primary-light}"
     rounded: "{rounded.full}"
     padding: "2px 10px"
 ---
 
-# Design System: Sentiment Analysis Visual Lab
+# Design System: Sentiment Analysis Visual Lab (RMUTL Edition)
 
 ## Overview
 
-**Creative North Star: "The Rigorous Machine Learning Observatory"**
+**Creative North Star: "The Lanna Gold Machine Learning Observatory"**
 
-ระบบงานออกแบบนี้สร้างขึ้นเพื่อสื่อสารข้อเท็จจริงทางวิทยาศาสตร์และการวิจัยคอมพิวเตอร์อย่างลึกซึ้ง (Rigorous Academic Grounding) มุ่งเน้นการให้ข้อมูลที่เฉียบคม ตรงไปตรงมา ปราศจากการตกแต่งที่รกรุงรัง โดยใช้บรรยากาศแบบห้องแล็บวิจัย AI ยุคใหม่ (Dark Mode AI Observatory) ที่ขับเน้นข้อมูลเชิงประจักษ์ กราฟสถิติ และการจำลองทางสถาปัตยกรรมให้เปล่งประกายและอ่านง่ายในทุกระดับสายตา
+ระบบงานออกแบบนี้ได้รับการถ่ายทอดอัตลักษณ์อันทรงเกียรติของ **มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา (RMUTL)** โดยใช้ **สีน้ำตาลทอง (Golden Brown / Lanna Gold)** ซึ่งเป็นสีประจำมหาวิทยาลัย ผสานเข้ากับบรรยากาศห้องวิจัยปัญญาประดิษฐ์ระดับสากล เพื่อสะท้อนความเจริญรุ่งเรืองทางวิชาการ ความสุขุมรอบคอบ และรากเหง้าวัฒนธรรมวิศวกรรมล้านนา
 
-ระบบใช้พื้นหลังโทน Slate มืดสนิท (`#020617` และ `#0f172a`) เพื่อลดการล้าของสายตาในการนำเสนอสดผ่านโปรเจกเตอร์หรือหน้าจอแล็ปท็อป และใช้สีคู่ตรงข้ามที่มีความหมายเชิงความหมาย (Semantic Accents) เพื่อชี้นำสายตาไปยังสาระสำคัญ: สีคราม Indigo สำหรับตัวแทนของกระบวนทัศน์ใหม่ (Transformer BERT), สีส้มอำพัน Amber สำหรับตัวแทนของกระบวนทัศน์เดิม (LSTM Baseline), และสีเขียวมรกต Emerald สำหรับผลลัพธ์เชิงบวกและความถูกต้องของโมเดล
+พื้นหลังหลักใช้โทนสีดำช็อกโกแลตเข้มจัด (Warm Obsidian Void `#0c0a08` และ Rich Espresso Slate `#16130f`) ที่อบอุ่นและสบายตากว่าสีเทาดำสังเคราะห์ทั่วไป ตัดด้วยเส้นขอบบรอนซ์ทอง (`#382f25`) และไฮไลต์ด้วยสีน้ำตาลทองอร่าม (`#c58a2e` ถึง `#f0c674`) สร้างบรรยากาศที่น่าเกรงขาม ทรงคุณค่า และเหมาะสมอย่างยิ่งสำหรับการนำเสนอวิชาการระดับปริญญาตรีต่อ ผศ.ดร.สมนึก สุระธง
 
 **Key Characteristics:**
-- **High-Density Legibility**: จัดวางสถิติและตัวเลขขนาดใหญ่ด้วยฟอนต์ Monospace ควบคู่กับคำอธิบายภาษาไทยและอังกฤษที่กระชับ
-- **Semantic Color Coding**: สีทุกสีมีหน้าที่เฉพาะเจาะจง ห้ามใช้สีพร่ำเพรื่อเพื่อความสวยงามเพียงอย่างเดียว
-- **Tactile Diagnostic Micro-interactions**: การโต้ตอบที่ฉับไว เช่น การเลื่อนสเต็ปสายพาน LSTM, การส่องดู Attention Weight บนคำเฉพาะ, และฟิลเตอร์คลิกเดียวสำหรับขุดค้นข้อผิดพลาด
+- **RMUTL Golden Brown Identity**: สีน้ำตาลทองล้านนาเป็นตัวขับเคลื่อนสายตา บ่งบอกสถานะการกระทำหลัก และเป็นตัวแทนความสำเร็จของนวัตกรรม
+- **Warm Obsidian Backgrounds**: พื้นหลังโทนเอสเปรสโซเข้มช่วยให้กราฟข้อมูลและตัวเลขสีทองเปล่งประกายโดยไม่แยงตา
+- **Rigorous Data Presentation**: ตัวเลขสถิติ ผลลัพธ์ และสมการคณิตศาสตร์จัดแสดงด้วยฟอนต์ Monospace ชัดเจน เที่ยงตรง 100%
 
 ## Colors
 
-ชุดสีถูกออกแบบตามหลักการ Semantic Color Assignment โดยทุกเฉดสีมีความหมายที่สอดคล้องกับตัวแปรในงานวิจัย
+สีหลักและโทนของระบบถูกคัดสรรจากสีประจำมหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา เชียงใหม่
 
 ### Primary
-- **Observatory Indigo** (`#4f46e5` / hover `#6366f1`): สีหลักของระบบ เป็นตัวแทนของสถาปัตยกรรมทรานส์ฟอร์เมอร์ (BERT) และการกระทำหลัก (Primary Navigation, Active Tabs, Action Buttons)
+- **RMUTL Golden Brown (สีน้ำตาลทอง มทร.ล้านนา)** (`#c58a2e` / hover `#d99f3d` / light `#f0c674` / deep `#8d5c1a`): สีหลักของระบบ ใช้สำหรับสถาปัตยกรรมทรานส์ฟอร์เมอร์ (BERT), แถบนำทางที่เลือก (Active Tabs), ปุ่มกดหลัก, และตัวเลขการปรับปรุงความถูกต้อง (+30.40%)
 
 ### Secondary
-- **Empirical Emerald** (`#10b981` / light `#34d399`): ใช้แทนค่าความถูกต้อง (Correct Predictions), การทำนายเชิงบวก (Positive Sentiment), และการบรรลุเป้าหมายของโมเดล
-- **Recurrent Amber** (`#f59e0b` / light `#fbbf24`): สีตัวแทนของโครงข่ายประสาท LSTM (Baseline), จุดที่ต้องเฝ้าระวัง, และคำเชื่อม/คำปฏิเสธในประโยค
+- **Empirical Emerald** (`#10b981` / light `#34d399`): ตัวแทนของความถูกต้อง (Correct Predictions) และความรู้สึกเชิงบวก (Positive Sentiment)
+- **Recurrent Bronze (ทองแดงรมดำ / ส้มอำพันเข้ม)** (`#d97706` / light `#fbbf24`): ตัวแทนของสถาปัตยกรรมดั้งเดิม (LSTM Baseline) เพื่อสื่อถึงเทคโนโลยียุคก่อตั้ง
 
 ### Tertiary
-- **Fault Rose** (`#f43f5e` / light `#fb7185`): ใช้แทนความผิดพลาด (Incorrect Predictions), ข้อผิดพลาดในการจัดกลุ่ม, และความคิดเห็นเชิงลบ (Negative Sentiment)
+- **Fault Crimson** (`#f43f5e` / light `#fb7185`): ตัวแทนของความคลาดเคลื่อน (Misclassifications) และความรู้สึกเชิงลบ (Negative Sentiment)
 
 ### Neutral
-- **Deep Void Background** (`#020617`): พื้นหลังระนาบหลักสุด
-- **Lab Slate Surface** (`#0f172a`): พื้นผิวการ์ด คอนเทนเนอร์ และโมดูลหลัก
-- **Hover/Elevated Surface** (`#1e293b`): ระนาบยกสูงและสถานะ Hover
-- **Structural Border** (`#334155` / subtle `#1e293b`): เส้นขอบแบ่งเขตที่คมชัด
-- **Pure Polar Text** (`#f8fafc`): ตัวอักษรหัวเรื่องและตัวเลขสำคัญ
-- **Secondary Readable Text** (`#cbd5e1` / muted `#94a3b8`): ข้อความเนื้อหาและคำอธิบายเสริม
+- **Warm Obsidian Void** (`#0c0a08`): ระนาบพื้นหลังลึกสุด มอบความอบอุ่นลุ่มลึก
+- **Rich Espresso Surface** (`#16130f`): พื้นผิวการ์ด คอนเทนเนอร์ และโมดูลวิเคราะห์
+- **Elevated Bronze Slate** (`#221d17`): ระนาบยกสูงและสถานะ Hover
+- **Lanna Bronze Border** (`#382f25` / subtle `#262019`): เส้นขอบสีบรอนซ์ทองโปร่งละเอียด 1px
+- **Pure Cream Text** (`#fdfbf7`): ตัวอักษรหัวเรื่องและตัวเลขเด่น
+- **Parchment Secondary Text** (`#e2d7c5` / muted `#9e917f`): ข้อความเนื้อหาและคำบรรยายวิชาการ
 
 ### Named Rules
-**The Strict Semantic Color Rule.** ห้ามใช้สีเขียว Emerald หรือสีแดง Rose สำหรับตกแต่งทั่วไปเด็ดขาด สีเขียวสงวนไว้สำหรับความถูกต้อง/เชิงบวก และสีแดงสงวนไว้สำหรับความผิดพลาด/เชิงลบ เพื่อไม่ให้ผู้ตรวจสับสนข้อมูลสถิติ
+**The RMUTL Gold Sovereignty Rule.** สีน้ำตาลทอง มทร.ล้านนา (`#c58a2e`) เป็นสีหลักเดียวที่บ่งบอกถึงสถานะความเป็นเลิศและจุดโฟกัสของการวิจัย ห้ามนำสีฟ้าหรือสีม่วงสังเคราะห์เข้ามาปะปนในพาเล็ตต์ เพื่อรักษาความเป็นเอกภาพของสถาบัน
 
 ## Typography
 
-**Display & Body Font:** System UI Stacks (`-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans Thai', sans-serif`)
-**Data & Metric Font:** High-contrast Monospace (`ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace`)
+**Display & Body Font:** Modern Geometric Thai-Latin Stacks (`-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans Thai', sans-serif`)
+**Data & Metric Font:** Clean Monospace (`ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace`)
 
-**Character:** สะอาด ทันสมัย ให้ความรู้สึกแบบเอกสารวิชาการร่วมสมัยที่มีชีวิตชีวา อ่านภาษาไทยและศัพท์เทคนิคภาษาอังกฤษได้อย่างกลมกลืน
+**Character:** สุภาพ สง่างาม น่าเชื่อถือ ผสมผสานความเป็นสถาบันการศึกษาระดับสูงเข้ากับความเฉียบคมของวิทยาการคอมพิวเตอร์
 
 ### Hierarchy
-- **Display** (Bold 700, 24px - 32px, Line-height 1.25): ใช้เฉพาะชื่อหัวข้องานวิจัยและตัวเลขสรุปผลการทดลองหลัก (+30.40%)
-- **Headline** (Bold 700, 18px - 20px, Line-height 1.3): ใช้สำหรับชื่อหมวดหมู่และชื่อแท็บในแต่ละหน้า
-- **Title** (Semi-bold 600, 14px - 16px, Line-height 1.4): ใช้สำหรับหัวข้อการ์ดและป้ายกำกับโมเดล
-- **Body** (Regular 400, 13px - 14px, Line-height 1.6, Max 75ch): คำอธิบายผลการทดลองและการวิเคราะห์เชิงลึก
-- **Label / Metric Mono** (Semi-bold 600, 11px - 13px, Letter-spacing 0.05em): ใช้สำหรับตัวเลขเปอร์เซ็นต์, ค่าพารามิเตอร์, ตัวนับโทเคน, และสมการ
+- **Display** (Bold 700, 24px - 32px, Line-height 1.25): ชื่องานวิจัยและตัวเลขสรุปความแม่นยำ (+30.40%)
+- **Headline** (Bold 700, 18px - 20px, Line-height 1.3): ชื่อหัวข้อใหญ่ประจำแท็บ
+- **Title** (Semi-bold 600, 14px - 16px, Line-height 1.4): ชื่อโมเดลและการ์ดย่อย
+- **Body** (Regular 400, 13px - 14px, Line-height 1.6, Max 75ch): คำอธิบายผลการทดลองและการวิเคราะห์ความผิดพลาด
+- **Label / Data Mono** (Semi-bold 600, 11px - 13px, Letter-spacing 0.05em): รหัสวิชา ENGCE 408, ค่าพารามิเตอร์, ตัวนับโทเคน, และสูตรคณิตศาสตร์
 
 ### Named Rules
-**The Monospace Empirical Rule.** ตัวเลขวัดผลทุกตัว (Accuracy, Loss, Time, Tokens, ID) ต้องแสดงผลด้วยชุดฟอนต์ Monospace เสมอ เพื่อรักษาความตรงและเปรียบเทียบขนาดหลักทศนิยมได้แม่นยำ
+**The Monospace Rigor Rule.** ทุกตัวเลขทางสถิติ (55.20%, 85.60%, 42.07s, 0.82s) ต้องใช้ฟอนต์ Monospace เสมอ เพื่อสะท้อนความเป็นเลิศทางวิศวกรรม
 
 ## Layout
 
-ระบบจัดวางแบบ Responsive Fluid Grid ขนาดกว้างสูงสุด 1280px (`max-w-7xl`) พร้อมขอบเขตขอบหน้าจอแบบปลอดภัย (Safe Padding 16px - 24px)
-- **Top Navigation Anchor**: ส่วนหัววิชาและแท็บเมนูล็อคติดขอบบน (`sticky top-0 z-40`) พร้อมพื้นหลังเบลอ (`backdrop-blur-md`) เพื่อให้สลับแท็บได้ตลอดเวลา
-- **Card Spacing Rhythm**: ใช้ระยะห่างแบบ 8-point Grid มาตรฐาน (`gap-4` ถึง `gap-8`) เพื่อสร้างสมดุลของช่องไฟ (Negative Space)
-- **Side-by-Side Comparison Standard**: หน้าจอเปรียบเทียบ (Overview, Benchmarks, Architecture) จะแบ่งเป็น 2 คอลัมน์สมมาตร (50/50 Grid) เพื่อให้สายตาสามารถเปรียบเทียบซ้าย (LSTM) และขวา (BERT) ได้โดยไม่ต้องเลื่อนสายตากระโดด
+ระบบจัดวางแบบ Responsive Fluid Grid ความกว้าง 1280px (`max-w-7xl`) พร้อม Padding ที่พอดีสายตา
+- **Header Badge Banner**: แถบด้านบนแสดงรหัสวิชา ENGCE 408 และชื่อ มทร.ล้านนา บนพื้นหลังไล่ระดับน้ำตาลทอง-บรอนซ์เข้ม
+- **Side-by-Side Architectural Balance**: วางเปรียบเทียบ LSTM (ซ้าย - โทนบรอนซ์ทองแดง) และ BERT (ขวา - โทนน้ำตาลทองอร่าม) อย่างสมมาตร
 
 ## Elevation & Depth
 
-ระบบใช้ปรัชญา **Tonal Layering with Crisp Borders** โดยไม่พึ่งพาเงาฟุ้งแบบซอฟต์เป็นหลัก แต่สร้างมิติผ่านความลึกของโทนสี (Darkest `#020617` $\rightarrow$ Surface `#0f172a` $\rightarrow$ Hover `#1e293b`) ควบคู่กับเส้นขอบบาง 1px (`border border-slate-800`)
-
-### Shadow Vocabulary
-- **Accent Glow** (`box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3)`): ใช้เฉพาะบนปุ่มหลักหรือแท็บที่กำลังเปิดใช้งาน เพื่อบ่งบอกสถานะ Active
-- **Modal Elevation** (`box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75)`): ใช้กับกล่อง Review Inspector Modal เพื่อตัดขาดจากระนาบพื้นหลัง
-
-### Named Rules
-**The Stroke-First Depth Rule.** พื้นผิวทุกชั้นต้องถูกกำหนดขอบเขตด้วยเส้นสโตรกสี Slate-800 ที่แน่นอน ห้ามปล่อยให้การ์ดลอยเคว้งโดยไม่มีเส้นกั้นขอบเขต
-
-## Shapes
-
-- **Corner Radii Hierarchy**:
-  - `rounded-lg` (8px): ใช้สำหรับปุ่มกด, ช่องค้นหา, และแท็บเมนู
-  - `rounded-xl` (12px): ใช้สำหรับการ์ดย่อย, กล่องโค้ด, และตารางข้อมูล
-  - `rounded-2xl` (16px): ใช้สำหรับ Container ใหญ่ และ Modal ตรวจสอบ
-  - `rounded-full` (9999px): ใช้สำหรับ Chip Status และแถบเปอร์เซ็นต์
-- **Borders**: หนา 1px สม่ำเสมอ ไม่ใช้เส้นประหรือเส้นคู่ เพื่อความเรียบหรูเชิงวิชาการ
+ใช้มิติแบบ **Warm Tonal Layering with Gilded Borders**:
+- การ์ดทุกใบมีเส้นขอบสีบรอนซ์ทองบาง 1px (`border border-[#382f25]`)
+- การ์ดที่ Active มีเงาเรืองแสงสีทองอ่อน (`box-shadow: 0 10px 20px -3px rgba(197, 138, 46, 0.25)`)
+- Modal เจาะลึกตัวอย่างใช้เงาเข้มลึกตัดขาดจากระนาบพื้นหลัง
 
 ## Components
 
 ### Buttons
-- **Primary Action (Active Tab / Export)**: พื้นหลัง Indigo-600 (`#4f46e5`), ข้อความขาว, รัศมี 8px (`rounded-lg`), Padding `8px 14px`, Transition 200ms
-- **Ghost / Neutral Filter**: พื้นหลัง Slate-950, ขอบ Slate-800, ข้อความ Slate-400, Hover กลายเป็น Slate-800 พร้อมข้อความขาว
+- **Active Tab Button**: พื้นหลังสีน้ำตาลทอง RMUTL (`#c58a2e`), ตัวอักษรสีดำเข้ม (`#0c0a08`) ให้ความเปรียบต่างสูง ชัดเจน มั่นคง, รัศมี 8px
+- **Secondary / Filter Buttons**: พื้นผิว Warm Espresso (`#16130f`), ขอบสีบรอนซ์ (`#382f25`), ตัวอักษรสีครีม (`#e2d7c5`)
 
 ### Chip Badges
-- **Status Tags**: รัศมีมนกลม (`rounded-full`), Padding `2px 8px`, ตัวอักษรขนาด 11px Monospace พร้อมสีพื้นหลังแบบโปร่งแสง 15% และขอบสีตามหมวดหมู่ (Emerald / Amber / Rose)
+- **Status Tags**: รัศมีโค้งกลม (`rounded-full`), ฟอนต์ 11px Monospace พร้อมพื้นหลังสีทอง/เขียว/แดงแบบโปร่งแสง 15% และขอบสีตรงตามความหมาย
 
-### Metric Comparison Cards
-- พื้นผิว Slate-900/90, ขอบ Slate-800, รัศมี 16px (`rounded-2xl`), Padding 20px - 24px พร้อมเอฟเฟกต์ Gradient วงแสงเบลอบางๆ ที่มุมบนขวาเพื่อสร้างชีวิตชีวา
-
-### Interactive Sliders & Step Conveyor
-- สายพานลำดับคำใน Attention Simulator ใช้ชิปคำที่มีสีเปลี่ยนตามระดับความจำ (Retention Percentage) สะท้อนการเสื่อมของสัญญาณความจำใน LSTM อย่างชัดเจน
+### Metric Hero Cards
+- พื้นผิว Rich Espresso Slate (`#16130f`), ขอบบรอนซ์ทอง, ตกแต่งด้วยวงแสงสีทองเบลอ (Ambient Gold Glow) ที่มุมบนขวา
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** ใช้ Monospace กับตัวเลขสถิติ ผลเปอร์เซ็นต์ และ ID ตัวอย่างเสมอ
-- **Do** จัดวางเนื้อหาเปรียบเทียบในรูปแบบเคียงข้างกัน (Side-by-side) เสมอเมื่อพูดถึง LSTM เทียบกับ BERT
-- **Do** แสดงสัดส่วนตัวอย่างจริง 500 ตัวอย่างพร้อมข้อมูล Seed 42 ในทุกจุดที่มีการอ้างอิงชุดทดสอบ
-- **Do** ใส่คำอธิบายกำกับความหมายของตัวชี้วัด (Precision, Recall, F1) ควบคู่กับตัวเลขจริง
+- **Do** ใช้สีน้ำตาลทอง RMUTL (`#c58a2e`) เป็นสี Accent หลักของระบบ
+- **Do** ใช้พื้นหลังโทนอุ่น (Warm Espresso `#0c0a08` / `#16130f`) แทนสีเทาดำธรรมดา
+- **Do** แสดงผลตัวเลขผลการทดลองด้วยฟอนต์ Monospace อย่างเคร่งครัด
+- **Do** ระบุชื่อมหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา เชียงใหม่ ให้สมเกียรติในส่วนหัวและท้าย
 
 ### Don't:
-- **Don't** ใช้เอฟเฟกต์สีรุ้ง แอนิเมชันหวือหวาที่ไม่เกี่ยวข้องกับการอธิบายโมเดล
-- **Don't** ซ่อนตัวเลขความคลาดเคลื่อนหรือจุดอ่อนของ BERT (ต้องระบุว่า BERT มีข้อผิดพลาด 72 ตัวอย่างเสมอ)
-- **Don't** ใช้ฟอนต์แบบ Comic หรือฟอนต์ลายมือที่ทำลายความน่าเชื่อถือทางวิชาการ
+- **Don't** ใช้สีม่วงหรือสีน้ำเงินนีออนสังเคราะห์ที่ขัดแย้งกับอัตลักษณ์น้ำตาลทองของ มทร.ล้านนา
+- **Don't** ปรับสีทองให้อ่อนจนเป็นสีเหลืองแสบตา (ต้องรักษาน้ำหนักสีน้ำตาลทองอันสง่างาม)
+- **Don't** ใช้พื้นหลังสีขาวสว่างจ้าในส่วนจัดแสดงกราฟ
