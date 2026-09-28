@@ -52,15 +52,17 @@ web
   - ผู้จัดทำ: นายชยุตม์ อยู่เจริญกิจ (รหัสนักศึกษา 67543206046-4)
 - **โทนเสียงและภาพลักษณ์ (Voice & Tone)**:
   - ทางการ เชิงวิชาการวิศวกรรมคอมพิวเตอร์ (Rigorous Engineering & Academic Professionalism)
-  - ธีมสีสไตล์ Modern AI Research Lab (Dark-mode slate/indigo เน้นความคมชัดของข้อมูลและกราฟ)
+  - ธีมสีสไตล์ Modern AI Research Lab ผสานอัตลักษณ์สีน้ำตาลทองประจำมหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา (RMUTL Golden Brown `#c58a2e` บนระนาบ Warm Espresso `#16120e` และ Warm Obsidian `#0c0a08`) เน้นความคมชัดของข้อมูลและกราฟ
 
 ## Evidence on Hand
 
 - `LLMล่าสุด.docx`: รายงานวิจัยฉบับสมบูรณ์ (ตารางสถิติที่ 1 และ 2, การวิเคราะห์ Loss และความผิดพลาดเชิงโครงสร้าง)
-- `LLM_Presentation.pptx`: สไลด์นำเสนอ 13 สไลด์
+- `LLM_Presentation.pptx`: สไลด์นำเสนอฉบับนำเสนอหน้าชั้นเรียน
+- `LLM_Presentation.pdf`: สไลด์นำเสนอรูปแบบ PDF สำหรับส่งมอบ
 - `CONTEXT.md`: อภิธานศัพท์และโมเดลโดเมนของงานวิจัย
 - `dashboard/src/data/dataset_500.json`: คลังข้อมูลรีวิวจริง 500 ตัวอย่างจาก IMDb Test Set พร้อมผลการทำนายรายตัว
-- `dashboard/dist/index.html` & `Sentiment_Analysis_Dashboard.html`: ไฟล์บันเดิลสำหรับรันเดโม
+- `docs/index.html`: ไฟล์บันเดิลสำหรับรันเดโมบน GitHub Pages แบบออนไลน์
+- `Sentiment_Analysis_Dashboard.html`: ไฟล์บันเดิลสำหรับรันเดโมแบบออฟไลน์ 100% โดยตรงจากเครื่อง
 
 ## Product Principles
 
