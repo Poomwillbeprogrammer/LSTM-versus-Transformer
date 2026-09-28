@@ -113,7 +113,7 @@ export const performanceMetrics = [
     metricEn: "F1-Score",
     lstm: 54.66,
     bert: 85.71,
-    delta: "+31.06%",
+    delta: "+31.05%",
     unit: "%",
     winner: "bert",
     higherIsBetter: true,
@@ -164,5 +164,4 @@ export const radarData = [
   { metric: "Precision", LSTM: 54.44, BERT: 83.72, fullMark: 100 },
   { metric: "Recall", LSTM: 54.88, BERT: 87.80, fullMark: 100 },
   { metric: "F1-Score", LSTM: 54.66, BERT: 85.71, fullMark: 100 },
-  { metric: "Balanced Acc", LSTM: 54.90, BERT: 85.65, fullMark: 100 },
 ];

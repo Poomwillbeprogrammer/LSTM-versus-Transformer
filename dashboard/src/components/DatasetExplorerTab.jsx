@@ -294,9 +294,17 @@ export default function DatasetExplorerTab() {
 
       {/* Pagination Controls */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-3 py-4 border-t border-[#2e251b] text-xs text-[#9e917f]">
-        <span>
-          แสดง {Math.min(filteredData.length, (page - 1) * pageSize + 1)} - {Math.min(filteredData.length, page * pageSize)} จากทั้งหมด {filteredData.length} ตัวอย่าง
-        </span>
+        <div className="flex items-center gap-1.5 text-xs text-[#9e917f]">
+          <span>แสดงรายการที่</span>
+          <span className="font-mono font-semibold text-[#fdfbf7] bg-[#221a12] px-2 py-0.5 rounded border border-[#2e251b]">
+            {filteredData.length === 0 ? 0 : (page - 1) * pageSize + 1} – {Math.min(filteredData.length, page * pageSize)}
+          </span>
+          <span>จากทั้งหมด</span>
+          <span className="font-mono font-semibold text-[#f0c674] bg-[#221a12] px-2 py-0.5 rounded border border-[#2e251b]">
+            {filteredData.length}
+          </span>
+          <span>ตัวอย่าง</span>
+        </div>
 
         <div className="flex items-center gap-2">
           <button

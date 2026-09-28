@@ -20,18 +20,21 @@ const PRESET_SENTENCES = [
     title: "เคสหักมุมและปฏิเสธซ้อน (จากรายงาน)",
     text: "The movie was not bad, but the ending was barely watchable.",
     note: "LSTM พลาดเพราะ 'not' กับ 'barely' อยู่คนละตำแหน่งและถูกกลบด้วยคำเชื่อม ส่วน BERT จับคู่ (not, bad) และ (barely, watchable) ได้ทันที",
+    bindingExplanation: "ใน Transformer ทุกคู่คำเชื่อมต่อถึงกันโดยตรงด้วยระยะทาง Path Length = 1 เช่น คำปฏิเสธ 'not' สามารถผูกติดกับ 'bad' ได้ทันทีแม้จะอยู่ห่างกัน และ 'barely' เชื่อมโยงกับ 'watchable' โดยไม่สนลำดับก่อนหลัง",
   },
   {
     id: 2,
     title: "ประโยคยาวกลับทิศทาง (Long-term contrast)",
     text: "Although the visuals were stunning and cast was great, the plot was boring.",
     note: "LSTM ลืมคำชมตอนต้นเมื่อเจอ 'boring' ตอนท้าย ส่วน BERT เชื่อม 'plot' กับ 'boring' โดยตรง",
+    bindingExplanation: "Self-Attention เชื่อมโยง 'plot' เข้ากับ 'boring' โดยตรงในระยะไกล และรักษาน้ำหนักความสัมพันธ์กับ 'Although' เพื่อระบุว่าคำชม visuals/cast เป็นเพียงส่วนเกริ่นนำ (Concessive clause) จึงสรุปทิศทางหลักเป็นเชิงลบได้ถูกต้อง",
   },
   {
     id: 3,
     title: "ประโยคเชิงบวกตรงไปตรงมา",
     text: "An absolutely magnificent masterpiece that deserves every single award.",
     note: "ทั้งสองโมเดลทำนายได้ถูกต้องเพราะไม่มีคำหักมุมหรือคำปฏิเสธ",
+    bindingExplanation: "Self-Attention เสริมแรงความสัมพันธ์ระหว่างคำคุณศัพท์เชิงบวก 'magnificent' เข้ากับ 'masterpiece' และ 'deserves' ทำให้เวกเตอร์ความรู้สึกขั้วบวกกระจายครอบคลุมทั่วทั้งประโยคอย่างสม่ำเสมอ",
   },
 ];
 
@@ -370,7 +373,9 @@ export default function AttentionSimulatorTab() {
               </div>
             ) : (
               <p className="text-xs text-[#ab9b87] leading-relaxed">
-                ใน Transformer ทุกคู่คำในประโยคเชื่อมต่อถึงกันโดยตรงด้วยระยะทาง Path Length = 1 เช่น คำปฏิเสธ <em>"not"</em> สามารถผูกติดกับ <em>"bad"</em> ได้ทันทีแม้จะอยู่ห่างกัน และ <em>"barely"</em> เชื่อมโยงกับ <em>"watchable"</em> โดยไม่สนลำดับก่อนหลัง
+                {customText === selectedPreset?.text && selectedPreset?.bindingExplanation
+                  ? selectedPreset.bindingExplanation
+                  : "ใน Transformer ทุกคู่คำในประโยคเชื่อมต่อถึงกันโดยตรงด้วยระยะทาง Path Length = 1 ทำให้โมเดลรับรู้บริบทสองทิศทางพร้อมกันได้โดยไม่มี Context Decay คลิกที่คำใดก็ได้ด้านบนเพื่อส่องดู Attention Weights รายตัว"}
               </p>
             )}
           </div>

@@ -38,7 +38,7 @@ export default function OverviewTab({ onExploreDataset, onOpenSimulator }) {
           <div className="absolute top-0 right-0 w-24 h-24 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/20 transition-all" />
           <div className="text-xs font-medium text-[#9e917f] uppercase tracking-wider">F1-Score Gain</div>
           <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-3xl sm:text-4xl font-black text-[#f0c674] font-mono">+31.06%</span>
+            <span className="text-3xl sm:text-4xl font-black text-[#f0c674] font-mono">+31.05%</span>
             <span className="text-xs text-[#e5c158] font-semibold">85.71% vs 54.66%</span>
           </div>
           <p className="text-xs text-[#ab9b87] mt-2">
@@ -233,7 +233,7 @@ export default function OverviewTab({ onExploreDataset, onOpenSimulator }) {
               </div>
 
               <div className="p-3 bg-[#100d0a] border border-[#382f25] rounded-xl font-mono text-xs text-[#ab9b87]">
-                <span className="text-[#d99f3d] font-bold">ต้นทุนที่ต้องแลก:</span> พารามิเตอร์ 110M ตัว และใช้เวลาฝึก <span className="text-white font-bold">42.07 วินาที/รอบ</span> (ช้ากว่า 51 เท่า)
+                <span className="text-[#d99f3d] font-bold">ต้นทุนที่ต้องแลก:</span> พารามิเตอร์ 110M ตัว และใช้เวลาฝึก <span className="text-white font-bold">42.07 วินาที/รอบ</span> (ช้ากว่า 51.3× / 51.3 เท่า)
               </div>
             </div>
           </div>
@@ -244,12 +244,12 @@ export default function OverviewTab({ onExploreDataset, onOpenSimulator }) {
       <div className="bg-[#16120e]/95 border border-[#2e251b] rounded-2xl p-6">
         <h3 className="text-base font-bold text-[#fdfbf7] mb-4 flex items-center gap-2">
           <Binary className="w-5 h-5 text-[#c58a2e]" />
-          <span>กระบวนการทดลองแบบครบวงจร (End-to-End Experimental Pipeline)</span>
+          <span>กระบวนการทดลองแบบครบวงจร 5 ขั้นตอน (5-Stage End-to-End Pipeline)</span>
         </h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
           <div className="bg-[#100d0a] border border-[#2e251b] rounded-xl p-4">
-            <span className="text-xs font-mono text-[#f0c674] font-bold">ขั้นที่ 1</span>
+            <span className="text-xs font-mono text-[#f0c674] font-bold">ขั้นตอนที่ 01/05</span>
             <h4 className="text-sm font-semibold text-white mt-1">Dataset Preparation</h4>
             <p className="text-xs text-[#9e917f] mt-1">
               คลังรีวิว IMDb: แบ่ง Train 2,000 ตัวอย่าง / Test 500 ตัวอย่าง (บวก 246 / ลบ 254) ด้วย Seed 42
@@ -257,7 +257,7 @@ export default function OverviewTab({ onExploreDataset, onOpenSimulator }) {
           </div>
 
           <div className="bg-[#100d0a] border border-[#2e251b] rounded-xl p-4">
-            <span className="text-xs font-mono text-[#f0c674] font-bold">ขั้นที่ 2</span>
+            <span className="text-xs font-mono text-[#f0c674] font-bold">ขั้นตอนที่ 02/05</span>
             <h4 className="text-sm font-semibold text-white mt-1">Preprocessing</h4>
             <p className="text-xs text-[#9e917f] mt-1">
               ตัดแท็ก HTML, คลีนช่องไฟ, Truncate/Pad ความยาว 128 โทเคน, แปลงเป็น Subwords ด้วย WordPiece (vocab 30,522)
@@ -265,7 +265,7 @@ export default function OverviewTab({ onExploreDataset, onOpenSimulator }) {
           </div>
 
           <div className="bg-[#100d0a] border border-[#2e251b] rounded-xl p-4">
-            <span className="text-xs font-mono text-[#f0c674] font-bold">ขั้นที่ 3</span>
+            <span className="text-xs font-mono text-[#f0c674] font-bold">ขั้นตอนที่ 03/05</span>
             <h4 className="text-sm font-semibold text-white mt-1">Model Architecture</h4>
             <p className="text-xs text-[#9e917f] mt-1">
               สร้าง LSTM (128-d Embedding, 128 Hidden) เทียบกับ BERT (12 Layers, 12 Heads, 768-d [CLS] Head)
@@ -273,7 +273,7 @@ export default function OverviewTab({ onExploreDataset, onOpenSimulator }) {
           </div>
 
           <div className="bg-[#100d0a] border border-[#2e251b] rounded-xl p-4">
-            <span className="text-xs font-mono text-[#f0c674] font-bold">ขั้นที่ 4</span>
+            <span className="text-xs font-mono text-[#f0c674] font-bold">ขั้นตอนที่ 04/05</span>
             <h4 className="text-sm font-semibold text-white mt-1">Training / Tuning</h4>
             <p className="text-xs text-[#9e917f] mt-1">
               LSTM 5 รอบ (Adam, lr 1e-3, batch 32) เทียบกับ BERT 3 รอบ (AdamW, lr 2e-5, batch 16, weight decay 0.01)
@@ -281,7 +281,7 @@ export default function OverviewTab({ onExploreDataset, onOpenSimulator }) {
           </div>
 
           <div className="bg-[#100d0a] border border-[#2e251b] rounded-xl p-4">
-            <span className="text-xs font-mono text-[#f0c674] font-bold">ขั้นที่ 5</span>
+            <span className="text-xs font-mono text-[#f0c674] font-bold">ขั้นตอนที่ 05/05</span>
             <h4 className="text-sm font-semibold text-white mt-1">Evaluation & RCA</h4>
             <p className="text-xs text-[#9e917f] mt-1">
               วัดผลด้วย Accuracy, Precision, Recall, F1, Loss Curve และวิเคราะห์ข้อผิดพลาดเชิงลึก (Error Analysis)

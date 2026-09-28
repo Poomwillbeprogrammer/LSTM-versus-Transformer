@@ -45,7 +45,7 @@ export default function BenchmarkTab() {
     { name: 'Accuracy', LSTM: 55.20, BERT: 85.60, diff: '+30.40%' },
     { name: 'Precision', LSTM: 54.44, BERT: 83.72, diff: '+29.28%' },
     { name: 'Recall', LSTM: 54.88, BERT: 87.80, diff: '+32.92%' },
-    { name: 'F1-Score', LSTM: 54.66, BERT: 85.71, diff: '+31.06%' },
+    { name: 'F1-Score', LSTM: 54.66, BERT: 85.71, diff: '+31.05%' },
   ];
 
   return (
@@ -353,7 +353,7 @@ export default function BenchmarkTab() {
             </div>
 
             <p className="text-xs text-[#ab9b87] mt-4 text-center">
-              สามารถระบุรีวิวบวกได้ครอบคลุมถึง 87.8% (Recall) และแม่นยำสูงถึง 83.72% (Precision)
+              สามารถตรวจจับและระบุรีวิวเชิงบวกได้ครอบคลุมถึง 87.80% (Recall) และมีความแม่นยำสูงถึง 83.72% (Precision)
             </p>
           </div>
         </div>
@@ -708,7 +708,7 @@ export default function BenchmarkTab() {
           </div>
 
           <div className="mt-6 p-3.5 bg-[#c58a2e]/10 border border-[#c58a2e]/30 rounded-xl text-xs text-[#f0c674]">
-            <strong>บทสรุปเชิงวิศวกรรม:</strong> การจ่ายเวลาประมวลผลเพิ่มขึ้น 51 เท่า เพื่อแลกกับความแม่นยำที่ก้าวกระโดดถึง <strong>+30.40 จุด (55.20% → 85.60%)</strong> ถือเป็นการลงทุนที่คุ้มค่าอย่างยิ่งในระบบงานจริง
+            <strong>บทสรุปเชิงวิศวกรรม:</strong> การจ่ายเวลาประมวลผลเพิ่มขึ้น 51.3× (51.3 เท่า) เพื่อแลกกับความแม่นยำที่ก้าวกระโดดถึง <strong>+30.40 จุด (55.20% → 85.60%)</strong> ถือเป็นการลงทุนที่คุ้มค่าอย่างยิ่งในระบบงานจริง
           </div>
         </div>
 

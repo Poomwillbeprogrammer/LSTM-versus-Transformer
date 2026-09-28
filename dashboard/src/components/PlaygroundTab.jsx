@@ -224,7 +224,7 @@ export default function PlaygroundTab() {
 
           <div className="p-3.5 bg-[#0c0a08]/80 border border-[#2e251b] rounded-xl text-xs text-[#e2d7c5] leading-relaxed">
             <span className="text-amber-400 font-bold block mb-1">พฤติกรรมการตัดสินใจของ LSTM:</span>
-            ประมวลผลคำจากซ้ายไปขวา โดยคำที่อยู่ตอนท้ายประโยคจะมีน้ำหนักกดดันมากกว่าคำตอนต้นเนื่องจาก Context Decay หากคำปฏิเสธ (เช่น "not") อยู่ห่างจากคำคุณศัพท์ โมเดลอาจจับคู่ไม่ทัน
+            ประมวลผลคำตามลำดับเวลาจากซ้ายไปขวา (Sequential Processing) ทำให้คำท้ายประโยคมีอิทธิพลต่อผลลัพธ์มากกว่าคำต้นประโยคจากภาวะข้อมูลเลือนหาย (Context Decay / Recency Bias) หากคำปฏิเสธ (เช่น "not") อยู่ห่างจากคำคุณศัพท์ โมเดลจะไม่สามารถเชื่อมโยงข้ามตำแหน่งได้ดีเท่า BERT
           </div>
         </div>
 
