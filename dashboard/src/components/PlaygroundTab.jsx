@@ -152,7 +152,7 @@ export default function PlaygroundTab() {
 
           <button
             onClick={() => setInputText('')}
-            className="px-3 py-1.5 bg-[#0c0a08] hover:bg-[#221a12] border border-[#2e251b] rounded-xl text-xs text-[#9e917f] hover:text-[#fdfbf7] flex items-center gap-1.5 cursor-pointer shrink-0 transition-colors"
+            className="px-3.5 py-2 bg-[#0c0a08] hover:bg-[#221a12] border border-[#2e251b] rounded-xl text-xs text-[#9e917f] hover:text-[#fdfbf7] flex items-center gap-1.5 cursor-pointer shrink-0 transition-colors touch-manipulation min-h-[38px]"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>ล้างข้อความ</span>
@@ -165,7 +165,7 @@ export default function PlaygroundTab() {
             <button
               key={idx}
               onClick={() => setInputText(p.text)}
-              className="px-3 py-1.5 rounded-lg bg-[#0c0a08] border border-[#2e251b] hover:border-[#c58a2e]/60 text-xs text-[#e2d7c5] hover:text-[#fdfbf7] transition-all cursor-pointer text-left"
+              className="px-3.5 py-2 rounded-xl bg-[#0c0a08] border border-[#2e251b] hover:border-[#c58a2e]/60 text-xs text-[#e2d7c5] hover:text-[#fdfbf7] transition-all cursor-pointer text-left touch-manipulation min-h-[38px] flex items-center"
             >
               <span className="font-semibold text-[#d99f3d] mr-1.5">#{idx + 1}</span>
               <span>{p.title}</span>
@@ -180,7 +180,7 @@ export default function PlaygroundTab() {
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             placeholder="Type any English movie review sentence here..."
-            className="w-full bg-[#0c0a08] border border-[#382f25] rounded-xl p-3.5 text-sm text-[#fdfbf7] focus:outline-none focus:border-[#c58a2e] font-mono transition-colors"
+            className="w-full bg-[#0c0a08] border border-[#382f25] rounded-xl p-3.5 text-base sm:text-sm text-[#fdfbf7] focus:outline-none focus:border-[#c58a2e] font-mono transition-colors"
           />
         </div>
       </div>

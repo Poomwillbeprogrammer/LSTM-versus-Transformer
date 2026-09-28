@@ -89,14 +89,14 @@ export default function OverviewTab({ onExploreDataset, onOpenSimulator }) {
           <div className="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0">
             <button
               onClick={onExploreDataset}
-              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#b87d24] to-[#d99f3d] hover:from-[#c58a2e] hover:to-[#e5b65e] text-[#0c0a08] font-bold text-sm transition-all shadow-lg shadow-[#8d5c1a]/30 cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#b87d24] to-[#d99f3d] hover:from-[#c58a2e] hover:to-[#e5b65e] text-[#0c0a08] font-bold text-sm transition-all shadow-lg shadow-[#8d5c1a]/30 cursor-pointer touch-manipulation min-h-[44px]"
             >
               <span>สำรวจชุดข้อมูล 500 ตัวอย่าง</span>
               <ArrowRight className="w-4 h-4" />
             </button>
             <button
               onClick={onOpenSimulator}
-              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#221a12] hover:bg-[#2e2319] text-[#f0c674] font-medium text-sm border border-[#3d2e1c] transition-all cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#221a12] hover:bg-[#2e2319] text-[#f0c674] font-medium text-sm border border-[#3d2e1c] transition-all cursor-pointer touch-manipulation min-h-[44px]"
             >
               <span>ทดลอง Attention Simulator</span>
               <Zap className="w-4 h-4 text-[#d99f3d]" />

@@ -111,7 +111,7 @@ export default function DatasetExplorerTab() {
 
           <button
             onClick={handleExportCSV}
-            className="inline-flex items-center gap-2 px-3.5 py-2 bg-[#0c0a08] hover:bg-[#221a12] text-[#e2d7c5] border border-[#2e251b] rounded-xl text-xs font-mono transition-all cursor-pointer shrink-0"
+            className="inline-flex items-center gap-2 px-3.5 py-2 bg-[#0c0a08] hover:bg-[#221a12] text-[#e2d7c5] border border-[#2e251b] rounded-xl text-xs font-mono transition-all cursor-pointer shrink-0 touch-manipulation min-h-[40px]"
           >
             <Download className="w-3.5 h-3.5 text-[#d99f3d]" />
             <span>Export Filtered CSV ({filteredData.length})</span>
@@ -122,7 +122,7 @@ export default function DatasetExplorerTab() {
         <div className="flex flex-wrap items-center gap-2 mt-6 pt-4 border-t border-[#2e251b]">
           <button
             onClick={() => { setActiveFilter('all'); setPage(1); }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer transition-all ${
+            className={`px-3.5 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all touch-manipulation min-h-[38px] flex items-center ${
               activeFilter === 'all'
                 ? 'bg-[#c58a2e] text-[#0c0a08] font-bold shadow-md shadow-[#8d5c1a]/30'
                 : 'bg-[#0c0a08] text-[#9e917f] hover:text-[#fdfbf7] border border-[#2e251b]'
@@ -133,7 +133,7 @@ export default function DatasetExplorerTab() {
 
           <button
             onClick={() => { setActiveFilter('bert_win'); setPage(1); }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer transition-all flex items-center gap-1.5 ${
+            className={`px-3.5 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all flex items-center gap-1.5 touch-manipulation min-h-[38px] ${
               activeFilter === 'bert_win'
                 ? 'bg-[#c58a2e] text-[#0c0a08] font-bold shadow-md shadow-[#8d5c1a]/30'
                 : 'bg-[#0c0a08] text-[#f0c674] hover:bg-[#20170e] border border-[#c58a2e]/40'
@@ -147,7 +147,7 @@ export default function DatasetExplorerTab() {
 
           <button
             onClick={() => { setActiveFilter('lstm_win'); setPage(1); }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer transition-all flex items-center gap-1.5 ${
+            className={`px-3.5 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all flex items-center gap-1.5 touch-manipulation min-h-[38px] ${
               activeFilter === 'lstm_win'
                 ? 'bg-[#d97706] text-[#0c0a08] font-bold shadow-md shadow-[#d97706]/30'
                 : 'bg-[#0c0a08] text-amber-400 hover:bg-amber-950/30 border border-amber-900/40'
@@ -161,7 +161,7 @@ export default function DatasetExplorerTab() {
 
           <button
             onClick={() => { setActiveFilter('both_correct'); setPage(1); }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer transition-all ${
+            className={`px-3.5 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all touch-manipulation min-h-[38px] flex items-center ${
               activeFilter === 'both_correct'
                 ? 'bg-emerald-600 text-white font-bold shadow'
                 : 'bg-[#0c0a08] text-emerald-400 hover:bg-emerald-950/30 border border-emerald-900/40'
@@ -172,7 +172,7 @@ export default function DatasetExplorerTab() {
 
           <button
             onClick={() => { setActiveFilter('both_wrong'); setPage(1); }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer transition-all ${
+            className={`px-3.5 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all touch-manipulation min-h-[38px] flex items-center ${
               activeFilter === 'both_wrong'
                 ? 'bg-rose-600 text-white font-bold shadow'
                 : 'bg-[#0c0a08] text-rose-400 hover:bg-rose-950/30 border border-rose-900/40'
@@ -183,7 +183,7 @@ export default function DatasetExplorerTab() {
 
           <button
             onClick={() => { setActiveFilter('negation'); setPage(1); }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer transition-all ${
+            className={`px-3.5 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all touch-manipulation min-h-[38px] flex items-center ${
               activeFilter === 'negation'
                 ? 'bg-[#8d5c1a] text-[#fdfbf7] font-bold shadow'
                 : 'bg-[#0c0a08] text-[#e5c158] hover:bg-[#2a1e0f] border border-[#4d3716]'
@@ -194,7 +194,7 @@ export default function DatasetExplorerTab() {
 
           <button
             onClick={() => { setActiveFilter('long'); setPage(1); }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer transition-all ${
+            className={`px-3.5 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all touch-manipulation min-h-[38px] flex items-center ${
               activeFilter === 'long'
                 ? 'bg-[#382f25] text-[#fdfbf7] font-bold shadow'
                 : 'bg-[#0c0a08] text-[#9e917f] hover:text-[#fdfbf7] border border-[#2e251b]'
@@ -206,13 +206,13 @@ export default function DatasetExplorerTab() {
 
         {/* Search Bar */}
         <div className="mt-4 relative">
-          <Search className="w-4 h-4 text-[#9e917f] absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-[#9e917f] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => { setSearchTerm(e.target.value); setPage(1); }}
             placeholder="ค้นหาตามข้อความรีวิว เช่น 'ending', 'acting', 'boring' หรือพิมพ์ ID ตัวอย่าง..."
-            className="w-full bg-[#0c0a08] border border-[#2e251b] rounded-xl pl-10 pr-4 py-2 text-xs sm:text-sm text-[#fdfbf7] placeholder-[#9e917f] focus:outline-none focus:border-[#c58a2e] transition-colors"
+            className="w-full bg-[#0c0a08] border border-[#2e251b] rounded-xl pl-10 pr-4 py-2.5 text-base sm:text-sm text-[#fdfbf7] placeholder-[#9e917f] focus:outline-none focus:border-[#c58a2e] transition-colors min-h-[44px]"
           />
         </div>
       </div>
@@ -293,7 +293,7 @@ export default function DatasetExplorerTab() {
       </div>
 
       {/* Pagination Controls */}
-      <div className="flex items-center justify-between py-4 border-t border-[#2e251b] text-xs text-[#9e917f]">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 py-4 border-t border-[#2e251b] text-xs text-[#9e917f]">
         <span>
           แสดง {Math.min(filteredData.length, (page - 1) * pageSize + 1)} - {Math.min(filteredData.length, page * pageSize)} จากทั้งหมด {filteredData.length} ตัวอย่าง
         </span>
@@ -302,15 +302,15 @@ export default function DatasetExplorerTab() {
           <button
             onClick={() => setPage(p => Math.max(1, p - 1))}
             disabled={page === 1}
-            className="p-1.5 bg-[#0c0a08] border border-[#2e251b] rounded-lg disabled:opacity-40 hover:bg-[#221a12] text-[#fdfbf7] cursor-pointer"
+            className="p-2 min-w-[40px] min-h-[40px] flex items-center justify-center bg-[#0c0a08] border border-[#2e251b] rounded-lg disabled:opacity-40 hover:bg-[#221a12] text-[#fdfbf7] cursor-pointer touch-manipulation"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
-          <span className="font-mono text-[#e2d7c5]">หน้า {page} / {totalPages}</span>
+          <span className="font-mono text-[#e2d7c5] px-2">หน้า {page} / {totalPages}</span>
           <button
             onClick={() => setPage(p => Math.min(totalPages, p + 1))}
             disabled={page === totalPages}
-            className="p-1.5 bg-[#0c0a08] border border-[#2e251b] rounded-lg disabled:opacity-40 hover:bg-[#221a12] text-[#fdfbf7] cursor-pointer"
+            className="p-2 min-w-[40px] min-h-[40px] flex items-center justify-center bg-[#0c0a08] border border-[#2e251b] rounded-lg disabled:opacity-40 hover:bg-[#221a12] text-[#fdfbf7] cursor-pointer touch-manipulation"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
@@ -319,11 +319,11 @@ export default function DatasetExplorerTab() {
 
       {/* Review Inspector Modal / Drawer */}
       {selectedSample && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[#16120e] border border-[#4d3716] rounded-2xl max-w-2xl w-full p-6 space-y-5 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
+          <div className="bg-[#16120e] border border-[#4d3716] rounded-2xl max-w-2xl w-full p-4 sm:p-6 space-y-4 sm:space-y-5 shadow-2xl relative max-h-[85vh] sm:max-h-[90vh] overflow-y-auto">
             <button
               onClick={() => setSelectedSample(null)}
-              className="absolute top-4 right-4 p-1.5 rounded-lg bg-[#221a12] hover:bg-[#2e2319] text-[#9e917f] hover:text-[#fdfbf7] border border-[#2e251b] cursor-pointer"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 min-w-[44px] min-h-[44px] p-2.5 rounded-lg bg-[#221a12] hover:bg-[#2e2319] text-[#9e917f] hover:text-[#fdfbf7] border border-[#2e251b] cursor-pointer flex items-center justify-center touch-manipulation"
             >
               <X className="w-4 h-4" />
             </button>
@@ -407,7 +407,7 @@ export default function DatasetExplorerTab() {
             <div className="flex justify-end pt-2">
               <button
                 onClick={() => setSelectedSample(null)}
-                className="px-4 py-2 bg-[#c58a2e] hover:bg-[#d99f3d] text-[#0c0a08] font-bold rounded-xl text-xs cursor-pointer shadow-md shadow-[#8d5c1a]/30 transition-all"
+                className="px-5 py-2.5 bg-[#c58a2e] hover:bg-[#d99f3d] text-[#0c0a08] font-bold rounded-xl text-xs cursor-pointer shadow-md shadow-[#8d5c1a]/30 transition-all touch-manipulation min-h-[42px]"
               >
                 ปิดหน้าต่าง
               </button>

@@ -64,7 +64,7 @@ export default function BenchmarkTab() {
           <div className="flex items-center gap-2 bg-[#0c0a08] p-1.5 rounded-xl border border-[#2e251b] shrink-0">
             <button
               onClick={() => setActiveChart('bar')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer transition-all ${
+              className={`px-3.5 py-2 min-h-[40px] rounded-lg text-xs font-medium cursor-pointer transition-all touch-manipulation ${
                 activeChart === 'bar' ? 'bg-[#c58a2e] text-[#0c0a08] font-bold shadow-md shadow-[#8d5c1a]/30' : 'text-[#9e917f] hover:text-[#fdfbf7]'
               }`}
             >
@@ -72,7 +72,7 @@ export default function BenchmarkTab() {
             </button>
             <button
               onClick={() => setActiveChart('radar')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer transition-all ${
+              className={`px-3.5 py-2 min-h-[40px] rounded-lg text-xs font-medium cursor-pointer transition-all touch-manipulation ${
                 activeChart === 'radar' ? 'bg-[#c58a2e] text-[#0c0a08] font-bold shadow-md shadow-[#8d5c1a]/30' : 'text-[#9e917f] hover:text-[#fdfbf7]'
               }`}
             >
@@ -92,51 +92,51 @@ export default function BenchmarkTab() {
               <span className="text-[11px] font-mono text-[#9e917f]">Test Set n=500</span>
             </div>
 
-            <div className="h-72 w-full">
+            <div className="h-64 sm:h-72 w-full overflow-hidden">
               {activeChart === 'bar' ? (
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={barChartData} margin={{ top: 20, right: 20, left: -10, bottom: 5 }}>
+                  <BarChart data={barChartData} margin={{ top: 20, right: 10, left: -15, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#2e251b" opacity={0.6} />
-                    <XAxis dataKey="name" stroke="#9e917f" fontSize={12} />
-                    <YAxis domain={[0, 100]} stroke="#9e917f" fontSize={12} unit="%" />
+                    <XAxis dataKey="name" stroke="#9e917f" fontSize={11} />
+                    <YAxis domain={[0, 100]} stroke="#9e917f" fontSize={11} unit="%" />
                     <Tooltip 
                       contentStyle={{ backgroundColor: '#16120e', borderColor: '#382f25', borderRadius: '8px', color: '#fdfbf7' }}
                       formatter={(value, name) => [`${value}%`, name]}
                     />
-                    <Legend wrapperStyle={{ color: '#e2d7c5', fontSize: '12px' }} />
+                    <Legend wrapperStyle={{ color: '#e2d7c5', fontSize: '11px' }} />
                     <Bar dataKey="LSTM" fill="#d97706" radius={[4, 4, 0, 0]} name="LSTM (Baseline)" />
                     <Bar dataKey="BERT" fill="#d99f3d" radius={[4, 4, 0, 0]} name="BERT (Fine-tuning)" />
                   </BarChart>
                 </ResponsiveContainer>
               ) : (
                 <ResponsiveContainer width="100%" height="100%">
-                  <RadarChart data={radarData} margin={{ top: 10, right: 30, left: 30, bottom: 10 }}>
+                  <RadarChart data={radarData} margin={{ top: 10, right: 20, left: 20, bottom: 10 }}>
                     <PolarGrid stroke="#2e251b" />
-                    <PolarAngleAxis dataKey="metric" stroke="#e2d7c5" fontSize={11} />
+                    <PolarAngleAxis dataKey="metric" stroke="#e2d7c5" fontSize={10} />
                     <PolarRadiusAxis domain={[0, 100]} stroke="#5a4b3c" angle={30} />
                     <Radar name="LSTM (Baseline)" dataKey="LSTM" stroke="#d97706" fill="#d97706" fillOpacity={0.3} />
                     <Radar name="BERT (Fine-tuning)" dataKey="BERT" stroke="#d99f3d" fill="#d99f3d" fillOpacity={0.4} />
-                    <Legend wrapperStyle={{ color: '#e2d7c5', fontSize: '12px' }} />
+                    <Legend wrapperStyle={{ color: '#e2d7c5', fontSize: '11px' }} />
                     <Tooltip contentStyle={{ backgroundColor: '#16120e', borderColor: '#382f25', borderRadius: '8px', color: '#fdfbf7' }} />
                   </RadarChart>
                 </ResponsiveContainer>
               )}
             </div>
 
-            <div className="grid grid-cols-4 gap-2 pt-3 border-t border-[#2e251b] text-center font-mono text-xs">
-              <div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-3 border-t border-[#2e251b] text-center font-mono text-xs">
+              <div className="p-1 rounded bg-[#16120e]/60 sm:bg-transparent">
                 <span className="text-[#9e917f] block text-[10px]">Δ Acc</span>
                 <span className="text-[#34d399] font-bold">+30.40%</span>
               </div>
-              <div>
+              <div className="p-1 rounded bg-[#16120e]/60 sm:bg-transparent">
                 <span className="text-[#9e917f] block text-[10px]">Δ Prec</span>
                 <span className="text-[#34d399] font-bold">+29.28%</span>
               </div>
-              <div>
+              <div className="p-1 rounded bg-[#16120e]/60 sm:bg-transparent">
                 <span className="text-[#9e917f] block text-[10px]">Δ Recall</span>
                 <span className="text-[#34d399] font-bold">+32.92%</span>
               </div>
-              <div>
+              <div className="p-1 rounded bg-[#16120e]/60 sm:bg-transparent">
                 <span className="text-[#9e917f] block text-[10px]">Δ F1</span>
                 <span className="text-[#34d399] font-bold">+31.06%</span>
               </div>

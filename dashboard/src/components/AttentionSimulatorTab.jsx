@@ -139,7 +139,7 @@ export default function AttentionSimulatorTab() {
               <button
                 key={p.id}
                 onClick={() => handlePresetChange(p)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-medium cursor-pointer transition-all border ${
+                className={`px-3.5 py-2 rounded-xl text-xs font-medium cursor-pointer transition-all border touch-manipulation min-h-[38px] flex items-center ${
                   selectedPreset.id === p.id
                     ? 'bg-[#c58a2e] border-[#f0c674] text-[#0c0a08] font-bold shadow-md shadow-[#8d5c1a]/30'
                     : 'bg-[#0c0a08] border-[#2e251b] text-[#9e917f] hover:text-[#fdfbf7]'
@@ -165,7 +165,7 @@ export default function AttentionSimulatorTab() {
               setLstmStep(0);
               setSelectedTokenIdx(null);
             }}
-            className="w-full bg-[#16120e] border border-[#382f25] rounded-lg px-3 py-2 text-sm text-[#fdfbf7] font-mono focus:outline-none focus:border-[#c58a2e] transition-colors"
+            className="w-full bg-[#16120e] border border-[#382f25] rounded-lg px-3.5 py-2.5 text-base sm:text-sm text-[#fdfbf7] font-mono focus:outline-none focus:border-[#c58a2e] transition-colors min-h-[44px]"
           />
           <div className="text-xs text-[#f0c674] flex items-start gap-1.5 pt-1">
             <Info className="w-4 h-4 shrink-0 mt-0.5 text-[#d99f3d]" />
@@ -186,14 +186,14 @@ export default function AttentionSimulatorTab() {
             <div className="flex items-center gap-1.5">
               <button
                 onClick={handleNextStep}
-                className="px-2.5 py-1 bg-[#d97706]/20 hover:bg-[#d97706]/30 text-amber-300 border border-[#d97706]/40 rounded-lg text-xs font-mono cursor-pointer transition-all flex items-center gap-1"
+                className="px-3 py-1.5 bg-[#d97706]/20 hover:bg-[#d97706]/30 text-amber-300 border border-[#d97706]/40 rounded-lg text-xs font-mono cursor-pointer transition-all flex items-center gap-1.5 touch-manipulation min-h-[38px]"
               >
                 <span>Step: {lstmStep + 1}/{tokens.length}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
               <button
                 onClick={() => setLstmStep(0)}
-                className="p-1.5 bg-[#221a12] hover:bg-[#2e2319] text-[#e2d7c5] rounded-lg text-xs cursor-pointer border border-[#2e251b]"
+                className="p-2 bg-[#221a12] hover:bg-[#2e2319] text-[#e2d7c5] rounded-lg text-xs cursor-pointer border border-[#2e251b] touch-manipulation min-w-[38px] min-h-[38px] flex items-center justify-center"
                 title="Reset step"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
@@ -220,7 +220,7 @@ export default function AttentionSimulatorTab() {
                   <button
                     key={idx}
                     onClick={() => setLstmStep(idx)}
-                    className={`px-2.5 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer relative border ${
+                    className={`px-2.5 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer relative border touch-manipulation min-h-[36px] flex items-center ${
                       isCurrent
                         ? 'bg-[#d97706] text-[#0c0a08] font-bold border-[#fbbf24] shadow-md shadow-[#d97706]/30 scale-105'
                         : isPast
@@ -292,7 +292,7 @@ export default function AttentionSimulatorTab() {
                 <button
                   key={head}
                   onClick={() => setActiveHead(head)}
-                  className={`px-2 py-0.5 rounded text-[11px] font-mono cursor-pointer transition-all ${
+                  className={`px-2.5 py-1 rounded-md text-[11px] font-mono cursor-pointer transition-all touch-manipulation min-h-[34px] flex items-center ${
                     activeHead === head
                       ? 'bg-[#c58a2e] text-[#0c0a08] font-bold shadow-sm'
                       : 'bg-[#221a12] text-[#9e917f] hover:text-[#fdfbf7] border border-[#2e251b]'
@@ -324,7 +324,7 @@ export default function AttentionSimulatorTab() {
                   <button
                     key={idx}
                     onClick={() => setSelectedTokenIdx(isSelected ? null : idx)}
-                    className={`px-2.5 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer border ${
+                    className={`px-2.5 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer border touch-manipulation min-h-[36px] flex flex-col justify-center items-center ${
                       isSelected
                         ? 'bg-[#d99f3d] text-[#0c0a08] font-bold border-[#f0c674] shadow-md shadow-[#8d5c1a]/30 scale-105'
                         : attentionWeight !== null && attentionWeight > 0.15

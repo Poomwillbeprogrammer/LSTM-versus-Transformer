@@ -73,26 +73,26 @@ export default function Header({ activeTab, setActiveTab }) {
           </div>
 
           {/* Quick Metrics Capsule in RMUTL Gold */}
-          <div className="flex items-center gap-3 bg-[#18130e] border border-[#382f25] rounded-xl p-2 px-3 shadow-inner">
-            <div className="text-center px-2">
+          <div className="flex items-center justify-between sm:justify-center gap-2 sm:gap-3 bg-[#18130e] border border-[#382f25] rounded-xl p-2 px-3 shadow-inner w-full lg:w-auto shrink-0">
+            <div className="text-center px-1 sm:px-2 flex-1 sm:flex-initial">
               <div className="text-[10px] text-[#9e917f] font-medium">LSTM Acc</div>
-              <div className="text-base font-bold text-amber-500 font-mono">55.20%</div>
+              <div className="text-sm sm:text-base font-bold text-amber-500 font-mono">55.20%</div>
             </div>
             <div className="h-7 w-px bg-[#382f25]" />
-            <div className="text-center px-2">
+            <div className="text-center px-1 sm:px-2 flex-1 sm:flex-initial">
               <div className="text-[10px] text-[#9e917f] font-medium">BERT Acc</div>
-              <div className="text-base font-bold text-[#f0c674] font-mono">85.60%</div>
+              <div className="text-sm sm:text-base font-bold text-[#f0c674] font-mono">85.60%</div>
             </div>
             <div className="h-7 w-px bg-[#382f25]" />
-            <div className="text-center px-2">
+            <div className="text-center px-1 sm:px-2 flex-1 sm:flex-initial">
               <div className="text-[10px] text-[#c58a2e] font-medium">Delta (Δ)</div>
-              <div className="text-base font-bold text-[#f0c674] font-mono">+30.40%</div>
+              <div className="text-sm sm:text-base font-bold text-[#f0c674] font-mono">+30.40%</div>
             </div>
           </div>
         </div>
 
-        {/* Tab Navigation with RMUTL Gold Active States */}
-        <nav className="flex items-center gap-1.5 mt-4 overflow-x-auto no-scrollbar pb-1">
+        {/* Tab Navigation with RMUTL Gold Active States and 44px Touch Targets */}
+        <nav className="flex items-center gap-1.5 sm:gap-2 mt-4 overflow-x-auto no-scrollbar pb-1.5 scroll-smooth overscroll-x-contain">
           {tabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -100,23 +100,23 @@ export default function Header({ activeTab, setActiveTab }) {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all shrink-0 cursor-pointer ${
+                className={`flex items-center gap-2 px-3.5 py-2.5 sm:py-2 min-h-[44px] rounded-lg text-xs sm:text-sm font-medium transition-all shrink-0 cursor-pointer touch-manipulation ${
                   isActive
                     ? 'bg-gradient-to-r from-[#b87d24] to-[#d99f3d] text-[#0c0a08] font-bold shadow-md shadow-[#8d5c1a]/40 scale-[1.02]'
-                    : 'text-[#ab9b87] hover:text-[#fdfbf7] hover:bg-[#221a12]'
+                    : 'text-[#ab9b87] hover:text-[#fdfbf7] hover:bg-[#221a12] active:bg-[#2e2319]'
                 }`}
               >
-                <Icon className={`w-4 h-4 ${isActive ? 'text-[#0c0a08]' : tab.highlight ? 'text-[#f0c674]' : 'text-[#8c7b68]'}`} />
-                <span>{tab.label}</span>
+                <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-[#0c0a08]' : tab.highlight ? 'text-[#f0c674]' : 'text-[#8c7b68]'}`} />
+                <span className="whitespace-nowrap">{tab.label}</span>
                 {tab.badge && (
-                  <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold ${
+                  <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold shrink-0 ${
                     isActive ? 'bg-[#3b270b] text-[#f0c674]' : 'bg-[#261e16] text-[#c5b7a5]'
                   }`}>
                     {tab.badge}
                   </span>
                 )}
                 {tab.highlight && !isActive && (
-                  <span className="w-2 h-2 rounded-full bg-[#f0c674] animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-[#f0c674] animate-pulse shrink-0" />
                 )}
               </button>
             );
