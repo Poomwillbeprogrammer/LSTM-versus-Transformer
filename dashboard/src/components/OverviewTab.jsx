@@ -13,6 +13,7 @@ import {
   Cpu
 } from 'lucide-react';
 import { performanceMetrics, academicInfo } from '../data/benchmarkData';
+import { MathFraction, MathSqrt } from './MathView';
 
 export default function OverviewTab({ onExploreDataset, onOpenSimulator }) {
   return (
@@ -135,7 +136,11 @@ export default function OverviewTab({ onExploreDataset, onOpenSimulator }) {
                 <div className="w-5 h-5 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">1</div>
                 <div>
                   <strong className="text-white block">อ่านข้อมูลทีละคำตามลำดับเวลา (Step-by-step):</strong>
-                  ประมวลผลคำจากซ้ายไปขวา ($x_1 \rightarrow x_2 \rightarrow \dots \rightarrow x_t$) ผ่าน Hidden State ($h_t$) และ Cell State ($C_t$)
+                  ประมวลผลคำจากซ้ายไปขวา (
+                  <span className="font-serif italic text-amber-300">
+                    x<sub>1</sub> → x<sub>2</sub> → … → x<sub>t</sub>
+                  </span>
+                  ) ผ่าน Hidden State (<span className="font-serif italic text-amber-300">h<sub>t</sub></span>) และ Cell State (<span className="font-serif italic text-amber-300">C<sub>t</sub></span>)
                 </div>
               </div>
 
@@ -188,7 +193,18 @@ export default function OverviewTab({ onExploreDataset, onOpenSimulator }) {
                 <div className="w-5 h-5 rounded-full bg-[#c58a2e]/20 text-[#f0c674] flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</div>
                 <div>
                   <strong className="text-white block">Multi-Head Self-Attention ประมวลผลคู่ขนาน:</strong>
-                  คำนวณ Attention(Q, K, V) = softmax( (Q × K^T) / √d_k ) × V เชื่อมโยงทุกคู่คำพร้อมกันโดยตรงบน GPU
+                  <div className="my-2 p-2 bg-[#0c0a08]/80 border border-[#c58a2e]/30 rounded-lg inline-flex items-center flex-wrap gap-1 font-serif text-xs sm:text-sm text-[#fdfbf7]">
+                    <span className="font-sans font-semibold text-[#f0c674]">Attention</span>
+                    <span>(Q, K, V) = </span>
+                    <span className="font-sans font-semibold text-[#e5c158]">softmax</span>
+                    <span>(</span>
+                    <MathFraction
+                      num={<span className="italic font-bold text-[#fdfbf7]">Q × K<sup className="text-[10px] font-sans text-[#f0c674]">T</sup></span>}
+                      den={<MathSqrt><span className="italic">d</span><sub className="font-sans text-[10px] text-[#f0c674]">k</sub></MathSqrt>}
+                    />
+                    <span>) V</span>
+                  </div>
+                  <p className="text-xs text-[#ab9b87]">เชื่อมโยงทุกคู่คำพร้อมกันโดยตรงบน GPU ด้วยระยะทาง Path Length = 1</p>
                 </div>
               </div>
 

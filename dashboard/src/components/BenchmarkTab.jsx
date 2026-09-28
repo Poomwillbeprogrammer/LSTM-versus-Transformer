@@ -25,7 +25,8 @@ import {
   HelpCircle,
   Table as TableIcon,
   Sparkles,
-  Zap
+  Zap,
+  Calculator
 } from 'lucide-react';
 import { 
   performanceMetrics, 
@@ -34,9 +35,11 @@ import {
   confusionMatrices,
   radarData 
 } from '../data/benchmarkData';
+import { MathFraction } from './MathView';
 
 export default function BenchmarkTab() {
   const [activeChart, setActiveChart] = useState('bar'); // 'bar' or 'radar'
+  const [formulaModel, setFormulaModel] = useState('bert'); // 'bert' or 'lstm'
 
   const barChartData = [
     { name: 'Accuracy', LSTM: 55.20, BERT: 85.60, diff: '+30.40%' },
@@ -351,6 +354,294 @@ export default function BenchmarkTab() {
 
             <p className="text-xs text-[#ab9b87] mt-4 text-center">
               สามารถระบุรีวิวบวกได้ครอบคลุมถึง 87.8% (Recall) และแม่นยำสูงถึง 83.72% (Precision)
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Mathematical Derivations & Metric Formulas Cards */}
+      <div className="bg-[#16120e]/95 border border-[#2e251b] rounded-2xl p-6 shadow-lg space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#2e251b] pb-4">
+          <div>
+            <span className="text-xs font-mono text-[#d99f3d] font-bold uppercase tracking-wider flex items-center gap-1.5">
+              <Calculator className="w-3.5 h-3.5" />
+              Evaluation Metrics Mathematical Derivations
+            </span>
+            <h3 className="text-lg font-bold text-[#fdfbf7] mt-1">
+              ที่มาและสูตรการคำนวณตัวชี้วัดประสิทธิภาพ (Formulas & Numerical Proof)
+            </h3>
+            <p className="text-xs sm:text-sm text-[#ab9b87] mt-1">
+              สูตรคณิตศาสตร์แท้พร้อมเศษส่วนจริงสองชั้น และการแทนค่าตัวเลขจริงจาก Confusion Matrix บนชุดทดสอบ 500 ตัวอย่าง
+            </p>
+          </div>
+
+          <div className="flex items-center gap-1 bg-[#0c0a08] p-1.5 rounded-xl border border-[#2e251b] shrink-0 self-start sm:self-auto">
+            <button
+              onClick={() => setFormulaModel('bert')}
+              className={`px-3 py-1.5 min-h-[36px] rounded-lg text-xs font-medium cursor-pointer transition-all touch-manipulation ${
+                formulaModel === 'bert'
+                  ? 'bg-[#c58a2e] text-[#0c0a08] font-bold shadow-md shadow-[#8d5c1a]/30'
+                  : 'text-[#9e917f] hover:text-[#fdfbf7]'
+              }`}
+            >
+              BERT Substitution
+            </button>
+            <button
+              onClick={() => setFormulaModel('lstm')}
+              className={`px-3 py-1.5 min-h-[36px] rounded-lg text-xs font-medium cursor-pointer transition-all touch-manipulation ${
+                formulaModel === 'lstm'
+                  ? 'bg-amber-600 text-[#0c0a08] font-bold shadow-md shadow-amber-600/30'
+                  : 'text-[#9e917f] hover:text-[#fdfbf7]'
+              }`}
+            >
+              LSTM Substitution
+            </button>
+          </div>
+        </div>
+
+        {/* 4 Metric Formula Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* 1. Accuracy */}
+          <div className="p-4 bg-[#0c0a08]/80 border border-[#2e251b] rounded-xl space-y-3">
+            <div className="flex items-center justify-between">
+              <div>
+                <span className="text-[10px] font-mono uppercase tracking-wider text-[#9e917f]">Overall Correctness</span>
+                <h4 className="text-base font-bold text-[#fdfbf7]">1. ความถูกต้อง (Accuracy)</h4>
+              </div>
+              <span className={`px-2.5 py-1 rounded-full text-xs font-bold font-mono ${
+                formulaModel === 'bert' ? 'bg-[#c58a2e]/20 text-[#f0c674] border border-[#c58a2e]/40' : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+              }`}>
+                {formulaModel === 'bert' ? '85.60%' : '55.20%'}
+              </span>
+            </div>
+
+            <div className="p-3 bg-[#140f0a] border border-[#2e251b] rounded-lg space-y-2">
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-[#9e917f] font-mono text-[11px]">สูตรสัญลักษณ์:</span>
+                <div className="font-serif text-sm text-[#fdfbf7] flex items-center">
+                  <span className="font-sans font-semibold mr-1 text-[#f0c674]">Accuracy</span>
+                  <span className="mr-1">=</span>
+                  <MathFraction
+                    num={<span className="italic">TP + TN</span>}
+                    den={<span className="italic">TP + TN + FP + FN</span>}
+                  />
+                </div>
+              </div>
+
+              <div className="h-px bg-[#221a12] w-full" />
+
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-[#c58a2e] font-mono text-[11px]">แทนค่าจริง (n=500):</span>
+                <div className="font-serif text-sm text-[#fdfbf7] flex items-center">
+                  <span className="mr-1">=</span>
+                  {formulaModel === 'bert' ? (
+                    <>
+                      <MathFraction
+                        num={<span>216 + 212</span>}
+                        den={<span>500</span>}
+                      />
+                      <span className="mx-1">=</span>
+                      <MathFraction num={<span>428</span>} den={<span>500</span>} />
+                      <span className="ml-1 text-[#f0c674] font-bold font-mono">= 85.60%</span>
+                    </>
+                  ) : (
+                    <>
+                      <MathFraction
+                        num={<span>135 + 141</span>}
+                        den={<span>500</span>}
+                      />
+                      <span className="mx-1">=</span>
+                      <MathFraction num={<span>276</span>} den={<span>500</span>} />
+                      <span className="ml-1 text-amber-300 font-bold font-mono">= 55.20%</span>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+            <p className="text-[11px] text-[#9e917f] leading-relaxed">
+              สัดส่วนของตัวอย่างที่ทำนายถูกต้องทั้งหมด (ทั้งบวกจริงและลบจริง) ต่อจำนวนข้อมูลทดสอบทั้งหมด 500 ตัวอย่าง
+            </p>
+          </div>
+
+          {/* 2. Precision */}
+          <div className="p-4 bg-[#0c0a08]/80 border border-[#2e251b] rounded-xl space-y-3">
+            <div className="flex items-center justify-between">
+              <div>
+                <span className="text-[10px] font-mono uppercase tracking-wider text-[#9e917f]">Positive Predictive Value</span>
+                <h4 className="text-base font-bold text-[#fdfbf7]">2. ความแม่นยำ (Precision)</h4>
+              </div>
+              <span className={`px-2.5 py-1 rounded-full text-xs font-bold font-mono ${
+                formulaModel === 'bert' ? 'bg-[#c58a2e]/20 text-[#f0c674] border border-[#c58a2e]/40' : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+              }`}>
+                {formulaModel === 'bert' ? '83.72%' : '54.44%'}
+              </span>
+            </div>
+
+            <div className="p-3 bg-[#140f0a] border border-[#2e251b] rounded-lg space-y-2">
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-[#9e917f] font-mono text-[11px]">สูตรสัญลักษณ์:</span>
+                <div className="font-serif text-sm text-[#fdfbf7] flex items-center">
+                  <span className="font-sans font-semibold mr-1 text-[#f0c674]">Precision</span>
+                  <span className="mr-1">=</span>
+                  <MathFraction
+                    num={<span className="italic">TP</span>}
+                    den={<span className="italic">TP + FP</span>}
+                  />
+                </div>
+              </div>
+
+              <div className="h-px bg-[#221a12] w-full" />
+
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-[#c58a2e] font-mono text-[11px]">แทนค่าจริง:</span>
+                <div className="font-serif text-sm text-[#fdfbf7] flex items-center">
+                  <span className="mr-1">=</span>
+                  {formulaModel === 'bert' ? (
+                    <>
+                      <MathFraction
+                        num={<span>216</span>}
+                        den={<span>216 + 42</span>}
+                      />
+                      <span className="mx-1">=</span>
+                      <MathFraction num={<span>216</span>} den={<span>258</span>} />
+                      <span className="ml-1 text-[#f0c674] font-bold font-mono">= 83.72%</span>
+                    </>
+                  ) : (
+                    <>
+                      <MathFraction
+                        num={<span>135</span>}
+                        den={<span>135 + 113</span>}
+                      />
+                      <span className="mx-1">=</span>
+                      <MathFraction num={<span>135</span>} den={<span>248</span>} />
+                      <span className="ml-1 text-amber-300 font-bold font-mono">= 54.44%</span>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+            <p className="text-[11px] text-[#9e917f] leading-relaxed">
+              จากข้อความทั้งหมดที่โมเดลระบุว่าเป็น "เชิงบวก" มีข้อความที่เป็นบวกจริงสัดส่วนเท่าใด (ลด False Positive)
+            </p>
+          </div>
+
+          {/* 3. Recall */}
+          <div className="p-4 bg-[#0c0a08]/80 border border-[#2e251b] rounded-xl space-y-3">
+            <div className="flex items-center justify-between">
+              <div>
+                <span className="text-[10px] font-mono uppercase tracking-wider text-[#9e917f]">Sensitivity / True Positive Rate</span>
+                <h4 className="text-base font-bold text-[#fdfbf7]">3. ความไว (Recall)</h4>
+              </div>
+              <span className={`px-2.5 py-1 rounded-full text-xs font-bold font-mono ${
+                formulaModel === 'bert' ? 'bg-[#c58a2e]/20 text-[#f0c674] border border-[#c58a2e]/40' : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+              }`}>
+                {formulaModel === 'bert' ? '87.80%' : '54.88%'}
+              </span>
+            </div>
+
+            <div className="p-3 bg-[#140f0a] border border-[#2e251b] rounded-lg space-y-2">
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-[#9e917f] font-mono text-[11px]">สูตรสัญลักษณ์:</span>
+                <div className="font-serif text-sm text-[#fdfbf7] flex items-center">
+                  <span className="font-sans font-semibold mr-1 text-[#f0c674]">Recall</span>
+                  <span className="mr-1">=</span>
+                  <MathFraction
+                    num={<span className="italic">TP</span>}
+                    den={<span className="italic">TP + FN</span>}
+                  />
+                </div>
+              </div>
+
+              <div className="h-px bg-[#221a12] w-full" />
+
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-[#c58a2e] font-mono text-[11px]">แทนค่าจริง:</span>
+                <div className="font-serif text-sm text-[#fdfbf7] flex items-center">
+                  <span className="mr-1">=</span>
+                  {formulaModel === 'bert' ? (
+                    <>
+                      <MathFraction
+                        num={<span>216</span>}
+                        den={<span>216 + 30</span>}
+                      />
+                      <span className="mx-1">=</span>
+                      <MathFraction num={<span>216</span>} den={<span>246</span>} />
+                      <span className="ml-1 text-[#f0c674] font-bold font-mono">= 87.80%</span>
+                    </>
+                  ) : (
+                    <>
+                      <MathFraction
+                        num={<span>135</span>}
+                        den={<span>135 + 111</span>}
+                      />
+                      <span className="mx-1">=</span>
+                      <MathFraction num={<span>135</span>} den={<span>246</span>} />
+                      <span className="ml-1 text-amber-300 font-bold font-mono">= 54.88%</span>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+            <p className="text-[11px] text-[#9e917f] leading-relaxed">
+              จากข้อความที่มีความรู้สึกบวกจริงทั้งหมด 246 ตัวอย่าง โมเดลสามารถตรวจจับได้กี่ตัวอย่าง (ลด False Negative)
+            </p>
+          </div>
+
+          {/* 4. F1-Score */}
+          <div className="p-4 bg-[#0c0a08]/80 border border-[#2e251b] rounded-xl space-y-3">
+            <div className="flex items-center justify-between">
+              <div>
+                <span className="text-[10px] font-mono uppercase tracking-wider text-[#9e917f]">Harmonic Mean of Precision & Recall</span>
+                <h4 className="text-base font-bold text-[#fdfbf7]">4. คะแนนเฉลี่ยฮาร์มอนิก (F1-Score)</h4>
+              </div>
+              <span className={`px-2.5 py-1 rounded-full text-xs font-bold font-mono ${
+                formulaModel === 'bert' ? 'bg-[#c58a2e]/20 text-[#f0c674] border border-[#c58a2e]/40' : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+              }`}>
+                {formulaModel === 'bert' ? '85.71%' : '54.66%'}
+              </span>
+            </div>
+
+            <div className="p-3 bg-[#140f0a] border border-[#2e251b] rounded-lg space-y-2">
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-[#9e917f] font-mono text-[11px]">สูตรสัญลักษณ์:</span>
+                <div className="font-serif text-sm text-[#fdfbf7] flex items-center">
+                  <span className="font-sans font-semibold mr-1 text-[#f0c674]">F<sub>1</sub></span>
+                  <span className="mr-1">= 2 ×</span>
+                  <MathFraction
+                    num={<span className="italic">Precision × Recall</span>}
+                    den={<span className="italic">Precision + Recall</span>}
+                  />
+                </div>
+              </div>
+
+              <div className="h-px bg-[#221a12] w-full" />
+
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-[#c58a2e] font-mono text-[11px]">แทนค่าจริง:</span>
+                <div className="font-serif text-sm text-[#fdfbf7] flex items-center">
+                  <span className="mr-1">= 2 ×</span>
+                  {formulaModel === 'bert' ? (
+                    <>
+                      <MathFraction
+                        num={<span>83.72 × 87.80</span>}
+                        den={<span>83.72 + 87.80</span>}
+                      />
+                      <span className="ml-1 text-[#f0c674] font-bold font-mono">= 85.71%</span>
+                    </>
+                  ) : (
+                    <>
+                      <MathFraction
+                        num={<span>54.44 × 54.88</span>}
+                        den={<span>54.44 + 54.88</span>}
+                      />
+                      <span className="ml-1 text-amber-300 font-bold font-mono">= 54.66%</span>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+            <p className="text-[11px] text-[#9e917f] leading-relaxed">
+              ค่าเฉลี่ยฮาร์มอนิกที่แสดงความสมดุลสูงสุด ไม่ถูกบิดเบือนจากความไม่สมดุลของคลาสในกรณีชุดข้อมูลมีสัดส่วนต่างกัน
             </p>
           </div>
         </div>

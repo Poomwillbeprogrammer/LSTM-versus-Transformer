@@ -12,6 +12,7 @@ import {
   Network,
   Cpu
 } from 'lucide-react';
+import { LSTMMainFormulas, LSTMGateBreakdown, AttentionFormula } from './MathView';
 
 const PRESET_SENTENCES = [
   {
@@ -267,16 +268,10 @@ export default function AttentionSimulatorTab() {
             </p>
           </div>
 
-          {/* Gate Formula Card */}
-          <div className="p-3.5 bg-amber-500/10 border border-amber-500/20 rounded-xl text-xs font-mono text-[#e2d7c5] space-y-1">
-            <span className="text-amber-400 font-bold block">สมการควบคุมเกต (Hochreiter & Schmidhuber, 1997):</span>
-            <div className="text-[11px] text-[#e2d7c5] pt-1">
-              C_t = f_t ⊙ C_(t-1) + i_t ⊙ C̃_t <br />
-              h_t = o_t ⊙ tanh(C_t)
-            </div>
-            <span className="text-[10px] text-[#9e917f] block pt-1">
-              *ข้อจำกัด: ต้องรอคำนวณ t-1 เสร็จก่อน จึงไม่สามารถคำนวณคู่ขนานบน GPU ได้อย่างเต็มศักยภาพ
-            </span>
+          {/* LSTM Mathematical Architecture */}
+          <div className="space-y-4 pt-2">
+            <LSTMMainFormulas />
+            <LSTMGateBreakdown />
           </div>
         </div>
 
@@ -381,14 +376,8 @@ export default function AttentionSimulatorTab() {
           </div>
 
           {/* Scaled Dot-Product Formula */}
-          <div className="p-3.5 bg-[#c58a2e]/10 border border-[#c58a2e]/30 rounded-xl text-xs font-mono text-[#e2d7c5] space-y-1">
-            <span className="text-[#d99f3d] font-bold block">สมการ Self-Attention (Vaswani et al., 2017):</span>
-            <div className="text-[11px] text-[#e2d7c5] pt-1">
-              Attention(Q, K, V) = softmax( (Q × K^T) / √d_k ) × V
-            </div>
-            <span className="text-[10px] text-[#9e917f] block pt-1">
-              *จุดเด่น: คำนวณเป็น Matrix Multiplication ขนาดใหญ่รวดเดียวบน GPU Tensor Cores ได้พร้อมกันทุกคำ
-            </span>
+          <div className="pt-2">
+            <AttentionFormula />
           </div>
         </div>
       </div>
