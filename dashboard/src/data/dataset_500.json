@@ -72,7 +72,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 5,
@@ -91,7 +94,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 6,
@@ -148,7 +154,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 9,
@@ -167,7 +176,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 10,
@@ -223,7 +235,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 13,
@@ -280,7 +295,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 16,
@@ -318,7 +336,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 18,
@@ -337,7 +358,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 19,
@@ -542,7 +566,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 30,
@@ -561,7 +588,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 31,
@@ -616,7 +646,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 34,
@@ -635,7 +668,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 35,
@@ -692,7 +728,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 38,
@@ -711,7 +750,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 39,
@@ -766,7 +808,10 @@
       "negation",
       "contrastive"
     ],
-    "reason": "LSTM สับสนคำปฏิเสธในทิศทางซ้ายไปขวา ขณะที่ BERT รับรู้บริบทสองทิศทาง (Bidirectional)"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 42,
@@ -804,7 +849,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 44,
@@ -878,7 +926,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 48,
@@ -914,7 +965,10 @@
     "tags": [
       "negation"
     ],
-    "reason": "LSTM สับสนคำปฏิเสธในทิศทางซ้ายไปขวา ขณะที่ BERT รับรู้บริบทสองทิศทาง (Bidirectional)"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 50,
@@ -969,7 +1023,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 53,
@@ -1024,7 +1081,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 56,
@@ -1062,7 +1122,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 58,
@@ -1098,7 +1161,10 @@
     "tags": [
       "negation"
     ],
-    "reason": "LSTM สับสนคำปฏิเสธในทิศทางซ้ายไปขวา ขณะที่ BERT รับรู้บริบทสองทิศทาง (Bidirectional)"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 60,
@@ -1117,7 +1183,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 61,
@@ -1283,7 +1352,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 70,
@@ -1301,7 +1373,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 71,
@@ -1357,7 +1432,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 74,
@@ -1431,7 +1509,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 78,
@@ -1450,7 +1531,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 79,
@@ -1503,7 +1587,10 @@
     "tags": [
       "long_sequence"
     ],
-    "reason": "BERT ใช้ประโยชน์จาก Pre-trained contextual representation ได้แม่นยำกว่าการเทรน LSTM จากศูนย์"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 82,
@@ -1522,7 +1609,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 83,
@@ -1634,7 +1724,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 89,
@@ -1653,7 +1746,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 90,
@@ -1705,7 +1801,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 93,
@@ -1798,7 +1897,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 98,
@@ -1833,7 +1935,10 @@
     "tags": [
       "negation"
     ],
-    "reason": "LSTM สับสนคำปฏิเสธในทิศทางซ้ายไปขวา ขณะที่ BERT รับรู้บริบทสองทิศทาง (Bidirectional)"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 100,
@@ -1884,7 +1989,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 103,
@@ -2015,7 +2123,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 110,
@@ -2126,7 +2237,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 116,
@@ -2201,7 +2315,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 120,
@@ -2256,7 +2373,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 123,
@@ -2366,7 +2486,10 @@
     "tags": [
       "contrastive"
     ],
-    "reason": "BERT ใช้ประโยชน์จาก Pre-trained contextual representation ได้แม่นยำกว่าการเทรน LSTM จากศูนย์"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 129,
@@ -2385,7 +2508,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 130,
@@ -2456,7 +2582,10 @@
     "lstm_prob": 0.5205,
     "category": "bert_win",
     "tags": [],
-    "reason": "BERT ใช้ประโยชน์จาก Pre-trained contextual representation ได้แม่นยำกว่าการเทรน LSTM จากศูนย์"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 134,
@@ -2493,7 +2622,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 136,
@@ -2511,7 +2643,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 137,
@@ -2530,7 +2665,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 138,
@@ -2568,7 +2706,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 140,
@@ -2587,7 +2728,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 141,
@@ -2680,7 +2824,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 146,
@@ -2736,7 +2883,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 149,
@@ -2829,7 +2979,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 154,
@@ -3031,7 +3184,10 @@
     "lstm_prob": 0.5827,
     "category": "bert_win",
     "tags": [],
-    "reason": "BERT ใช้ประโยชน์จาก Pre-trained contextual representation ได้แม่นยำกว่าการเทรน LSTM จากศูนย์"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 165,
@@ -3046,7 +3202,10 @@
     "lstm_prob": 0.4824,
     "category": "bert_win",
     "tags": [],
-    "reason": "BERT ใช้ประโยชน์จาก Pre-trained contextual representation ได้แม่นยำกว่าการเทรน LSTM จากศูนย์"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 166,
@@ -3065,7 +3224,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 167,
@@ -3084,7 +3246,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 168,
@@ -3103,7 +3268,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 169,
@@ -3120,7 +3288,10 @@
     "tags": [
       "negation"
     ],
-    "reason": "LSTM สับสนคำปฏิเสธในทิศทางซ้ายไปขวา ขณะที่ BERT รับรู้บริบทสองทิศทาง (Bidirectional)"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 170,
@@ -3213,7 +3384,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 175,
@@ -3231,7 +3405,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 176,
@@ -3264,7 +3441,10 @@
     "lstm_prob": 0.4514,
     "category": "bert_win",
     "tags": [],
-    "reason": "BERT ใช้ประโยชน์จาก Pre-trained contextual representation ได้แม่นยำกว่าการเทรน LSTM จากศูนย์"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 178,
@@ -3321,7 +3501,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 181,
@@ -3451,7 +3634,10 @@
     "tags": [
       "long_sequence"
     ],
-    "reason": "BERT ใช้ประโยชน์จาก Pre-trained contextual representation ได้แม่นยำกว่าการเทรน LSTM จากศูนย์"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 188,
@@ -3506,7 +3692,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 191,
@@ -3581,7 +3770,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 195,
@@ -3654,7 +3846,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 199,
@@ -3690,7 +3885,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 201,
@@ -3784,7 +3982,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 206,
@@ -3821,7 +4022,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 208,
@@ -3858,7 +4062,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 210,
@@ -3877,7 +4084,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 211,
@@ -3896,7 +4106,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 212,
@@ -3914,7 +4127,10 @@
       "negation",
       "contrastive"
     ],
-    "reason": "LSTM สับสนคำปฏิเสธในทิศทางซ้ายไปขวา ขณะที่ BERT รับรู้บริบทสองทิศทาง (Bidirectional)"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 213,
@@ -3971,7 +4187,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 216,
@@ -3988,7 +4207,10 @@
     "tags": [
       "long_sequence"
     ],
-    "reason": "BERT ใช้ประโยชน์จาก Pre-trained contextual representation ได้แม่นยำกว่าการเทรน LSTM จากศูนย์"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 217,
@@ -4024,7 +4246,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 219,
@@ -4042,7 +4267,10 @@
       "negation",
       "contrastive"
     ],
-    "reason": "LSTM สับสนคำปฏิเสธในทิศทางซ้ายไปขวา ขณะที่ BERT รับรู้บริบทสองทิศทาง (Bidirectional)"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 220,
@@ -4061,7 +4289,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 221,
@@ -4099,7 +4330,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 223,
@@ -4153,7 +4387,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 226,
@@ -4207,7 +4444,10 @@
     "tags": [
       "negation"
     ],
-    "reason": "LSTM สับสนคำปฏิเสธในทิศทางซ้ายไปขวา ขณะที่ BERT รับรู้บริบทสองทิศทาง (Bidirectional)"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 229,
@@ -4264,7 +4504,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 232,
@@ -4302,7 +4545,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 234,
@@ -4321,7 +4567,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 235,
@@ -4393,7 +4642,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 239,
@@ -4412,7 +4664,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 240,
@@ -4431,7 +4686,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 241,
@@ -4525,7 +4783,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 246,
@@ -4578,7 +4839,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 249,
@@ -4688,7 +4952,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 255,
@@ -4707,7 +4974,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 256,
@@ -4725,7 +4995,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 257,
@@ -4744,7 +5017,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 258,
@@ -4761,7 +5037,10 @@
     "tags": [
       "long_sequence"
     ],
-    "reason": "BERT ใช้ประโยชน์จาก Pre-trained contextual representation ได้แม่นยำกว่าการเทรน LSTM จากศูนย์"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 259,
@@ -4798,7 +5077,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 261,
@@ -4816,7 +5098,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 262,
@@ -4834,7 +5119,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 263,
@@ -4869,7 +5157,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 265,
@@ -4888,7 +5179,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 266,
@@ -4981,7 +5275,10 @@
       "negation",
       "contrastive"
     ],
-    "reason": "LSTM สับสนคำปฏิเสธในทิศทางซ้ายไปขวา ขณะที่ BERT รับรู้บริบทสองทิศทาง (Bidirectional)"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 271,
@@ -5071,7 +5368,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 276,
@@ -5105,7 +5405,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 278,
@@ -5123,7 +5426,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 279,
@@ -5249,7 +5555,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 286,
@@ -5284,7 +5593,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 288,
@@ -5396,7 +5708,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 294,
@@ -5450,7 +5765,10 @@
     "tags": [
       "negation"
     ],
-    "reason": "LSTM สับสนคำปฏิเสธในทิศทางซ้ายไปขวา ขณะที่ BERT รับรู้บริบทสองทิศทาง (Bidirectional)"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 297,
@@ -5468,7 +5786,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 298,
@@ -5525,7 +5846,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 301,
@@ -5580,7 +5904,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 304,
@@ -5633,7 +5960,10 @@
     "tags": [
       "long_sequence"
     ],
-    "reason": "BERT ใช้ประโยชน์จาก Pre-trained contextual representation ได้แม่นยำกว่าการเทรน LSTM จากศูนย์"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 307,
@@ -5833,7 +6163,10 @@
     "lstm_prob": 0.4185,
     "category": "bert_win",
     "tags": [],
-    "reason": "BERT ใช้ประโยชน์จาก Pre-trained contextual representation ได้แม่นยำกว่าการเทรน LSTM จากศูนย์"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 318,
@@ -5851,7 +6184,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 319,
@@ -5908,7 +6244,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 322,
@@ -5946,7 +6285,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 324,
@@ -6057,7 +6399,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 330,
@@ -6095,7 +6440,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 332,
@@ -6189,7 +6537,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 337,
@@ -6244,7 +6595,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 340,
@@ -6262,7 +6616,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 341,
@@ -6336,7 +6693,10 @@
       "negation",
       "contrastive"
     ],
-    "reason": "LSTM สับสนคำปฏิเสธในทิศทางซ้ายไปขวา ขณะที่ BERT รับรู้บริบทสองทิศทาง (Bidirectional)"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 345,
@@ -6355,7 +6715,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 346,
@@ -6374,7 +6737,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 347,
@@ -6392,7 +6758,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 348,
@@ -6483,7 +6852,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 353,
@@ -6502,7 +6874,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 354,
@@ -6538,7 +6913,10 @@
     "tags": [
       "negation"
     ],
-    "reason": "LSTM สับสนคำปฏิเสธในทิศทางซ้ายไปขวา ขณะที่ BERT รับรู้บริบทสองทิศทาง (Bidirectional)"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 356,
@@ -6614,7 +6992,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 360,
@@ -6650,7 +7031,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 362,
@@ -6668,7 +7052,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 363,
@@ -6687,7 +7074,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 364,
@@ -6723,7 +7113,10 @@
     "tags": [
       "negation"
     ],
-    "reason": "LSTM สับสนคำปฏิเสธในทิศทางซ้ายไปขวา ขณะที่ BERT รับรู้บริบทสองทิศทาง (Bidirectional)"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 366,
@@ -6741,7 +7134,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 367,
@@ -6796,7 +7192,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 370,
@@ -6833,7 +7232,10 @@
       "negation",
       "contrastive"
     ],
-    "reason": "LSTM สับสนคำปฏิเสธในทิศทางซ้ายไปขวา ขณะที่ BERT รับรู้บริบทสองทิศทาง (Bidirectional)"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 372,
@@ -6852,7 +7254,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 373,
@@ -6871,7 +7276,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 374,
@@ -6908,7 +7316,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 376,
@@ -6927,7 +7338,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 377,
@@ -6982,7 +7396,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 380,
@@ -7001,7 +7418,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 381,
@@ -7038,7 +7458,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 383,
@@ -7075,7 +7498,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 385,
@@ -7093,7 +7519,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 386,
@@ -7169,7 +7598,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 390,
@@ -7226,7 +7658,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 393,
@@ -7245,7 +7680,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 394,
@@ -7283,7 +7721,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 396,
@@ -7320,7 +7761,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 398,
@@ -7413,7 +7857,10 @@
       "negation",
       "contrastive"
     ],
-    "reason": "LSTM สับสนคำปฏิเสธในทิศทางซ้ายไปขวา ขณะที่ BERT รับรู้บริบทสองทิศทาง (Bidirectional)"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 403,
@@ -7489,7 +7936,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 407,
@@ -7620,7 +8070,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 414,
@@ -7639,7 +8092,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 415,
@@ -7694,7 +8150,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 418,
@@ -7731,7 +8190,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 420,
@@ -7785,7 +8247,10 @@
     "tags": [
       "contrastive"
     ],
-    "reason": "BERT ใช้ประโยชน์จาก Pre-trained contextual representation ได้แม่นยำกว่าการเทรน LSTM จากศูนย์"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 423,
@@ -7823,7 +8288,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 425,
@@ -7838,7 +8306,10 @@
     "lstm_prob": 0.379,
     "category": "bert_win",
     "tags": [],
-    "reason": "BERT ใช้ประโยชน์จาก Pre-trained contextual representation ได้แม่นยำกว่าการเทรน LSTM จากศูนย์"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 426,
@@ -7986,7 +8457,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 434,
@@ -8022,7 +8496,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 436,
@@ -8060,7 +8537,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 438,
@@ -8078,7 +8558,10 @@
       "negation",
       "contrastive"
     ],
-    "reason": "LSTM สับสนคำปฏิเสธในทิศทางซ้ายไปขวา ขณะที่ BERT รับรู้บริบทสองทิศทาง (Bidirectional)"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 439,
@@ -8096,7 +8579,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 440,
@@ -8134,7 +8620,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 442,
@@ -8338,7 +8827,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 453,
@@ -8357,7 +8849,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 454,
@@ -8395,7 +8890,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 456,
@@ -8506,7 +9004,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 462,
@@ -8525,7 +9026,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 463,
@@ -8563,7 +9067,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 465,
@@ -8581,7 +9088,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 466,
@@ -8619,7 +9129,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 468,
@@ -8673,7 +9186,10 @@
     "tags": [
       "negation"
     ],
-    "reason": "LSTM สับสนคำปฏิเสธในทิศทางซ้ายไปขวา ขณะที่ BERT รับรู้บริบทสองทิศทาง (Bidirectional)"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 471,
@@ -8691,7 +9207,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 472,
@@ -8729,7 +9248,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 474,
@@ -8874,7 +9396,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 482,
@@ -8911,7 +9436,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 484,
@@ -8946,7 +9474,10 @@
     "tags": [
       "contrastive"
     ],
-    "reason": "BERT ใช้ประโยชน์จาก Pre-trained contextual representation ได้แม่นยำกว่าการเทรน LSTM จากศูนย์"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 486,
@@ -8964,7 +9495,10 @@
       "negation",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ข้อความมีความยาวสูง (>90-128 คำ) เกินขีดความสามารถของ Forget Gate ใน LSTM ทำให้สารสนเทศต้นประโยคเจือจางลงเหลือต่ำกว่า 10% จนเวกเตอร์ปลายทางเสียใจความสำคัญ",
+    "root_cause_group": "decay",
+    "root_cause_name": "Long-Distance Decay",
+    "root_cause_name_th": "ข้อความยาวความจำเลือนหาย"
   },
   {
     "id": 487,
@@ -8983,7 +9517,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 488,
@@ -9021,7 +9558,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 490,
@@ -9059,7 +9599,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "ประโยคมีคำเชื่อมขัดแย้ง (เช่น but, however, although) แบ่งเป็น 2 อนุประโยค LSTM ถูกสารสนเทศของอนุประโยคหนึ่งกลบ ขณะที่ BERT แยกแยะขอบเขต Discourse ได้อย่างแม่นยำ",
+    "root_cause_group": "contrastive",
+    "root_cause_name": "Contrastive Shift",
+    "root_cause_name_th": "คำเชื่อมขัดแย้งกลับทิศทาง"
   },
   {
     "id": 492,
@@ -9115,7 +9658,10 @@
       "negation",
       "contrastive"
     ],
-    "reason": "LSTM สับสนคำปฏิเสธในทิศทางซ้ายไปขวา ขณะที่ BERT รับรู้บริบทสองทิศทาง (Bidirectional)"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 495,
@@ -9171,7 +9717,10 @@
       "contrastive",
       "long_sequence"
     ],
-    "reason": "LSTM เกิด Context Decay ในประโยคยาวที่มีบริบทขัดแย้ง ขณะที่ BERT ใช้ Self-Attention จับความสัมพันธ์ได้ทั่วถึง"
+    "reason": "LSTM พลาดเนื่องจากคำปฏิเสธ (เช่น not, barely, never) อยู่ห่างจากคำคุณศัพท์ ทำให้เวกเตอร์ h_T ไม่สามารถผูกคู่คำปฏิเสธได้ ต่างจาก BERT ที่ใช้ Self-Attention ผูกคู่คำได้โดยตรง",
+    "root_cause_group": "negation",
+    "root_cause_name": "Negation Flipping",
+    "root_cause_name_th": "การกลับขั้วคำปฏิเสธ"
   },
   {
     "id": 498,

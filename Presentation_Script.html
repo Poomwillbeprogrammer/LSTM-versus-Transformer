@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>สคริปต์นำเสนอคู่ขนาน (Dual Presentation Script) - LSTM vs BERT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Sarabun:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- KaTeX for pristine math rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="if(window.renderMathInElement) renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <style>
+    :root {
+      --rmutl-brown: #3d2314;
+      --rmutl-gold: #c59b27;
+      --rmutl-gold-light: #fdf8eb;
+      --rmutl-gold-border: #e2c879;
+      --slide-blue: #1e40af;
+      --slide-blue-bg: #eff6ff;
+      --slide-blue-border: #93c5fd;
+      --web-amber: #b45309;
+      --web-amber-bg: #fffbeb;
+      --web-amber-border: #fcd34d;
+      --action-purple: #6b21a8;
+      --action-purple-bg: #faf5ff;
+      --action-purple-border: #d8b4fe;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --base-font-size: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Sarabun', sans-serif;
+      font-size: var(--base-font-size);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      padding-top: 80px;
+      padding-bottom: 90px;
+    }
+
+    /* Top Floating Control Bar */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--rmutl-gold);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .brand-title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--rmutl-brown);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-badge {
+      background: var(--rmutl-gold);
+      color: white;
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .custom-saved-badge {
+      font-size: 0.75rem;
+      background: #e0f2fe;
+      color: #0284c7;
+      border: 1px solid #bae6fd;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Stopwatch Widget */
+    .timer-widget {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #0f172a;
+      color: #38bdf8;
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.15rem;
+      font-weight: 600;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+    }
+
+    .timer-btn {
+      background: #334155;
+      color: white;
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .timer-btn:hover {
+      background: #475569;
+      transform: scale(1.05);
+    }
+
+    /* Quick Tools */
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn {
+      background: white;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-family: 'Sarabun', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+      user-select: none;
+    }
+
+    .btn:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+
+    .btn-gold {
+      background: var(--rmutl-gold);
+      color: white;
+      border-color: var(--rmutl-gold);
+    }
+
+    .btn-gold:hover {
+      background: #b0881c;
+      border-color: #b0881c;
+    }
+
+    .btn-edit {
+      border-color: var(--rmutl-gold);
+      color: var(--rmutl-brown);
+      font-weight: 700;
+    }
+
+    .btn-edit:hover {
+      background: var(--rmutl-gold-light);
+    }
+
+    .btn-edit.active {
+      background: #16a34a !important;
+      border-color: #16a34a !important;
+      color: white !important;
+      box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.25);
+    }
+
+    /* Floating Edit Toolbar */
+    .floating-edit-bar {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(12px);
+      color: #f8fafc;
+      padding: 12px 20px;
+      border-radius: 40px;
+      display: none;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      border: 1px solid #334155;
+      z-index: 1000;
+      animation: slideUp 0.25s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .edit-status-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .edit-status-badge {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #38bdf8;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .edit-hint {
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+
+    .edit-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-sm {
+      padding: 5px 12px;
+      font-size: 0.8rem;
+      border-radius: 20px;
+    }
+
+    .btn-outline-danger {
+      background: transparent;
+      border: 1px solid #f87171;
+      color: #fca5a5;
+    }
+
+    .btn-outline-danger:hover {
+      background: #dc2626;
+      border-color: #dc2626;
+      color: white;
+    }
+
+    /* Editable Styling when Edit Mode is Active */
+    body.is-editing [data-edit-id] {
+      outline: 1.5px dashed #cbd5e1;
+      border-radius: 6px;
+      padding: 6px 10px;
+      margin: 4px -10px;
+      background-color: rgba(253, 248, 235, 0.45);
+      transition: all 0.2s ease;
+      cursor: text;
+    }
+
+    body.is-editing [data-edit-id]:hover {
+      outline: 1.5px dashed var(--rmutl-gold);
+      background-color: var(--rmutl-gold-light);
+    }
+
+    body.is-editing [data-edit-id]:focus {
+      outline: 2px solid var(--rmutl-gold);
+      background-color: #ffffff;
+      box-shadow: 0 0 0 4px rgba(197, 155, 39, 0.18);
+    }
+
+    body.is-editing .math-display-card {
+      user-select: none;
+      cursor: default;
+    }
+
+    /* Container */
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header Banner */
+    .header-card {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      border-top: 5px solid var(--rmutl-gold);
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .header-card h1 {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.6rem;
+      color: var(--rmutl-brown);
+      margin-bottom: 8px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--border);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .meta-item strong {
+      color: var(--text);
+    }
+
+    /* Jump Nav */
+    .jump-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .jump-link {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 20px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .jump-link:hover {
+      border-color: var(--rmutl-gold);
+      background: var(--rmutl-gold-light);
+      color: var(--rmutl-brown);
+    }
+
+    /* Act Header */
+    .act-header {
+      margin-top: 40px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--rmutl-gold);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .act-title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1.35rem;
+      color: var(--rmutl-brown);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .act-timing {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      background: #e2e8f0;
+      padding: 3px 10px;
+      border-radius: 20px;
+      color: #334155;
+      font-weight: 600;
+    }
+
+    /* Cue Card */
+    .cue-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+      padding: 24px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      position: relative;
+    }
+
+    /* Cue Badges */
+    .cue-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      letter-spacing: 0.3px;
+    }
+
+    .badge-slide {
+      background: var(--slide-blue-bg);
+      color: var(--slide-blue);
+      border: 1px solid var(--slide-blue-border);
+    }
+
+    .badge-web {
+      background: var(--web-amber-bg);
+      color: var(--web-amber);
+      border: 1px solid var(--web-amber-border);
+    }
+
+    .badge-action {
+      background: var(--action-purple-bg);
+      color: var(--action-purple);
+      border: 1px solid var(--action-purple-border);
+    }
+
+    /* Stage Direction Box */
+    .stage-direction {
+      background: #f1f5f9;
+      border-left: 3px solid #64748b;
+      padding: 8px 14px;
+      font-size: 0.88rem;
+      color: #475569;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+
+    /* Speech Content */
+    .speech-text {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #1e293b;
+      padding: 4px 0;
+    }
+
+    .speech-text strong {
+      color: var(--rmutl-brown);
+      font-weight: 600;
+    }
+
+    .highlight-number {
+      background: #fef08a;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      color: #854d0e;
+    }
+
+    /* =========================================
+       MATHEMATICAL TYPOGRAPHY & COMPONENTS
+       ========================================= */
+    .math-var {
+      font-family: 'Cambria Math', 'KaTeX_Math', 'Times New Roman', serif;
+      font-style: normal;
+      display: inline-flex;
+      align-items: baseline;
+      padding: 0 1px;
+    }
+
+    .math-var i, i.mvar {
+      font-style: italic;
+      font-family: 'Cambria Math', 'KaTeX_Math', 'Times New Roman', serif;
+      padding: 0 1px;
+    }
+
+    sub, .math-var sub {
+      font-size: 0.72em;
+      line-height: 0;
+      position: relative;
+      bottom: -0.25em;
+      font-family: 'Cambria Math', 'KaTeX_Math', 'Times New Roman', serif;
+    }
+
+    sup, .math-var sup {
+      font-size: 0.72em;
+      line-height: 0;
+      position: relative;
+      top: -0.45em;
+      font-family: 'Cambria Math', 'KaTeX_Math', 'Times New Roman', serif;
+    }
+
+    .math-display-card {
+      background: linear-gradient(135deg, #18110b 0%, #2a1c12 100%);
+      border: 1px solid var(--rmutl-gold-border);
+      border-left: 5px solid var(--rmutl-gold);
+      border-radius: 12px;
+      padding: 18px 24px;
+      margin: 18px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+      color: #fdfbf7;
+      overflow-x: auto;
+    }
+
+    .math-expr {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Cambria Math', 'KaTeX_Math', 'Times New Roman', serif;
+      font-size: 1.25rem;
+      white-space: nowrap;
+    }
+
+    .math-func {
+      font-family: 'Sarabun', 'Segoe UI', sans-serif;
+      font-weight: 700;
+      color: #e5c158;
+      letter-spacing: 0.5px;
+    }
+
+    .mop {
+      color: var(--rmutl-gold);
+      font-weight: 700;
+      margin: 0 2px;
+    }
+
+    .mparen {
+      font-size: 1.55em;
+      font-weight: 300;
+      color: #cbd5e1;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    /* Fractions with genuine horizontal division line */
+    .frac {
+      display: inline-flex;
+      flex-direction: column;
+      vertical-align: middle;
+      text-align: center;
+      padding: 0 6px;
+    }
+
+    .frac-num {
+      border-bottom: 2px solid #e2c879;
+      padding: 0 4px 3px 4px;
+      display: block;
+      color: #fdfbf7;
+      font-size: 1.15rem;
+    }
+
+    .frac-den {
+      padding: 3px 4px 0 4px;
+      display: block;
+      color: #fdfbf7;
+      font-size: 1.15rem;
+    }
+
+    /* Square Root with radical symbol and top overline */
+    .sqrt-sym {
+      font-family: 'Cambria Math', 'Times New Roman', serif;
+      font-size: 1.35em;
+      line-height: 1;
+      vertical-align: -0.05em;
+      margin-right: 1px;
+      color: #e5c158;
+    }
+
+    .sqrt-radicand {
+      border-top: 1.8px solid #e5c158;
+      padding-top: 2px;
+      padding-left: 2px;
+      padding-right: 3px;
+      display: inline-block;
+    }
+
+    .highlight-val {
+      color: #facc15;
+      font-weight: 700;
+      background: rgba(234, 179, 8, 0.15);
+      border: 1px solid #ca8a04;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 1.2rem;
+    }
+
+    /* Q&A Accordion */
+    .qa-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .qa-header {
+      padding: 14px 18px;
+      background: #f8fafc;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--rmutl-brown);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .qa-header:hover {
+      background: var(--rmutl-gold-light);
+    }
+
+    .qa-body {
+      padding: 16px 18px;
+      border-top: 1px solid var(--border);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: #334155;
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        padding: 0;
+        background: white;
+        color: black;
+        font-size: 11pt;
+      }
+      .top-bar, .controls, .jump-nav, .timer-widget, .floating-edit-bar {
+        display: none !important;
+      }
+      .cue-card {
+        page-break-inside: avoid;
+        border: 1px solid #ccc;
+        box-shadow: none;
+        margin-bottom: 16px;
+      }
+      .act-header {
+        page-break-before: always;
+      }
+      .highlight-number {
+        background: transparent;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      .math-display-card {
+        background: #f8fafc !important;
+        color: #0f172a !important;
+        border: 1px solid #cbd5e1 !important;
+        border-left: 5px solid #b45309 !important;
+      }
+      .frac-num, .frac-den {
+        color: #0f172a !important;
+        border-bottom-color: #0f172a !important;
+      }
+      .sqrt-sym, .sqrt-radicand {
+        color: #0f172a !important;
+        border-top-color: #0f172a !important;
+      }
+      .math-func, .mop {
+        color: #b45309 !important;
+      }
+      [data-edit-id] {
+        outline: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Bar -->
+  <header class="top-bar">
+    <div class="brand-title">
+      <span class="brand-badge">RMUTL</span>
+      <span>ENGCE 408 · สคริปต์นำเสนอคู่ขนาน (Dual Cue Card)</span>
+      <span class="custom-saved-badge" id="customSavedBadge" style="display:none;" title="ระบบกำลังใช้บทพูดที่คุณเคยบันทึกไว้">✏️ มีการปรับแต่งสคริปต์</span>
+    </div>
+
+    <!-- Stopwatch Timer -->
+    <div class="timer-widget">
+      <span id="timerDisplay">00:00</span>
+      <button class="timer-btn" id="startBtn" title="เริ่มจับเวลา">▶</button>
+      <button class="timer-btn" id="pauseBtn" title="หยุดชั่วคราว">⏸</button>
+      <button class="timer-btn" id="resetBtn" title="รีเซ็ต">↺</button>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button class="btn" id="fontDecBtn" title="ลดขนาดตัวหนังสือ">A-</button>
+      <button class="btn" id="fontIncBtn" title="เพิ่มขนาดตัวหนังสือ">A+</button>
+      <button class="btn btn-edit" id="editToggleBtn" title="เปิดโหมดแก้ไขสคริปต์เพื่อปรับแต่งบทพูด">✏️ แก้ไขสคริปต์</button>
+      <button class="btn btn-gold" onclick="window.print()" title="พิมพ์หรือบันทึกเป็น PDF">🖨️ พิมพ์ / PDF</button>
+    </div>
+  </header>
+
+  <!-- Floating Edit Action Bar (Visible in Edit Mode) -->
+  <div class="floating-edit-bar" id="floatingEditBar">
+    <div class="edit-status-wrap">
+      <span class="edit-status-badge" id="editStatusBadge">🟢 โหมดแก้ไขเปิดอยู่ (บันทึกอัตโนมัติ)</span>
+      <span class="edit-hint">เคล็ดลับ: คลิกช่องข้อความเพื่อพิมพ์ | ลากคลุมแล้วกด Ctrl+B ทำตัวหนา</span>
+    </div>
+    <div class="edit-actions">
+      <button class="btn btn-sm btn-gold" id="exportHtmlBtn" title="ดาวน์โหลดไฟล์ HTML ที่แก้ไขแล้วลงเครื่อง">💾 บันทึกไฟล์ HTML</button>
+      <button class="btn btn-sm btn-outline-danger" id="resetScriptBtn" title="คืนค่าเป็นสคริปต์ต้นฉบับ">↺ คืนค่าเดิม</button>
+    </div>
+  </div>
+
+  <main class="container">
+
+    <!-- Header Meta -->
+    <div class="header-card">
+      <h1>การเปรียบเทียบเชิงประจักษ์: LSTM vs Transformer (BERT)</h1>
+      <p style="color: var(--text-muted); font-size: 1.05rem;">สำหรับงานวิเคราะห์ความรู้สึก (Sentiment Analysis) บนชุดข้อมูล IMDb</p>
+      
+      <div class="meta-grid">
+        <div class="meta-item">รายวิชา: <strong>ENGCE 408 การรู้จำรูปแบบ</strong></div>
+        <div class="meta-item">อาจารย์ผู้สอน: <strong>ผศ. ดร.สมนึก สุระธง</strong></div>
+        <div class="meta-item">ผู้นำเสนอ: <strong>นายชยุตม์ อยู่เจริญกิจ (67543206046-4)</strong></div>
+        <div class="meta-item">เวลาเป้าหมาย: <strong>10 – 12 นาที</strong></div>
+      </div>
+    </div>
+
+    <!-- Jump Navigation -->
+    <nav class="jump-nav">
+      <a href="#act1" class="jump-link">องก์ 1: ปูพื้นฐาน (สไลด์ 1–4)</a>
+      <a href="#act2" class="jump-link">องก์ 2: กลไกจำลองสด (เว็บ Tab 3)</a>
+      <a href="#act3" class="jump-link">องก์ 3: ผลทดลอง (สไลด์ 5–9 + เว็บ Tab 2)</a>
+      <a href="#act4" class="jump-link">องก์ 4: ผ่าเคส 183 ตัวอย่าง (เว็บ Tab 4–5)</a>
+      <a href="#act5" class="jump-link">องก์ 5: Trade-off & สรุป (สไลด์ 10–13)</a>
+      <a href="#qa" class="jump-link">คลังคำถาม Defense Q&A</a>
+    </nav>
+
+    <!-- ACT 1 -->
+    <section id="act1">
+      <div class="act-header">
+        <h2 class="act-title">องก์ที่ 1: ปูพื้นฐานและกระบวนทัศน์สถาปัตยกรรม</h2>
+        <span class="act-timing">⏱️ 00:00 – 02:30 นาที</span>
+      </div>
+
+      <!-- Slide 1 -->
+      <article class="cue-card">
+        <span class="cue-badge badge-slide">🖥️ สไลด์หน้า 1: หน้าปก</span>
+        <div class="stage-direction" data-edit-id="s1-dir">ยืนตรง สบตาอาจารย์และผู้ฟัง เริ่มต้นด้วยน้ำเสียงสุภาพ มั่นใจ และเป็นทางการ</div>
+        <div class="speech-text" data-edit-id="s1-speech">
+          "กราบเรียน ท่านอาจารย์ ผศ. ดร.สมนึก สุระธง และสวัสดีเพื่อนๆ ทุกคนครับ<br>
+          กระผมนายชยุตม์ อยู่เจริญกิจ รหัสนักศึกษา 67543206046-4 นักศึกษาภาควิชาวิศวกรรมคอมพิวเตอร์ วันนี้ขออนุญาตนำเสนอโครงงานวิชา ENGCE 408 การรู้จำรูปแบบ ในหัวข้อ: <strong>'กระบวนทัศน์ใหม่ของการรู้จำรูปแบบ: จาก LSTM สู่ Transformer — การเปรียบเทียบเชิงประจักษ์บนงานจำแนกความรู้สึก (Sentiment Analysis) ชุดข้อมูล IMDb'</strong> ครับ"
+        </div>
+      </article>
+
+      <!-- Slide 2 -->
+      <article class="cue-card">
+        <span class="cue-badge badge-slide">🖥️ สไลด์หน้า 2: ที่มาและความสำคัญ & Research Question</span>
+        <div class="stage-direction" data-edit-id="s2-dir">คลิกเปลี่ยนสไลด์ — เน้นย้ำประเด็นคำถามวิจัยหลัก</div>
+        <div class="speech-text" data-edit-id="s2-speech">
+          "ในปัจจุบัน ข้อมูลรีวิวบนโลกออนไลน์มีปริมาณมหาศาลครับ การทำ Sentiment Analysis จึงเป็นงานหลักของ Pattern Recognition ในการสกัดอารมณ์บวกหรือลบออกมา<br><br>
+          ในอดีต <strong>LSTM</strong> เคยเป็นมาตรฐานทองคำของงานประมวลผลภาษาธรรมชาติ แต่ต่อมาเกิดการเปลี่ยนกระบวนทัศน์ (Paradigm Shift) ครั้งใหญ่ด้วย <strong>Transformer และ BERT</strong><br><br>
+          คำถามวิจัย (Research Question) สำคัญของโครงงานนี้คือ: <strong>'เมื่อนำ LSTM และ BERT ที่ผ่านการ Fine-tune มาแก้โจทย์เดียวกัน ภายใต้สภาพแวดล้อมที่มีการควบคุมอย่างเข้มงวด — โมเดลใดจะให้ความแม่นยำสูงกว่ากัน และที่สำคัญที่สุดคือ เราต้องแลกมาด้วยต้นทุนการประมวลผล (Computational Cost) เพิ่มขึ้นกี่เท่า?'</strong>"
+        </div>
+      </article>
+
+      <!-- Slide 3 -->
+      <article class="cue-card">
+        <span class="cue-badge badge-slide">🖥️ สไลด์หน้า 3: สถาปัตยกรรม LSTM (Recurrent Baseline)</span>
+        <div class="stage-direction" data-edit-id="s3-dir">คลิกเปลี่ยนสไลด์ — ชี้แผนภาพลำดับการไหลของข้อมูลจากซ้ายไปขวา</div>
+        <div class="speech-text" data-edit-id="s3-speech">
+          "เริ่มที่โมเดลพื้นฐานคือ <strong>LSTM</strong> ครับ กลไกหลักของ LSTM ทำงานแบบ <strong>ตามลำดับเวลา (Sequential Recurrence)</strong> อ่านคำทีละคำจากซ้ายไปขวา ผ่านการส่งต่อเวกเตอร์ Hidden State (<span class="math-var"><i>h</i><sub><i>t</i></sub></span>) และ Cell State (<span class="math-var"><i>C</i><sub><i>t</i></sub></span>)<br><br>
+          แม้จะมี Forget Gate มาช่วยบรรเทาปัญหา Vanishing Gradient แต่จุดอ่อนเชิงโครงสร้างคือ:<br>
+          1. <strong>ประมวลผลขนานไม่ได้ (Non-parallelizable):</strong> เพราะคำที่ <span class="math-var"><i>t</i></span> ต้องรอผลจากคำที่ <span class="math-var"><i>t</i> − 1</span> เสมอ<br>
+          2. <strong>เกิด Context Decay:</strong> เมื่อประโยคยาวขึ้น ข้อมูลจากต้นประโยคจะค่อยๆ เลือนหายไปตามระยะทาง<br>
+          3. <strong>มองเห็นบริบททิศทางเดียว (Unidirectional):</strong> ในช่วงที่อ่านต้นประโยค จะยังไม่รู้บริบทที่ซ่อนอยู่ท้ายประโยคครับ"
+        </div>
+      </article>
+
+      <!-- Slide 4 -->
+      <article class="cue-card">
+        <span class="cue-badge badge-slide">🖥️ สไลด์หน้า 4: Transformer & Scaled Dot-Product Attention</span>
+        <div class="stage-direction" data-edit-id="s4-dir">คลิกเปลี่ยนสไลด์ — ผายมือชี้สูตร Attention</div>
+        <div class="speech-text" data-edit-id="s4-speech">
+          "เพื่อแก้จุดคอขวดดังกล่าว <strong>Transformer</strong> จึงตัดโครงสร้างวนซ้ำทิ้งทั้งหมด และแทนที่ด้วยกลไก <strong>Scaled Dot-Product Self-Attention</strong>:"
+
+          <!-- Math Display Card: Attention Formula with True Fractions and Radicals -->
+          <div class="math-display-card" title="Scaled Dot-Product Attention" contenteditable="false">
+            <div class="math-expr">
+              <span class="math-func">Attention</span>(<i class="mvar">Q</i>, <i class="mvar">K</i>, <i class="mvar">V</i>)
+              <span class="mop">=</span>
+              <span class="math-func">softmax</span>
+              <span class="mparen">(</span>
+              <span class="frac">
+                <span class="frac-num"><i class="mvar">Q</i><i class="mvar">K</i><sup><i>T</i></sup></span>
+                <span class="frac-den">
+                  <span class="sqrt-sym">√</span><span class="sqrt-radicand"><i class="mvar">d</i><sub><i>k</i></sub></span>
+                </span>
+              </span>
+              <span class="mparen">)</span>
+              <i class="mvar">V</i>
+            </div>
+          </div>
+
+          "สิ่งนี้ทำให้ระยะทางของข้อมูลหรือ Path Length ระหว่างทุกคำกลายเป็น <strong><span class="math-var"><i>O</i>(1)</span></strong> โมเดลเชื่อมโยงคำคู่ใดๆ ได้โดยตรงในครั้งเดียว ไม่ว่าจะอยู่ห่างกันแค่ไหน และประมวลผลได้แบบสองทิศทาง (Bidirectional) ขนานบน GPU ได้อย่างเต็มประสิทธิภาพครับ"
+        </div>
+      </article>
+    </section>
+
+    <!-- ACT 2 -->
+    <section id="act2">
+      <div class="act-header">
+        <h2 class="act-title">องก์ที่ 2: เจาะลึกกลไกจำลองสดบนแดชบอร์ด</h2>
+        <span class="act-timing">⏱️ 02:30 – 05:00 นาที</span>
+      </div>
+
+      <article class="cue-card">
+        <span class="cue-badge badge-web">🌐 สลับหน้าจอ: กด Alt+Tab ไปที่เว็บแดชบอร์ด แท็บ 'Attention Simulator'</span>
+        <div class="stage-direction" data-edit-id="act2-intro-dir">สลับจอไปเบราว์เซอร์อย่างมั่นใจ คลิกเปิดแท็บ Attention Simulator</div>
+        <div class="speech-text" data-edit-id="act2-intro-speech">
+          "เพื่อให้อาจารย์เห็นภาพความแตกต่างเชิงกลไก (Mechanistic Insight) ที่ชัดเจนที่สุด กระผมได้พัฒนา <strong>Interactive Web Dashboard</strong> ขึ้นมาจำลองการทำงานภายในของทั้งสองโมเดลครับ ตอนนี้เราอยู่ที่แท็บ <strong>Attention Simulator</strong> ครับ"
+        </div>
+
+        <div style="margin-top: 14px;">
+          <span class="cue-badge badge-action">🖱️ Action: เลือก Preset 1 &amp; สลับมุมมองตาราง 2D</span>
+          <div class="stage-direction" data-edit-id="act2-preset-dir">เลือก Preset 1: "The movie was not bad, but the ending was barely watchable." จากนั้นกดปุ่ม "ตาราง 2D" และเลือก "Head 2: คำปฏิเสธ"</div>
+          <div class="speech-text" data-edit-id="act2-preset-speech">
+            "ผมขอยกตัวอย่างประโยคทดสอบคลาสสิก: <em>'The movie was not bad, but the ending was barely watchable.'</em><br>
+            ประโยคนี้มีความซับซ้อนเพราะมีทั้งการปฏิเสธซ้อน (not bad) และคำเชื่อมขัดแย้ง (but) ตามด้วยข้อความเชิงลบ (barely watchable) ซึ่งภาพรวมเป็นรีวิว <strong>เชิงลบ (Negative)</strong> ครับ<br><br>
+            
+            <strong>ด้านซ้ายมือ — กลไก LSTM Tape Simulation:</strong><br>
+            *(เลื่อนเมาส์ชี้แถบไทม์ไลน์ของ LSTM)*<br>
+            อาจารย์จะสังเกตเห็นว่า ขณะที่ LSTM ค่อยๆ อ่านทีละคำ ค่า Context Retention ของคำว่า <em>'not'</em> และ <em>'bad'</em> ในช่วงต้นประโยคจะค่อยๆ เสื่อมลง (Decay) เหลือเพียง 10-15% เมื่อไปถึงท้ายประโยค<br>
+            *(เลื่อนเมาส์ชี้กล่อง Verdict ด้านล่างการ์ดซ้าย)*<br>
+            ส่งผลให้เวกเตอร์ขั้นสุดท้าย <span class="math-var"><i>h</i><sub><i>T</i></sub></span> แทบจำบริบทต้นประโยคไม่ได้ และถูกคำว่า <em>'watchable'</em> ซึ่งเป็นคำเชิงบวกดึงดูด จนโมเดลทำนายผิดพลาดเป็น <strong>Positive (แถบเตือนสีแดง ความมั่นใจ 63.2%)</strong> ครับ<br><br>
+
+            <strong>ด้านขวามือ — นวัตกรรมตารางเมทริกซ์ 2 มิติ (2D Attention Heatmap Grid):</strong><br>
+            *(ชี้ที่ตารางเมทริกซ์ 2D และคลิกปักหมุดที่ช่อง barely ➔ watchable)*<br>
+            ในทางตรงกันข้าม ฝั่ง BERT เมื่อเราเปิดดู <strong>ตารางเมทริกซ์ 2 มิติ</strong> โดยแกนตั้งคือ Query (คำที่มอง) และแกนนอนคือ Key (คำที่ถูกมอง) และเลือกดู <strong>Head 2 ซึ่งเชี่ยวชาญด้าน Negation Binding</strong>:<br>
+            เราจะเห็นจุดสีทองสว่างจ้าทันทีที่ช่องตัดกันระหว่างคำว่า <em>'barely'</em> กับ <em>'watchable'</em> สูงถึง <span class="highlight-number">74%</span> (หรือ 0.74 ในสเกลความน่าจะเป็น) และ <em>'not'</em> กับ <em>'bad'</em> สูงถึง <span class="highlight-number">85%</span> (0.85)<br>
+            *(เลื่อนเมาส์ชี้กล่อง Verdict ด้านล่างการ์ดขวา)*<br>
+            เมื่อคลิกปักหมุดที่ช่อง การ์ดด้านล่างจะแสดงการแทนค่าสูตร <span class="math-var">Softmax(<i>Q</i><i>K</i><sup><i>T</i></sup> / √<i>d</i><sub><i>k</i></sub>)</span> ทุกคำเชื่อมโยงถึงกันโดยตรงด้วยระยะทาง Path Length = 1 ทำให้เวกเตอร์ [CLS] สรุปอารมณ์รีวิวนี้ที่ปลายทางได้อย่างถูกต้องเป็น <strong>Negative ด้วยความมั่นใจสูงถึง <span class="highlight-number">96.4%</span> (แถบสีเขียวทองยืนยันผล)</strong> ครับ"
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ACT 3 -->
+    <section id="act3">
+      <div class="act-header">
+        <h2 class="act-title">องก์ที่ 3: ระเบียบวิธีวิจัยและผลการทดลองเชิงประจักษ์</h2>
+        <span class="act-timing">⏱️ 05:00 – 07:30 นาที</span>
+      </div>
+
+      <!-- Slide 5, 6, 7 -->
+      <article class="cue-card">
+        <span class="cue-badge badge-slide">🖥️ สลับกลับสไลด์: หน้า 5, 6, 7 (Pipeline & Setup)</span>
+        <div class="stage-direction" data-edit-id="s5-dir">กด Alt+Tab กลับมาที่สไลด์หน้า 5 แล้วไปหน้า 6 และ 7 ตามลำดับ</div>
+        <div class="speech-text" data-edit-id="s5-speech">
+          "ในด้านการทดลอง เรานำ BERT มาผ่านกระบวนการ <strong>Transfer Learning</strong> โดยใช้ <code>bert-base-uncased</code> สกัดเวกเตอร์ 768 มิติจากโทเค็น <code>[CLS]</code> ผ่าน Classification Head และ Fine-tune เพียง 3 รอบ<br><br>
+          เพื่อให้เป็นการเปรียบเทียบที่บริสุทธิ์และเที่ยงตรง (Fair & Controlled Comparison):<br>
+          • ใช้ชุดข้อมูล <strong>IMDb Reviews 2,500 ตัวอย่าง</strong> (Train 2,000 / Test 500) ที่มีคลาสสมดุล 50:50<br>
+          • ฟิกซ์ <code>Random Seed = 42</code> และจำกัดความยาวคงที่ที่ <span class="highlight-number">128 โทเค็น</span> เท่ากันทั้งสองโมเดล<br>
+          • รันบน Google Colab การ์ดจอ NVIDIA Tesla T4 โดยใช้ PyTorch<br>
+          • LSTM มีขนาด 4.04 ล้านพารามิเตอร์ ฝึกด้วย Adam Learning Rate <span class="math-var">1 × 10<sup>−3</sup></span><br>
+          • BERT มีขนาด 110 ล้านพารามิเตอร์ ฝึกด้วย AdamW ร่วมกับ Weight Decay 0.01 และ Learning Rate <span class="math-var">2 × 10<sup>−5</sup></span> ครับ"
+        </div>
+      </article>
+
+      <!-- Slide 8 & 9 -->
+      <article class="cue-card">
+        <span class="cue-badge badge-slide">🖥️ สไลด์หน้า 8 & 9: ผลการทดลอง Head-to-Head & Convergence</span>
+        <div class="stage-direction" data-edit-id="s8-dir">คลิกสไลด์ 8 แล้วต่อด้วย 9 — เน้นย้ำตัวเลขเปรียบเทียบ</div>
+        <div class="speech-text" data-edit-id="s8-speech">
+          "และนี่คือผลการทดลองเชิงประจักษ์บนชุดทดสอบ 500 ตัวอย่างครับ:<br>
+          • <strong>Accuracy:</strong> BERT ทำได้ <span class="highlight-number">85.60%</span> เทียบกับ LSTM ที่ทำได้ <span class="highlight-number">55.20%</span> เพิ่มขึ้นแบบก้าวกระโดดถึง <strong class="math-var">Δ +30.40%</strong><br>
+          • <strong>Macro F1-Score:</strong> BERT ทำได้ <span class="highlight-number">85.71%</span> ขณะที่ LSTM อยู่ที่ <span class="highlight-number">54.66%</span> เพิ่มขึ้น <strong class="math-var">Δ +31.05%</strong><br>
+          • <strong>Recall:</strong> BERT กวาดจับรีวิวบวกได้ครอบคลุมถึง <span class="highlight-number">87.80%</span><br><br>
+          เมื่อดูที่กราฟ Loss ในสไลด์ 9 จะพบว่า LSTM เริ่มต้นที่ Loss <span class="math-var">0.6976 → 0.3234</span> ในรอบที่ 5 ขณะที่ BERT เริ่มต้นรอบแรก Loss ก็ต่ำกว่าแล้วที่ <span class="math-var">0.4826 → 0.1369</span> ภายในเพียง 3 รอบเท่านั้นครับ"
+        </div>
+      </article>
+
+      <!-- Web Benchmark -->
+      <article class="cue-card">
+        <span class="cue-badge badge-web">🌐 สลับหน้าจอ: เว็บแดชบอร์ด คลิกแท็บ 'Benchmark & Evaluation'</span>
+        <div class="stage-direction" data-edit-id="bench-dir">กด Alt+Tab สลับกลับมาที่เว็บ คลิกแท็บ Benchmark & Evaluation</div>
+        <div class="speech-text" data-edit-id="bench-speech">
+          "ในแท็บ <strong>Benchmark & Evaluation</strong> นี้:<br>
+          *(คลิกปุ่มสลับกราฟเป็น Radar View)*<br>
+          มุมมอง Radar Chart แสดงให้เห็นว่าพื้นที่สีทองของ BERT ครอบคลุมรอบด้านทุกมิติ<br><br>
+          *(เลื่อนลงมาชี้ส่วน Confusion Matrix และ Numerical Proof)*<br>
+          จาก Confusion Matrix: BERT ทายบวกถูก 215 ตัวอย่าง ทายลบถูก 213 ตัวอย่าง เกิด False Positive เพียง 35 และ False Negative เพียง 37 ตัวอย่าง<br>
+          การ์ด <strong>Numerical Proof</strong> ด้านขวาได้แสดงการแทนค่าสูตรทางคณิตศาสตร์ให้เห็นจริง เช่น:"
+
+          <!-- Math Display Card: Accuracy Numerical Proof -->
+          <div class="math-display-card" title="การคำนวณ Accuracy" contenteditable="false">
+            <div class="math-expr">
+              <span class="math-func">Accuracy</span>
+              <span class="mop">=</span>
+              <span class="frac">
+                <span class="frac-num"><i class="mvar">TP</i> + <i class="mvar">TN</i></span>
+                <span class="frac-den">Total</span>
+              </span>
+              <span class="mop">=</span>
+              <span class="frac">
+                <span class="frac-num">215 + 213</span>
+                <span class="frac-den">500</span>
+              </span>
+              <span class="mop">=</span>
+              <span class="frac">
+                <span class="frac-num">428</span>
+                <span class="frac-den">500</span>
+              </span>
+              <span class="mop">=</span>
+              <span class="highlight-val">85.60%</span>
+            </div>
+          </div>
+
+          "ทุกตัวเลขตรงกัน 100% สามารถตรวจสอบย้อนกลับได้เชิงพีชคณิตครับ"
+        </div>
+      </article>
+    </section>
+
+    <!-- ACT 4 -->
+    <section id="act4">
+      <div class="act-header">
+        <h2 class="act-title">องก์ที่ 4: ผ่าเคสข้อผิดพลาดและการทดสอบประโยคสด</h2>
+        <span class="act-timing">⏱️ 07:30 – 09:30 นาที</span>
+      </div>
+
+      <!-- Tab Dataset Explorer -->
+      <article class="cue-card">
+        <span class="cue-badge badge-web">🌐 อยู่บนเว็บ: คลิกแท็บ 'Dataset Explorer'</span>
+        <div class="stage-direction" data-edit-id="exp-dir">คลิกแท็บ Dataset Explorer แล้วกดปุ่มฟิลเตอร์ 'BERT ชนะ (183 เคส)' ชี้แถบการ์ด 3 Error Archetypes ด้านบน</div>
+        <div class="speech-text" data-edit-id="exp-speech">
+          "เพื่อหาคำตอบว่าทำไมตัวเลขถึงต่างกันมากขนาดนี้ เรามาวิเคราะห์ในแท็บ <strong>Dataset Explorer</strong> ครับ<br>
+          ในชุดทดสอบ 500 ตัวอย่าง: มีเคสที่ <strong>BERT ถูก แต่ LSTM ทายผิด มากถึง <span class="highlight-number">183 ตัวอย่าง</span> (คิดเป็น 36.6% ของชุดทดสอบทั้งหมด!)</strong><br><br>
+          *(ชี้ไปที่แถบการ์ดสรุป 3 เสาหลัก Error Archetypes ด้านบน)*<br>
+          เมื่อเรามองดูแถบ <strong>Root Cause Analysis Summary</strong> ด้านบน ระบบได้จำแนกความล้มเหลวของ LSTM ทั้ง 183 เคสออกเป็น 3 กลุ่มหลักเชิงประจักษ์อย่างชัดเจนครับ:<br>
+          1. <strong>🔥 Negation Flipping (<span class="highlight-number">75 เคส / 41.0%</span>):</strong> การกลับทิศทางอารมณ์จากคำปฏิเสธซับซ้อน เช่น <em>'not bad'</em>, <em>'barely watchable'</em> ซึ่ง LSTM มักจับเฉพาะคำคุณศัพท์แต่พลาดขอบเขตคำปฏิเสธ<br>
+          2. <strong>⚡ Contrastive Shift (<span class="highlight-number">58 เคส / 31.7%</span>):</strong> การหักมุมด้วยคำเชื่อม เช่น <em>'however'</em>, <em>'although'</em>, <em>'but'</em> ซึ่งน้ำหนักทัศนคติที่แท้จริงพลิกกลับหลังคำเชื่อม<br>
+          3. <strong>⏳ Long-Distance Context Decay (<span class="highlight-number">50 เคส / 27.3%</span>):</strong> ประโยคยาวที่คำบอกทัศนคติอยู่ห่างกันเกินความสามารถของ LSTM ในการส่งผ่าน Hidden State ข้ามหลาย Time Steps<br><br>
+          *(คลิกที่แถวตัวอย่างเพื่อเปิด Sample Inspector Modal)*<br>
+          และเมื่อคลิกเปิด <strong>Sample Inspector Modal</strong> ขึ้นมาดูรายเคส: หน้าต่างจะแสดง <strong>Diagnostic Badge</strong> ระบุกลุ่มอาการชัดเจน พร้อมระบบ <strong>Interactive Syntax Highlighting</strong> ที่ไฮไลต์สีคำปฏิเสธ (สีแดง), คำเชื่อมขัดแย้ง (สีส้ม), และคำแสดงทัศนคติ (สีฟ้า) ให้อาจารย์และผู้ฟังเห็นทันทีว่าคำกระตุ้น (Trigger Words) จุดไหนที่ทำให้ LSTM หลุด แต่ BERT ยังสามารถเชื่อมโยง Attention ข้ามคำได้อย่างแม่นยำครับ"
+        </div>
+      </article>
+
+      <!-- Tab Live Playground -->
+      <article class="cue-card">
+        <span class="cue-badge badge-web">🌐 อยู่บนเว็บ: คลิกแท็บ 'Live Playground'</span>
+        <div class="stage-direction" data-edit-id="play-dir">คลิกแท็บ Live Playground แล้วกดปุ่มประโยคตัวอย่าง หรือทดลองพิมพ์สด</div>
+        <div class="speech-text" data-edit-id="play-speech">
+          "นอกจากนี้ แดชบอร์ดยังมีแท็บ <strong>Live Playground</strong> ให้อาจารย์สามารถทดสอบป้อนประโยคภาษาอังกฤษสดๆ เพื่อดูค่าความน่าจะเป็นและแถบ <strong>Token Saliency Heatmap</strong> ได้แบบ Real-time ทันทีครับ"
+        </div>
+      </article>
+    </section>
+
+    <!-- ACT 5 -->
+    <section id="act5">
+      <div class="act-header">
+        <h2 class="act-title">องก์ที่ 5: การประนีประนอมทางวิศวกรรมและบทสรุป</h2>
+        <span class="act-timing">⏱️ 09:30 – 11:30 นาที</span>
+      </div>
+
+      <!-- Slide 11 -->
+      <article class="cue-card">
+        <span class="cue-badge badge-slide">🖥️ สลับกลับสไลด์: หน้า 11 (The Engineering Trade-off)</span>
+        <div class="stage-direction" data-edit-id="s11-dir">กด Alt+Tab สลับกลับมาสไลด์หน้า 11 — เน้นน้ำเสียงทางวิศวกรรม</div>
+        <div class="speech-text" data-edit-id="s11-speech">
+          "ท่านอาจารย์ครับ ในฐานะวิศวกรคอมพิวเตอร์ เราไม่สามารถดูเพียงค่า Accuracy อย่างเดียวได้ แต่ต้องมอง <strong>Engineering Trade-off</strong> เสมอ<br>
+          • <strong>LSTM ใช้เวลาเพียง 0.82 วินาทีต่อรอบ</strong> มีขนาดโมเดล 4 ล้านพารามิเตอร์<br>
+          • <strong>BERT ใช้เวลาถึง 42.07 วินาทีต่อรอบ</strong> และมีขนาดถึง 110 ล้านพารามิเตอร์<br><br>
+          <strong>BERT กินเวลาและทรัพยากรสูงกว่า LSTM ถึง <span class="highlight-number">51.3 เท่า!</span></strong><br>
+          แต่สิ่งที่ได้รับกลับมาคือ <strong>ความแม่นยำที่พุ่งขึ้น <span class="math-var">Δ +30.40%</span> (จาก 55.20% เป็น 85.60%)</strong> ซึ่งในโจทย์ธุรกิจจริง นี่คือความแตกต่างระหว่าง 'ระบบที่ใช้การไม่ได้' กับ 'ระบบที่พร้อมใช้งานในระดับโปรดักชัน' ครับ"
+        </div>
+      </article>
+
+      <!-- Slide 12 & 13 -->
+      <article class="cue-card">
+        <span class="cue-badge badge-slide">🖥️ สไลด์หน้า 12 & 13: บทสรุป ข้อเสนอแนะ และเปิดช่วง Q&A</span>
+        <div class="stage-direction" data-edit-id="s12-dir">คลิกสไลด์ 12 แล้วไป 13 — จบการนำเสนอด้วยความสุภาพและสง่างาม</div>
+        <div class="speech-text" data-edit-id="s12-speech">
+          "สรุปผลการวิจัยและข้อเสนอแนะเชิงประยุกต์ใช้งาน:<br>
+          1. <strong>BERT ชนะขาดในทุกมิติ:</strong> หัวใจสำคัญคือ <strong>ความรู้จากการ Pre-training</strong> ร่วมกับกลไก Bidirectional Self-Attention<br>
+          2. <strong>LSTM ยังไม่ไร้ค่า:</strong> หากเป็นงานบนอุปกรณ์พกพา, ระบบ IoT/Edge หรือระบบที่ต้องการการตอบสนองระดับมิลลิวินาที สถาปัตยกรรม Recurrent ยังเป็นตัวเลือกที่ประหยัดพลังงานที่สุด<br>
+          3. <strong>ข้อจำกัด:</strong> ศึกษาบนชุดข้อมูลภาษาอังกฤษ 2,500 ตัวอย่าง ความยาว 128 โทเค็น ในอนาคตสามารถต่อยอดสู่ภาษาไทยและเอกสารขนาดยาวต่อไปครับ<br><br>
+          กระผมขอจบการนำเสนอโครงงานไว้แต่เพียงเท่านี้ ขอขอบพระคุณท่านอาจารย์ ผศ. ดร.สมนึก สุระธง เป็นอย่างสูง และกระผมยินดีตอบทุกข้อซักถามครับ ขอบพระคุณครับ"
+        </div>
+      </article>
+    </section>
+
+    <!-- Q&A Section -->
+    <section id="qa" style="margin-top: 40px;">
+      <div class="act-header">
+        <h2 class="act-title">คลังแนวทางตอบคำถาม Defense (Anticipated Q&A Cheatsheet)</h2>
+        <span class="act-timing">🎯 เตรียมพร้อมรับมือคำถามเจาะลึก</span>
+      </div>
+
+      <div class="qa-card">
+        <div class="qa-header" onclick="toggleQA(this)">
+          <span>Q1: ทำไม LSTM ถึงได้ Accuracy ต่ำเพียง 55.20% (โมเดล Underfit หรือไม่?)</span>
+          <span>▼</span>
+        </div>
+        <div class="qa-body" data-edit-id="qa1-body">
+          <strong>แนวทางการตอบ:</strong><br>
+          สาเหตุหลักมาจาก 3 ปัจจัยร่วมกันครับ:<br>
+          1. <strong>การฝึกจากศูนย์ (Trained from scratch):</strong> LSTM ไม่ได้ใช้ Pre-trained Word Embeddings (เช่น GloVe) แต่สุ่มน้ำหนักเวกเตอร์จากศูนย์บนข้อมูลเพียง 2,000 ตัวอย่าง ซึ่งน้อยเกินไปสำหรับการสร้าง Semantic Space ที่สมบูรณ์<br>
+          2. <strong>ข้อจำกัดของรีวิว IMDb:</strong> รีวิวจริงมีความยาวเฉลี่ยกว่า 200 คำ แต่ถูก Truncate เหลือ 128 โทเค็น สาระสำคัญบางส่วนจึงตกหล่น<br>
+          3. <strong>Context Decay:</strong> เกรเดียนต์และบริบทเสื่อมลงตามระยะทาง ทำให้ Loss ติดค้างที่ 0.3234 และแยกแยะคลาสได้ไม่เด็ดขาดครับ
+        </div>
+      </div>
+
+      <div class="qa-card">
+        <div class="qa-header" onclick="toggleQA(this)">
+          <span>Q2: เปรียบเทียบ BERT (Pre-trained) กับ LSTM (From Scratch) ถือว่ายุติธรรมไหม?</span>
+          <span>▼</span>
+        </div>
+        <div class="qa-body" data-edit-id="qa2-body">
+          <strong>แนวทางการตอบ:</strong><br>
+          ในเชิงวิทยาศาสตร์บริสุทธิ์ จุดตั้งต้นต่างกันครับ แต่ในเชิง <strong>'วิศวกรรมการรู้จำรูปแบบประยุกต์'</strong> นี่คือการพิสูจน์เปรียบเทียบระหว่าง <strong>'กระบวนทัศน์ดั้งเดิม (Train from scratch)'</strong> กับ <strong>'กระบวนทัศน์สมัยใหม่ (Pre-train once, Fine-tune anywhere)'</strong> เพื่อตอบคำถามว่าคุ้มค่าหรือไม่ที่จะจ่ายต้นทุนเวลาเพิ่ม 51.3 เท่า ซึ่งผลการทดลองพิสูจน์แล้วว่าคุ้มค่ามาก เพราะได้ความแม่นยำเพิ่มขึ้นถึง <span class="math-var">Δ +30.40%</span> ครับ
+        </div>
+      </div>
+
+      <div class="qa-card">
+        <div class="qa-header" onclick="toggleQA(this)">
+          <span>Q3: ทำไมถึงเลือกตัดความยาวประโยคที่ 128 โทเค็น ไม่ใช้ 512 ตามขีดจำกัดของ BERT?</span>
+          <span>▼</span>
+        </div>
+        <div class="qa-body" data-edit-id="qa3-body">
+          <strong>แนวทางการตอบ:</strong><br>
+          1. <strong>การควบคุมตัวแปรเพื่อความเท่าเทียม (Controllability):</strong> หากขยายเป็น 512 โทเค็น LSTM จะเกิด Vanishing Gradient และ Context Decay รุนแรงยิ่งขึ้นจนประสิทธิภาพลดลงไปอีก<br>
+          2. <strong>Computational Budget:</strong> กลไก Self-Attention มีความซับซ้อนเชิงหน่วยความจำและเวลาอยู่ที่ <span class="math-var"><i>O</i>(<i>N</i><sup>2</sup>)</span> ค่า 128 จึงเป็นจุดสมดุลที่ดีที่สุดบน GPU NVIDIA T4 ในการรัน Batch Size 16-32 ได้อย่างมีเสถียรภาพครับ
+        </div>
+      </div>
+
+      <div class="qa-card">
+        <div class="qa-header" onclick="toggleQA(this)">
+          <span>Q4: เวลาต่างกัน 51.3 เท่าในตอน Train แล้วตอนทำนายจริง (Inference) ต่างกันเท่าไร?</span>
+          <span>▼</span>
+        </div>
+        <div class="qa-body" data-edit-id="qa4-body">
+          <strong>แนวทางการตอบ:</strong><br>
+          ตอน Inference ความเร็วจะต่างกันลดลงเหลือประมาณ 10–20 เท่าครับ เพราะไม่ต้องคำนวณ Backward Pass และในโปรดักชันจริงเราสามารถประยุกต์ใช้เทคนิค <strong>Quantization (INT8), Pruning หรือ Knowledge Distillation (เช่น DistilBERT)</strong> เพื่อบีบอัดโมเดลให้เร็วและเบาขึ้นได้อีกมากครับ
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // ==========================================
+    // 1. STOPWATCH TIMER LOGIC
+    // ==========================================
+    let startTime = 0;
+    let elapsedTime = 0;
+    let timerInterval = null;
+
+    const display = document.getElementById('timerDisplay');
+    const startBtn = document.getElementById('startBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function formatTime(ms) {
+      const totalSeconds = Math.floor(ms / 1000);
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+      return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    startBtn.addEventListener('click', () => {
+      if (!timerInterval) {
+        startTime = Date.now() - elapsedTime;
+        timerInterval = setInterval(() => {
+          elapsedTime = Date.now() - startTime;
+          display.textContent = formatTime(elapsedTime);
+        }, 1000);
+      }
+    });
+
+    pauseBtn.addEventListener('click', () => {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+    });
+
+    resetBtn.addEventListener('click', () => {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      elapsedTime = 0;
+      display.textContent = "00:00";
+    });
+
+    // ==========================================
+    // 2. FONT SIZING CONTROLS
+    // ==========================================
+    let currentFontSize = 16;
+    document.getElementById('fontIncBtn').addEventListener('click', () => {
+      if (currentFontSize < 24) {
+        currentFontSize += 2;
+        document.body.style.setProperty('--base-font-size', currentFontSize + 'px');
+      }
+    });
+
+    document.getElementById('fontDecBtn').addEventListener('click', () => {
+      if (currentFontSize > 12) {
+        currentFontSize -= 2;
+        document.body.style.setProperty('--base-font-size', currentFontSize + 'px');
+      }
+    });
+
+    // ==========================================
+    // 3. QA ACCORDION
+    // ==========================================
+    function toggleQA(header) {
+      const body = header.nextElementSibling;
+      const arrow = header.querySelector('span:last-child');
+      if (body.style.display === 'none') {
+        body.style.display = 'block';
+        arrow.textContent = '▼';
+      } else {
+        body.style.display = 'none';
+        arrow.textContent = '▶';
+      }
+    }
+
+    // ==========================================
+    // 4. SCRIPT EDIT MODE ENGINE (IN-PLACE WYSIWYG)
+    // ==========================================
+    const STORAGE_KEY = 'rmutl_presentation_script_custom_v1';
+    let isEditMode = false;
+    let saveDebounceTimer = null;
+
+    const editToggleBtn = document.getElementById('editToggleBtn');
+    const floatingEditBar = document.getElementById('floatingEditBar');
+    const editStatusBadge = document.getElementById('editStatusBadge');
+    const customSavedBadge = document.getElementById('customSavedBadge');
+    const exportHtmlBtn = document.getElementById('exportHtmlBtn');
+    const resetScriptBtn = document.getElementById('resetScriptBtn');
+
+    // Restore saved edits on initial load
+    function loadSavedEdits() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        const savedData = JSON.parse(raw);
+        let hasCustomData = false;
+
+        document.querySelectorAll('[data-edit-id]').forEach(el => {
+          const id = el.getAttribute('data-edit-id');
+          if (savedData && savedData[id] !== undefined) {
+            el.innerHTML = savedData[id];
+            hasCustomData = true;
+          }
+        });
+
+        if (hasCustomData && customSavedBadge) {
+          customSavedBadge.style.display = 'inline-flex';
+        }
+      } catch (err) {
+        console.warn('Could not load custom script edits:', err);
+      }
+    }
+
+    // Auto-save all editable blocks into localStorage
+    function autoSaveEdits() {
+      try {
+        const data = {};
+        document.querySelectorAll('[data-edit-id]').forEach(el => {
+          const id = el.getAttribute('data-edit-id');
+          data[id] = el.innerHTML;
+        });
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+
+        if (customSavedBadge) {
+          customSavedBadge.style.display = 'inline-flex';
+        }
+
+        if (editStatusBadge) {
+          editStatusBadge.textContent = '✓ บันทึกอัตโนมัติแล้ว';
+          editStatusBadge.style.color = '#4ade80';
+
+          clearTimeout(saveDebounceTimer);
+          saveDebounceTimer = setTimeout(() => {
+            if (editStatusBadge && isEditMode) {
+              editStatusBadge.textContent = '🟢 โหมดแก้ไขเปิดอยู่ (บันทึกอัตโนมัติ)';
+              editStatusBadge.style.color = '#38bdf8';
+            }
+          }, 1500);
+        }
+      } catch (err) {
+        console.error('Auto-save failed:', err);
+      }
+    }
+
+    // Toggle edit mode state
+    function toggleEditMode(forceState) {
+      isEditMode = forceState !== undefined ? forceState : !isEditMode;
+      document.body.classList.toggle('is-editing', isEditMode);
+
+      if (isEditMode) {
+        editToggleBtn.classList.add('active');
+        editToggleBtn.innerHTML = '✓ เสร็จสิ้นการแก้ไข';
+        editToggleBtn.title = 'คลิกเพื่อปิดโหมดแก้ไขและกลับสู่โหมดนำเสนอ';
+        floatingEditBar.style.display = 'flex';
+
+        document.querySelectorAll('[data-edit-id]').forEach(el => {
+          el.setAttribute('contenteditable', 'true');
+        });
+
+        // Protect mathematical cards inside editable blocks
+        document.querySelectorAll('.math-display-card, .math-box').forEach(card => {
+          card.setAttribute('contenteditable', 'false');
+        });
+      } else {
+        editToggleBtn.classList.remove('active');
+        editToggleBtn.innerHTML = '✏️ แก้ไขสคริปต์';
+        editToggleBtn.title = 'เปิดโหมดแก้ไขสคริปต์เพื่อปรับแต่งบทพูด';
+        floatingEditBar.style.display = 'none';
+
+        document.querySelectorAll('[data-edit-id]').forEach(el => {
+          el.removeAttribute('contenteditable');
+        });
+        autoSaveEdits();
+      }
+    }
+
+    // Export modified HTML as a downloadable file
+    function exportHtmlFile() {
+      const wasEditing = isEditMode;
+      if (wasEditing) {
+        toggleEditMode(false);
+      }
+
+      // Clone document markup
+      const htmlContent = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+      const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Presentation_Script.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      if (wasEditing) {
+        toggleEditMode(true);
+      }
+
+      alert('ดาวน์โหลดไฟล์ Presentation_Script.html เรียบร้อย!\nคุณสามารถนำไฟล์นี้ไปวางแทนที่ไฟล์เดิมในโฟลเดอร์โครงงาน หรือนำไปเปิดใช้งานบนอุปกรณ์อื่นได้ทันทีครับ');
+    }
+
+    // Reset edits to baked-in default version
+    function resetScriptToDefault() {
+      const confirmed = confirm(
+        'คุณต้องการล้างการปรับแต่งทั้งหมด และคืนค่าสคริปต์เป็นเวอร์ชันต้นฉบับใช่หรือไม่?\n\n(การกระทำนี้จะล้างข้อมูลที่บันทึกไว้ในเบราว์เซอร์ และรีเฟรชหน้าเว็บ)'
+      );
+      if (confirmed) {
+        localStorage.removeItem(STORAGE_KEY);
+        window.location.reload();
+      }
+    }
+
+    // Event listeners for Edit Mode
+    editToggleBtn.addEventListener('click', () => toggleEditMode());
+    exportHtmlBtn.addEventListener('click', exportHtmlFile);
+    resetScriptBtn.addEventListener('click', resetScriptToDefault);
+
+    document.querySelectorAll('[data-edit-id]').forEach(el => {
+      el.addEventListener('input', autoSaveEdits);
+      el.addEventListener('blur', autoSaveEdits);
+    });
+
+    // Run initial restoration
+    loadSavedEdits();
+  </script>
+</body>
+</html>

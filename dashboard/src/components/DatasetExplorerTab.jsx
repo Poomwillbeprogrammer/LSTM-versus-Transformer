@@ -12,13 +12,53 @@ import {
   Eye,
   SlidersHorizontal,
   X,
-  Sparkles
+  Sparkles,
+  Flame,
+  Zap,
+  Clock,
+  ArrowRight
 } from 'lucide-react';
 import dataset500 from '../data/dataset_500.json';
 
+// Helper to highlight trigger words in review text
+function renderHighlightedText(text) {
+  if (!text) return null;
+  const tokens = text.split(/(\s+|[.,\/#!$%\^&\*;:{}=\-_`~()])/);
+  
+  const negators = new Set(['not', "n't", 'never', 'barely', 'hardly', 'no', 'none', 'nothing', 'neither', 'nor']);
+  const contrasts = new Set(['but', 'however', 'although', 'though', 'yet', 'nevertheless', 'nonetheless', 'despite', 'whereas']);
+  const sentiments = new Set(['bad', 'worst', 'terrible', 'awful', 'horrible', 'boring', 'poor', 'waste', 'disaster', 'dull', 'good', 'great', 'excellent', 'masterpiece', 'brilliant', 'wonderful', 'amazing', 'stunning', 'best', 'superb', 'watchable']);
+
+  return tokens.map((part, idx) => {
+    const clean = part.toLowerCase().trim();
+    if (negators.has(clean)) {
+      return (
+        <mark key={idx} className="bg-rose-500/25 text-rose-300 px-1 py-0.5 rounded font-bold border border-rose-500/40">
+          {part}
+        </mark>
+      );
+    }
+    if (contrasts.has(clean)) {
+      return (
+        <mark key={idx} className="bg-amber-500/25 text-amber-300 px-1 py-0.5 rounded font-bold border border-amber-500/40">
+          {part}
+        </mark>
+      );
+    }
+    if (sentiments.has(clean)) {
+      return (
+        <mark key={idx} className="bg-cyan-500/20 text-cyan-300 px-1 py-0.5 rounded font-semibold border border-cyan-500/30">
+          {part}
+        </mark>
+      );
+    }
+    return <span key={idx}>{part}</span>;
+  });
+}
+
 export default function DatasetExplorerTab() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [activeFilter, setActiveFilter] = useState('all'); // all, bert_win, lstm_win, both_correct, both_wrong, negation, long
+  const [activeFilter, setActiveFilter] = useState('bert_win'); // default to bert_win to showcase 183 cases!
   const [selectedSample, setSelectedSample] = useState(null);
   const [page, setPage] = useState(1);
   const pageSize = 12;
@@ -28,6 +68,9 @@ export default function DatasetExplorerTab() {
     return {
       all: dataset500.length,
       bert_win: dataset500.filter(s => s.category === 'bert_win').length,
+      rc_negation: dataset500.filter(s => s.category === 'bert_win' && s.root_cause_group === 'negation').length,
+      rc_contrastive: dataset500.filter(s => s.category === 'bert_win' && s.root_cause_group === 'contrastive').length,
+      rc_decay: dataset500.filter(s => s.category === 'bert_win' && s.root_cause_group === 'decay').length,
       lstm_win: dataset500.filter(s => s.category === 'lstm_win').length,
       both_correct: dataset500.filter(s => s.category === 'both_correct').length,
       both_wrong: dataset500.filter(s => s.category === 'both_wrong').length,
@@ -41,6 +84,9 @@ export default function DatasetExplorerTab() {
     return dataset500.filter((item) => {
       // Category filter
       if (activeFilter === 'bert_win' && item.category !== 'bert_win') return false;
+      if (activeFilter === 'rc_negation' && (item.category !== 'bert_win' || item.root_cause_group !== 'negation')) return false;
+      if (activeFilter === 'rc_contrastive' && (item.category !== 'bert_win' || item.root_cause_group !== 'contrastive')) return false;
+      if (activeFilter === 'rc_decay' && (item.category !== 'bert_win' || item.root_cause_group !== 'decay')) return false;
       if (activeFilter === 'lstm_win' && item.category !== 'lstm_win') return false;
       if (activeFilter === 'both_correct' && item.category !== 'both_correct') return false;
       if (activeFilter === 'both_wrong' && item.category !== 'both_wrong') return false;
@@ -217,6 +263,138 @@ export default function DatasetExplorerTab() {
         </div>
       </div>
 
+      {/* 3 Error Archetypes Executive Summary (Root Cause Analysis of 183 Cases) */}
+      <div className="bg-[#16120e]/95 border border-[#4d3716] rounded-2xl p-6 space-y-4 shadow-lg">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#2e251b] pb-4">
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="px-2 py-0.5 rounded bg-[#c58a2e]/20 text-[#f0c674] font-mono text-[11px] font-bold uppercase tracking-wider border border-[#c58a2e]/40">
+                Root Cause Analysis
+              </span>
+              <span className="text-xs font-mono text-[#9e917f]">183 เคส (36.6% ของชุดทดสอบ)</span>
+            </div>
+            <h3 className="text-lg font-bold text-[#fdfbf7] mt-1 flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-[#f0c674]" />
+              <span>ผ่าชันสูตร 183 เคส: 3 รูปแบบหลักที่ BERT ชนะ LSTM ขาดลอย</span>
+            </h3>
+            <p className="text-xs text-[#ab9b87] mt-1">
+              คลิกการ์ดใดการ์ดหนึ่งด้านล่าง เพื่อกรองเจาะลึกเฉพาะกลุ่มตัวอย่างและสาเหตุความผิดพลาดทันที
+            </p>
+          </div>
+
+          {['rc_negation', 'rc_contrastive', 'rc_decay'].includes(activeFilter) && (
+            <button
+              onClick={() => { setActiveFilter('bert_win'); setPage(1); }}
+              className="px-3.5 py-1.5 rounded-xl bg-[#c58a2e] text-[#0c0a08] font-bold text-xs cursor-pointer shadow-sm hover:bg-[#d99f3d] transition-all flex items-center gap-1.5 self-start sm:self-center"
+            >
+              <span>รีเซ็ตแสดงครบทั้ง 183 เคส</span>
+            </button>
+          )}
+        </div>
+
+        {/* 3 Archetype Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
+          {/* Group 1: Negation Flipping */}
+          <div
+            onClick={() => { setActiveFilter(activeFilter === 'rc_negation' ? 'bert_win' : 'rc_negation'); setPage(1); }}
+            className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between space-y-3 group ${
+              activeFilter === 'rc_negation'
+                ? 'bg-orange-950/40 border-orange-500 ring-2 ring-orange-500/40 shadow-lg shadow-orange-500/10'
+                : 'bg-[#0c0a08]/80 border-[#2e251b] hover:border-orange-500/50 hover:bg-[#1a120b]'
+            }`}
+          >
+            <div>
+              <div className="flex items-center justify-between">
+                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-bold bg-orange-500/20 text-orange-300 border border-orange-500/30">
+                  <Flame className="w-3.5 h-3.5 text-orange-400" />
+                  <span>1. Negation Flipping</span>
+                </span>
+                <span className="font-mono text-xs font-bold text-orange-300">
+                  {counts.rc_negation} เคส ({((counts.rc_negation / counts.bert_win) * 100).toFixed(1)}%)
+                </span>
+              </div>
+              <h4 className="text-sm font-bold text-[#fdfbf7] mt-2">
+                การกลับขั้วคำปฏิเสธ
+              </h4>
+              <p className="text-xs text-[#ab9b87] mt-1.5 leading-relaxed">
+                คำปฏิเสธ (เช่น <em>not, barely, never, hardly</em>) อยู่ห่างจากคำคุณศัพท์ LSTM ถูก Recency Bias ท้ายประโยคดึงดูดจนทำนายผิดขั้ว ส่วน BERT ใช้ Attention ผูกคู่คำปฏิเสธได้ทันที
+              </p>
+            </div>
+            
+            <div className="pt-2 border-t border-[#262019] flex items-center justify-between text-[11px] font-mono text-orange-400/90 group-hover:text-orange-300">
+              <span>{activeFilter === 'rc_negation' ? '✓ กำลังแสดง 75 เคสนี้' : 'คลิกกรอง 75 เคสนี้'}</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </div>
+          </div>
+
+          {/* Group 2: Contrastive Shift */}
+          <div
+            onClick={() => { setActiveFilter(activeFilter === 'rc_contrastive' ? 'bert_win' : 'rc_contrastive'); setPage(1); }}
+            className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between space-y-3 group ${
+              activeFilter === 'rc_contrastive'
+                ? 'bg-yellow-950/40 border-yellow-500 ring-2 ring-yellow-500/40 shadow-lg shadow-yellow-500/10'
+                : 'bg-[#0c0a08]/80 border-[#2e251b] hover:border-yellow-500/50 hover:bg-[#1a140a]'
+            }`}
+          >
+            <div>
+              <div className="flex items-center justify-between">
+                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-bold bg-yellow-500/20 text-yellow-300 border border-yellow-500/30">
+                  <Zap className="w-3.5 h-3.5 text-yellow-400" />
+                  <span>2. Contrastive Shift</span>
+                </span>
+                <span className="font-mono text-xs font-bold text-yellow-300">
+                  {counts.rc_contrastive} เคส ({((counts.rc_contrastive / counts.bert_win) * 100).toFixed(1)}%)
+                </span>
+              </div>
+              <h4 className="text-sm font-bold text-[#fdfbf7] mt-2">
+                คำเชื่อมขัดแย้งกลับทิศทาง
+              </h4>
+              <p className="text-xs text-[#ab9b87] mt-1.5 leading-relaxed">
+                ประโยคมีคำเชื่อมขัดแย้ง (เช่น <em>but, however, although, despite</em>) สลับอารมณ์กลางประโยค LSTM ลืมอนุประโยคแรกหรือสับสน ส่วน BERT ตรวจจับโครงสร้างประโยคสองทิศทางได้สมบูรณ์
+              </p>
+            </div>
+
+            <div className="pt-2 border-t border-[#262019] flex items-center justify-between text-[11px] font-mono text-yellow-400/90 group-hover:text-yellow-300">
+              <span>{activeFilter === 'rc_contrastive' ? '✓ กำลังแสดง 58 เคสนี้' : 'คลิกกรอง 58 เคสนี้'}</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </div>
+          </div>
+
+          {/* Group 3: Long-Distance Decay */}
+          <div
+            onClick={() => { setActiveFilter(activeFilter === 'rc_decay' ? 'bert_win' : 'rc_decay'); setPage(1); }}
+            className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between space-y-3 group ${
+              activeFilter === 'rc_decay'
+                ? 'bg-purple-950/40 border-purple-500 ring-2 ring-purple-500/40 shadow-lg shadow-purple-500/10'
+                : 'bg-[#0c0a08]/80 border-[#2e251b] hover:border-purple-500/50 hover:bg-[#16101c]'
+            }`}
+          >
+            <div>
+              <div className="flex items-center justify-between">
+                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                  <Clock className="w-3.5 h-3.5 text-purple-400" />
+                  <span>3. Long-Distance Decay</span>
+                </span>
+                <span className="font-mono text-xs font-bold text-purple-300">
+                  {counts.rc_decay} เคส ({((counts.rc_decay / counts.bert_win) * 100).toFixed(1)}%)
+                </span>
+              </div>
+              <h4 className="text-sm font-bold text-[#fdfbf7] mt-2">
+                ข้อความยาวความจำเลือนหาย
+              </h4>
+              <p className="text-xs text-[#ab9b87] mt-1.5 leading-relaxed">
+                รีวิวมีความยาวสูง (เฉลี่ย 114 คำ) สารสนเทศต้นประโยคเจือจางลงตาม Forget Gate จนเหลือ &lt;10% เวกเตอร์ $h_T$ สูญเสียใจความหลัก ส่วน BERT มี Path Length = 1 คงข้อมูลครบถ้วน
+              </p>
+            </div>
+
+            <div className="pt-2 border-t border-[#262019] flex items-center justify-between text-[11px] font-mono text-purple-400/90 group-hover:text-purple-300">
+              <span>{activeFilter === 'rc_decay' ? '✓ กำลังแสดง 50 เคสนี้' : 'คลิกกรอง 50 เคสนี้'}</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Dataset Grid List */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {paginatedData.map((item) => {
@@ -232,9 +410,25 @@ export default function DatasetExplorerTab() {
               <div>
                 {/* Header row: ID & Actual Label */}
                 <div className="flex items-center justify-between gap-2 pb-2 mb-2 border-b border-[#2e251b] text-xs">
-                  <span className="font-mono text-[#9e917f] font-bold">#{item.id}</span>
-                  <span className="text-[11px] font-mono text-[#ab9b87]">{item.token_count} tokens</span>
-                  <span className={`px-2 py-0.5 rounded-full text-[11px] font-semibold ${
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <span className="font-mono text-[#9e917f] font-bold">#{item.id}</span>
+                    <span className="text-[11px] font-mono text-[#ab9b87]">{item.token_count} tokens</span>
+                    {item.root_cause_group && (
+                      <span className={`px-1.5 py-0.5 rounded text-[10px] font-semibold font-mono flex items-center gap-1 ${
+                        item.root_cause_group === 'negation'
+                          ? 'bg-orange-500/20 text-orange-300 border border-orange-500/30'
+                          : item.root_cause_group === 'contrastive'
+                          ? 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/30'
+                          : 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
+                      }`}>
+                        {item.root_cause_group === 'negation' && <Flame className="w-2.5 h-2.5 text-orange-400" />}
+                        {item.root_cause_group === 'contrastive' && <Zap className="w-2.5 h-2.5 text-yellow-400" />}
+                        {item.root_cause_group === 'decay' && <Clock className="w-2.5 h-2.5 text-purple-400" />}
+                        <span>{item.root_cause_name}</span>
+                      </span>
+                    )}
+                  </div>
+                  <span className={`px-2 py-0.5 rounded-full text-[11px] font-semibold shrink-0 ${
                     item.label === 1 
                       ? 'bg-emerald-500/15 text-[#34d399] border border-emerald-500/30' 
                       : 'bg-rose-500/15 text-rose-300 border border-rose-500/30'
@@ -350,12 +544,52 @@ export default function DatasetExplorerTab() {
               </h3>
             </div>
 
-            {/* Actual Text */}
-            <div className="p-4 bg-[#0c0a08] border border-[#2e251b] rounded-xl space-y-2">
-              <span className="text-xs font-semibold text-[#9e917f] block">ข้อความรีวิว (Review Text):</span>
+            {/* Diagnostic Badge for Root Cause */}
+            {selectedSample.root_cause_name && (
+              <div className={`p-3.5 rounded-xl border flex items-center justify-between text-xs flex-wrap gap-2 ${
+                selectedSample.root_cause_group === 'negation'
+                  ? 'bg-orange-950/40 border-orange-500/50 text-orange-200'
+                  : selectedSample.root_cause_group === 'contrastive'
+                  ? 'bg-yellow-950/40 border-yellow-500/50 text-yellow-200'
+                  : 'bg-purple-950/40 border-purple-500/50 text-purple-200'
+              }`}>
+                <div className="flex items-center gap-2 font-bold">
+                  {selectedSample.root_cause_group === 'negation' && <Flame className="w-4 h-4 text-orange-400" />}
+                  {selectedSample.root_cause_group === 'contrastive' && <Zap className="w-4 h-4 text-yellow-400" />}
+                  {selectedSample.root_cause_group === 'decay' && <Clock className="w-4 h-4 text-purple-400" />}
+                  <span>สาเหตุหลัก: {selectedSample.root_cause_name} ({selectedSample.root_cause_name_th})</span>
+                </div>
+                <span className="font-mono text-[11px] px-2 py-0.5 rounded bg-black/40 border border-white/10">
+                  1 ใน 3 Error Archetypes
+                </span>
+              </div>
+            )}
+
+            {/* Actual Text with Highlights */}
+            <div className="p-4 bg-[#0c0a08] border border-[#2e251b] rounded-xl space-y-2.5">
+              <div className="flex items-center justify-between text-xs">
+                <span className="font-semibold text-[#9e917f]">ข้อความรีวิวพร้อมไฮไลต์คำกระตุ้น (Review Text & Key Triggers):</span>
+                <span className="text-[11px] font-mono text-[#716556]">{selectedSample.token_count} คำ</span>
+              </div>
               <p className="text-sm text-[#fdfbf7] leading-relaxed font-sans">
-                "{selectedSample.text}"
+                "{renderHighlightedText(selectedSample.text)}"
               </p>
+
+              {/* Highlighting Legend */}
+              <div className="flex flex-wrap items-center gap-3 pt-2 text-[10px] font-mono text-[#9e917f] border-t border-[#221a12]">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded bg-rose-500/30 border border-rose-500/60 inline-block" />
+                  <span>คำปฏิเสธ (Negators: not, never, barely)</span>
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded bg-amber-500/30 border border-amber-500/60 inline-block" />
+                  <span>คำเชื่อมขัดแย้ง (Contrast: but, however)</span>
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded bg-cyan-500/30 border border-cyan-500/60 inline-block" />
+                  <span>คำบอกความรู้สึก (Sentiment Words)</span>
+                </span>
+              </div>
             </div>
 
             {/* Prediction Comparison Grid */}

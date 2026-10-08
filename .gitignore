@@ -32,3 +32,11 @@ pnpm-debug.log*
 Thumbs.db
 ~$*
 *.tmp
+
+# Large video and audio files
+*.mp4
+*.mov
+*.wav
+*.mkv
+*.avi
+

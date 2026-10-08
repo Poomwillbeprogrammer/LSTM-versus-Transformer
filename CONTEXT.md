@@ -31,3 +31,21 @@ _Avoid_: Final layer, predictor, dense head
 **Evaluation Metrics**:
 The quantitative benchmarks measuring classification quality (Accuracy, Precision, Recall, F1-Score) and computational cost (Average Training Time per Epoch, Parameter Count).
 _Avoid_: Scores, test results
+
+## Subtitle Production Pipeline (DaVinci Resolve)
+
+**3-Word Chunk**:
+A semantic group of three spoken words or phrases presented together as a single visual subtitle unit.
+_Avoid_: Sentence fragment, subtitle line, text block
+
+**Active Word (Karaoke Accent)**:
+The specific word within a 3-word chunk currently being vocalized, rendered in Golden Yellow (`#FFD700` / RMUTL Gold) with a subtle luminance glow.
+_Avoid_: Highlighted word, active token, yellow text
+
+**Rounded Text Box (Bounding Box)**:
+A dark translucent bounding container (`rgba(15, 23, 42, 0.85)`) with smoothed rounded corners (`CornerRadius = 0.35`) framing the 3-word subtitle to ensure high legibility against diverse video backgrounds.
+_Avoid_: Background rectangle, text bubble, subtitle box
+
+**Fusion Title Template (`.setting`)**:
+A reusable DaVinci Resolve macro operator installed in the `Templates/Edit/Titles` path, exposing intuitive Inspector controls for words, active state, typography, and geometry.
+_Avoid_: Plugin, preset file, FX title

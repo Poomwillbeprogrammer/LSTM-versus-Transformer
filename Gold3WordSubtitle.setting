@@ -1,0 +1,330 @@
+{
+	Tools = ordered() {
+		Gold3WordSubtitle = MacroOperator {
+			Inputs = ordered() {
+				InputWord1 = InstanceInput {
+					SourceOp = "Text1",
+					Source = "StyledText",
+					Name = "คำที่ 1 (Word 1)",
+				},
+				InputWord2 = InstanceInput {
+					SourceOp = "Text2",
+					Source = "StyledText",
+					Name = "คำที่ 2 (Word 2)",
+				},
+				InputWord3 = InstanceInput {
+					SourceOp = "Text3",
+					Source = "คำที่ 3 (Word 3)",
+					Source = "StyledText",
+				},
+				InputActiveWord = InstanceInput {
+					SourceOp = "SubtitleControls",
+					Source = "ActiveWord",
+					Name = "ไฮไลต์คำที่ (1, 2, 3)",
+					Default = 1,
+				},
+				InputAutoAnimate = InstanceInput {
+					SourceOp = "SubtitleControls",
+					Source = "AutoAnimate",
+					Name = "เคลื่อนไหวอัตโนมัติตามคลิป (Auto Animate)",
+					Default = 1,
+				},
+				InputFont = InstanceInput {
+					SourceOp = "Text1",
+					Source = "Font",
+					Name = "ฟอนต์ (Font)",
+				},
+				InputSize = InstanceInput {
+					SourceOp = "SubtitleControls",
+					Source = "TextSize",
+					Name = "ขนาดตัวอักษร (Text Size)",
+					Default = 0.045,
+				},
+				InputWordSpacing = InstanceInput {
+					SourceOp = "SubtitleControls",
+					Source = "WordSpacing",
+					Name = "ระยะห่างระหว่างคำ (Word Spacing)",
+					Default = 0.12,
+				},
+				InputBoxWidth = InstanceInput {
+					SourceOp = "BoxMask",
+					Source = "Width",
+					Name = "ความกว้างกรอบ (Box Width)",
+					Default = 0.42,
+				},
+				InputBoxHeight = InstanceInput {
+					SourceOp = "BoxMask",
+					Source = "Height",
+					Name = "ความสูงกรอบ (Box Height)",
+					Default = 0.08,
+				},
+				InputCornerRadius = InstanceInput {
+					SourceOp = "BoxMask",
+					Source = "CornerRadius",
+					Name = "ความโค้งมนของกรอบ (Corner Radius)",
+					Default = 0.35,
+				},
+				InputBoxOpacity = InstanceInput {
+					SourceOp = "BoxBg",
+					Source = "TopLeftAlpha",
+					Name = "ความโปร่งใสของกรอบ (Box Opacity)",
+					Default = 0.85,
+				},
+				InputCenter = InstanceInput {
+					SourceOp = "TransformAll",
+					Source = "Center",
+					Name = "ตำแหน่งกึ่งกลาง (Position)",
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "TransformAll",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				SubtitleControls = Custom {
+					CtrlWZoom = false,
+					Inputs = {
+						NumberIn1 = Input { Value = 1, },
+						NumberIn2 = Input { Value = 1, },
+						NumberIn3 = Input { Value = 0.045, },
+						NumberIn4 = Input { Value = 0.12, },
+					},
+					UserControls = ordered() {
+						ActiveWord = {
+							INP_MaxAllowed = 3,
+							INP_Integer = true,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 3,
+							INP_Default = 1,
+							INP_MinScale = 1,
+							INP_MinAllowed = 1,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "ActiveWord",
+						},
+						AutoAnimate = {
+							INP_MaxAllowed = 1,
+							INP_Integer = true,
+							INPID_InputControl = "CheckboxControl",
+							INP_MaxScale = 1,
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "AutoAnimate",
+						},
+						TextSize = {
+							INP_MaxAllowed = 0.2,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 0.1,
+							INP_Default = 0.045,
+							INP_MinScale = 0.01,
+							INP_MinAllowed = 0.005,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "TextSize",
+						},
+						WordSpacing = {
+							INP_MaxAllowed = 0.4,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 0.25,
+							INP_Default = 0.12,
+							INP_MinScale = 0.03,
+							INP_MinAllowed = 0.01,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "WordSpacing",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 10 } },
+				},
+				BoxMask = RectangleMask {
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						OutputSize = Input { Value = FuID { "Custom" }, },
+						MaskWidth = Input { Value = 1920, },
+						MaskHeight = Input { Value = 1080, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						CornerRadius = Input { Value = 0.35, },
+						Width = Input { Value = 0.42, },
+						Height = Input { Value = 0.08, },
+						Center = Input { Value = { 0.5, 0.5 }, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 220, 80 } },
+				},
+				BoxBg = Background {
+					Inputs = {
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						TopLeftRed = Input { Value = 0.05, },
+						TopLeftGreen = Input { Value = 0.07, },
+						TopLeftBlue = Input { Value = 0.12, },
+						TopLeftAlpha = Input { Value = 0.85, },
+						EffectMask = Input {
+							SourceOp = "BoxMask",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 220, 140 } },
+				},
+				Text1 = TextPlus {
+					Inputs = {
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Center = Input {
+							Value = { 0.38, 0.5 },
+							Expression = "Point(0.5 - SubtitleControls.WordSpacing, 0.5)",
+						},
+						Size = Input {
+							Value = 0.045,
+							Expression = "SubtitleControls.TextSize * iif(iif(SubtitleControls.AutoAnimate == 1, iif(time < comp.RenderEnd/3, 1, iif(time < comp.RenderEnd*2/3, 2, 3)), SubtitleControls.ActiveWord) == 1, 1.08, 1.0)",
+						},
+						StyledText = Input { Value = "คำที่หนึ่ง", },
+						Font = Input { Value = "Arial", },
+						Style = Input { Value = "Bold", },
+						Red1 = Input { Value = 1.0, },
+						Green1 = Input {
+							Value = 0.843,
+							Expression = "iif(iif(SubtitleControls.AutoAnimate == 1, iif(time < comp.RenderEnd/3, 1, iif(time < comp.RenderEnd*2/3, 2, 3)), SubtitleControls.ActiveWord) == 1, 0.843, 1.0)",
+						},
+						Blue1 = Input {
+							Value = 0.0,
+							Expression = "iif(iif(SubtitleControls.AutoAnimate == 1, iif(time < comp.RenderEnd/3, 1, iif(time < comp.RenderEnd*2/3, 2, 3)), SubtitleControls.ActiveWord) == 1, 0.0, 1.0)",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 340, 40 } },
+				},
+				Text2 = TextPlus {
+					Inputs = {
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Center = Input { Value = { 0.5, 0.5 }, },
+						Size = Input {
+							Value = 0.045,
+							Expression = "SubtitleControls.TextSize * iif(iif(SubtitleControls.AutoAnimate == 1, iif(time < comp.RenderEnd/3, 1, iif(time < comp.RenderEnd*2/3, 2, 3)), SubtitleControls.ActiveWord) == 2, 1.08, 1.0)",
+						},
+						StyledText = Input { Value = "คำที่สอง", },
+						Font = Input {
+							Value = "Arial",
+							Expression = "Text1.Font",
+						},
+						Style = Input {
+							Value = "Bold",
+							Expression = "Text1.Style",
+						},
+						Red1 = Input { Value = 1.0, },
+						Green1 = Input {
+							Value = 1.0,
+							Expression = "iif(iif(SubtitleControls.AutoAnimate == 1, iif(time < comp.RenderEnd/3, 1, iif(time < comp.RenderEnd*2/3, 2, 3)), SubtitleControls.ActiveWord) == 2, 0.843, 1.0)",
+						},
+						Blue1 = Input {
+							Value = 1.0,
+							Expression = "iif(iif(SubtitleControls.AutoAnimate == 1, iif(time < comp.RenderEnd/3, 1, iif(time < comp.RenderEnd*2/3, 2, 3)), SubtitleControls.ActiveWord) == 2, 0.0, 1.0)",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 340, 100 } },
+				},
+				Text3 = TextPlus {
+					Inputs = {
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Center = Input {
+							Value = { 0.62, 0.5 },
+							Expression = "Point(0.5 + SubtitleControls.WordSpacing, 0.5)",
+						},
+						Size = Input {
+							Value = 0.045,
+							Expression = "SubtitleControls.TextSize * iif(iif(SubtitleControls.AutoAnimate == 1, iif(time < comp.RenderEnd/3, 1, iif(time < comp.RenderEnd*2/3, 2, 3)), SubtitleControls.ActiveWord) == 3, 1.08, 1.0)",
+						},
+						StyledText = Input { Value = "คำที่สาม", },
+						Font = Input {
+							Value = "Arial",
+							Expression = "Text1.Font",
+						},
+						Style = Input {
+							Value = "Bold",
+							Expression = "Text1.Style",
+						},
+						Red1 = Input { Value = 1.0, },
+						Green1 = Input {
+							Value = 1.0,
+							Expression = "iif(iif(SubtitleControls.AutoAnimate == 1, iif(time < comp.RenderEnd/3, 1, iif(time < comp.RenderEnd*2/3, 2, 3)), SubtitleControls.ActiveWord) == 3, 0.843, 1.0)",
+						},
+						Blue1 = Input {
+							Value = 1.0,
+							Expression = "iif(iif(SubtitleControls.AutoAnimate == 1, iif(time < comp.RenderEnd/3, 1, iif(time < comp.RenderEnd*2/3, 2, 3)), SubtitleControls.ActiveWord) == 3, 0.0, 1.0)",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 340, 160 } },
+				},
+				Merge12 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "Text1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Text2",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 460, 70 } },
+				},
+				Merge123 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "Merge12",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Text3",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 460, 130 } },
+				},
+				MergeWithBox = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "BoxBg",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Merge123",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 580, 130 } },
+				},
+				TransformAll = Transform {
+					Inputs = {
+						Center = Input { Value = { 0.5, 0.15 }, },
+						Input = Input {
+							SourceOp = "MergeWithBox",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 700, 130 } },
+				},
+			},
+		}
+	},
+	ActiveTool = "Gold3WordSubtitle"
+}
