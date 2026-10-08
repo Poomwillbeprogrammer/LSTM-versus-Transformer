@@ -123,7 +123,7 @@ export default function Header({ activeTab, setActiveTab }) {
                   <span className="whitespace-nowrap sm:hidden">{tab.shortLabel}</span>
                   <span className="whitespace-nowrap hidden sm:inline">{tab.label}</span>
                   {tab.badge && (
-                    <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold shrink-0 ${
+                    <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-mono font-bold shrink-0 ${
                       isActive ? 'bg-[#3b270b] text-[#f0c674]' : 'bg-[#261e16] text-[#c5b7a5]'
                     }`}>
                       {tab.badge}

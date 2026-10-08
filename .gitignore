@@ -38,5 +38,5 @@ Thumbs.db
 *.mov
 *.wav
 *.mkv
-*.avi
-
+# Tools and analysis cache
+.impeccable/

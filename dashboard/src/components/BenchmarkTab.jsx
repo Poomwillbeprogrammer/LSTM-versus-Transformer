@@ -17,15 +17,9 @@ import {
   Radar
 } from 'recharts';
 import { 
-  BarChart2, 
   TrendingDown, 
-  Clock, 
   Sliders, 
-  CheckCircle, 
-  HelpCircle,
-  Table as TableIcon,
   Sparkles,
-  Zap,
   Calculator
 } from 'lucide-react';
 import { 
@@ -98,7 +92,7 @@ export default function BenchmarkTab() {
             <div className="h-64 sm:h-72 w-full overflow-hidden">
               {activeChart === 'bar' ? (
                 <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={barChartData} margin={{ top: 20, right: 10, left: -15, bottom: 5 }}>
+                    <BarChart data={barChartData} margin={{ top: 20, right: 10, left: 0, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#2e251b" opacity={0.6} />
                     <XAxis dataKey="name" stroke="#9e917f" fontSize={11} />
                     <YAxis domain={[0, 100]} stroke="#9e917f" fontSize={11} unit="%" />
@@ -159,7 +153,7 @@ export default function BenchmarkTab() {
               </div>
               <div className="p-1 rounded bg-[#16120e]/60 sm:bg-transparent">
                 <span className="text-[#9e917f] block text-[10px]">Δ F1</span>
-                <span className="text-[#34d399] font-bold">+31.06%</span>
+                <span className="text-[#34d399] font-bold">+31.05%</span>
               </div>
             </div>
           </div>
@@ -198,7 +192,7 @@ export default function BenchmarkTab() {
             </div>
 
             <div className="p-3.5 bg-[#2a1d0f]/60 border border-[#4d3716] rounded-xl text-xs text-[#e2d7c5] leading-relaxed">
-              <span className="text-[#d99f3d] font-bold block mb-1">💡 ข้อค้นพบสำคัญ:</span>
+              <span className="text-[#d99f3d] font-bold block mb-1">ข้อค้นพบเชิงประจักษ์ (Key Empirical Findings):</span>
               LSTM ที่เริ่มฝึกจากศูนย์ (Train from scratch) บนข้อมูล 2,000 ตัวอย่าง ทำคะแนนได้เพียง 55.20% ซึ่งสูงกว่าการสุ่มทาย (Random guess 50.00%) เพียงเล็กน้อย ในขณะที่ BERT ดึงพลังจาก Pre-trained weights ทำให้ได้ Recall สูงถึง 87.80% และตรวจจับความคิดเห็นได้ครอบคลุม
             </div>
           </div>
@@ -222,7 +216,7 @@ export default function BenchmarkTab() {
 
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={lossProgression} margin={{ top: 10, right: 20, left: -10, bottom: 5 }}>
+              <LineChart data={lossProgression} margin={{ top: 10, right: 20, left: 0, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#2e251b" opacity={0.6} />
                 <XAxis dataKey="epoch" stroke="#9e917f" fontSize={12} />
                 <YAxis domain={[0, 0.8]} stroke="#9e917f" fontSize={12} />
@@ -285,7 +279,7 @@ export default function BenchmarkTab() {
           </div>
 
           <div className="p-3 bg-[#2a1d0f]/60 border border-[#4d3716] rounded-xl mt-4 font-mono text-[11px] text-[#f0c674]">
-            📌 สรุป: การใช้ Pre-trained Foundation Model ช่วยลดความเสี่ยง Overfitting ได้อย่างเด็ดขาดบน Dataset ขนาดเล็ก
+            <span className="font-bold text-[#fdfbf7]">[บทสรุปเชิงประจักษ์]:</span> การใช้ Pre-trained Foundation Model ช่วยลดความเสี่ยง Overfitting ได้อย่างเด็ดขาดบน Dataset ขนาดเล็ก
           </div>
         </div>
       </div>
@@ -470,7 +464,7 @@ export default function BenchmarkTab() {
                       />
                       <span className="mx-1">=</span>
                       <MathFraction num={<span>276</span>} den={<span>500</span>} />
-                      <span className="ml-1 text-amber-300 font-bold font-mono">= 55.20%</span>
+                      <span className="ml-1 text-sky-300 font-bold font-mono">= 55.20%</span>
                     </>
                   )}
                 </div>
@@ -489,7 +483,7 @@ export default function BenchmarkTab() {
                 <h4 className="text-base font-bold text-[#fdfbf7]">2. ความแม่นยำ (Precision)</h4>
               </div>
               <span className={`px-2.5 py-1 rounded-full text-xs font-bold font-mono ${
-                formulaModel === 'bert' ? 'bg-[#c58a2e]/20 text-[#f0c674] border border-[#c58a2e]/40' : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                formulaModel === 'bert' ? 'bg-[#c58a2e]/20 text-[#f0c674] border border-[#c58a2e]/40' : 'bg-sky-500/20 text-sky-300 border border-sky-500/40'
               }`}>
                 {formulaModel === 'bert' ? '83.72%' : '54.44%'}
               </span>
@@ -532,7 +526,7 @@ export default function BenchmarkTab() {
                       />
                       <span className="mx-1">=</span>
                       <MathFraction num={<span>135</span>} den={<span>248</span>} />
-                      <span className="ml-1 text-amber-300 font-bold font-mono">= 54.44%</span>
+                      <span className="ml-1 text-sky-300 font-bold font-mono">= 54.44%</span>
                     </>
                   )}
                 </div>
@@ -551,7 +545,7 @@ export default function BenchmarkTab() {
                 <h4 className="text-base font-bold text-[#fdfbf7]">3. ความไว (Recall)</h4>
               </div>
               <span className={`px-2.5 py-1 rounded-full text-xs font-bold font-mono ${
-                formulaModel === 'bert' ? 'bg-[#c58a2e]/20 text-[#f0c674] border border-[#c58a2e]/40' : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                formulaModel === 'bert' ? 'bg-[#c58a2e]/20 text-[#f0c674] border border-[#c58a2e]/40' : 'bg-sky-500/20 text-sky-300 border border-sky-500/40'
               }`}>
                 {formulaModel === 'bert' ? '87.80%' : '54.88%'}
               </span>
@@ -594,7 +588,7 @@ export default function BenchmarkTab() {
                       />
                       <span className="mx-1">=</span>
                       <MathFraction num={<span>135</span>} den={<span>246</span>} />
-                      <span className="ml-1 text-amber-300 font-bold font-mono">= 54.88%</span>
+                      <span className="ml-1 text-sky-300 font-bold font-mono">= 54.88%</span>
                     </>
                   )}
                 </div>
@@ -613,7 +607,7 @@ export default function BenchmarkTab() {
                 <h4 className="text-base font-bold text-[#fdfbf7]">4. คะแนนเฉลี่ยฮาร์มอนิก (F1-Score)</h4>
               </div>
               <span className={`px-2.5 py-1 rounded-full text-xs font-bold font-mono ${
-                formulaModel === 'bert' ? 'bg-[#c58a2e]/20 text-[#f0c674] border border-[#c58a2e]/40' : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                formulaModel === 'bert' ? 'bg-[#c58a2e]/20 text-[#f0c674] border border-[#c58a2e]/40' : 'bg-sky-500/20 text-sky-300 border border-sky-500/40'
               }`}>
                 {formulaModel === 'bert' ? '85.71%' : '54.66%'}
               </span>
@@ -652,7 +646,7 @@ export default function BenchmarkTab() {
                         num={<span>54.44 × 54.88</span>}
                         den={<span>54.44 + 54.88</span>}
                       />
-                      <span className="ml-1 text-amber-300 font-bold font-mono">= 54.66%</span>
+                      <span className="ml-1 text-sky-300 font-bold font-mono">= 54.66%</span>
                     </>
                   )}
                 </div>
@@ -684,12 +678,12 @@ export default function BenchmarkTab() {
               <div className="p-4 bg-[#0c0a08]/80 border border-[#2e251b] rounded-xl">
                 <div className="flex items-center justify-between text-xs text-[#9e917f] mb-1">
                   <span>เวลาฝึกสอนเฉลี่ยต่อรอบ (Time per Epoch)</span>
-                  <span className="font-mono text-amber-400 font-bold">51.3× นานกว่า</span>
+                  <span className="font-mono text-[#f0c674] font-bold">51.3× นานกว่า</span>
                 </div>
                 <div className="flex items-center gap-3 mt-2">
-                  <div className="w-16 text-xs font-mono text-amber-400 font-bold">0.82 s</div>
+                  <div className="w-16 text-xs font-mono text-sky-400 font-bold">0.82 s</div>
                   <div className="flex-1 bg-[#221a12] h-2.5 rounded-full overflow-hidden">
-                    <div className="bg-amber-400 h-full w-[2%]" />
+                    <div className="bg-sky-400 h-full w-[2%]" />
                   </div>
                   <div className="text-[11px] text-[#9e917f]">LSTM</div>
                 </div>
@@ -708,9 +702,9 @@ export default function BenchmarkTab() {
                   <span className="font-mono text-[#f0c674] font-bold">27.2× ใหญ่กว่า</span>
                 </div>
                 <div className="flex items-center gap-3 mt-2">
-                  <div className="w-16 text-xs font-mono text-amber-400 font-bold">4.04 M</div>
+                  <div className="w-16 text-xs font-mono text-sky-400 font-bold">4.04 M</div>
                   <div className="flex-1 bg-[#221a12] h-2.5 rounded-full overflow-hidden">
-                    <div className="bg-amber-400 h-full w-[4%]" />
+                    <div className="bg-sky-400 h-full w-[4%]" />
                   </div>
                   <div className="text-[11px] text-[#9e917f]">LSTM</div>
                 </div>
@@ -749,7 +743,7 @@ export default function BenchmarkTab() {
               <thead>
                 <tr className="border-b border-[#2e251b] bg-[#221a12] text-[#e2d7c5] font-mono">
                   <th className="p-3">พารามิเตอร์</th>
-                  <th className="p-3 text-amber-400">LSTM (Baseline)</th>
+                  <th className="p-3 text-sky-400">LSTM (Baseline)</th>
                   <th className="p-3 text-[#d99f3d]">BERT (Fine-tuning)</th>
                 </tr>
               </thead>
@@ -759,7 +753,7 @@ export default function BenchmarkTab() {
                     <td className="p-2.5 text-[#e2d7c5] font-medium font-mono">
                       {h.parameterTh}
                     </td>
-                    <td className="p-2.5 text-amber-300/90 font-mono text-[11px]">
+                    <td className="p-2.5 text-sky-300/90 font-mono text-[11px]">
                       {h.lstm}
                     </td>
                     <td className="p-2.5 text-[#f0c674] font-mono text-[11px]">

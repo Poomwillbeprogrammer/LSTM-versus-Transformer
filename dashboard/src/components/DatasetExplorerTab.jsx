@@ -1,16 +1,12 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { 
   Search, 
-  Filter, 
-  ExternalLink, 
   CheckCircle, 
   XCircle, 
-  AlertCircle, 
   Download, 
   ChevronLeft, 
   ChevronRight,
   Eye,
-  SlidersHorizontal,
   X,
   Sparkles,
   Flame,
@@ -19,11 +15,12 @@ import {
   ArrowRight
 } from 'lucide-react';
 import dataset500 from '../data/dataset_500.json';
+import { formatDatasetToCSV, downloadCSV } from '../utils/csvExport.js';
 
 // Helper to highlight trigger words in review text
 function renderHighlightedText(text) {
   if (!text) return null;
-  const tokens = text.split(/(\s+|[.,\/#!$%\^&\*;:{}=\-_`~()])/);
+  const tokens = text.split(/(\s+|[.,/#!$%^&*;:{}=\-_`~()])/);
   
   const negators = new Set(['not', "n't", 'never', 'barely', 'hardly', 'no', 'none', 'nothing', 'neither', 'nor']);
   const contrasts = new Set(['but', 'however', 'although', 'though', 'yet', 'nevertheless', 'nonetheless', 'despite', 'whereas']);
@@ -62,6 +59,19 @@ export default function DatasetExplorerTab() {
   const [selectedSample, setSelectedSample] = useState(null);
   const [page, setPage] = useState(1);
   const pageSize = 12;
+
+  // Listen for Escape key to close modal
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setSelectedSample(null);
+      }
+    };
+    if (selectedSample) {
+      window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
+    }
+  }, [selectedSample]);
 
   // Filter counts
   const counts = useMemo(() => {
@@ -114,28 +124,8 @@ export default function DatasetExplorerTab() {
 
   // Export to CSV
   const handleExportCSV = () => {
-    const headers = ["ID", "Actual_Label", "BERT_Pred", "BERT_Prob", "LSTM_Pred", "LSTM_Prob", "Category", "Token_Count", "Text", "Reason"];
-    const rows = filteredData.map(s => [
-      s.id,
-      s.label_name,
-      s.bert_pred === 1 ? "Positive" : "Negative",
-      s.bert_prob,
-      s.lstm_pred === 1 ? "Positive" : "Negative",
-      s.lstm_prob,
-      s.category,
-      s.token_count,
-      `"${s.text.replace(/"/g, '""')}"`,
-      `"${s.reason.replace(/"/g, '""')}"`
-    ]);
-
-    const csvContent = "data:text/csv;charset=utf-8," + [headers.join(","), ...rows.map(e => e.join(","))].join("\n");
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", `imdb_500_benchmark_${activeFilter}.csv`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    const csvContent = formatDatasetToCSV(filteredData);
+    downloadCSV(csvContent, `imdb_500_benchmark_${activeFilter}.csv`);
   };
 
   return (
@@ -186,7 +176,7 @@ export default function DatasetExplorerTab() {
             }`}
           >
             <span>BERT ชนะ (LSTM ผิด)</span>
-            <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-[#3a2815] font-mono font-bold text-[#f0c674]">
+            <span className="px-1.5 py-0.5 rounded-full text-[10px] bg-[#3a2815] font-mono font-bold text-[#f0c674]">
               {counts.bert_win}
             </span>
           </button>
@@ -200,7 +190,7 @@ export default function DatasetExplorerTab() {
             }`}
           >
             <span>LSTM ชนะ (BERT ผิด)</span>
-            <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-sky-950/60 font-mono font-bold text-sky-300">
+            <span className="px-1.5 py-0.5 rounded-full text-[10px] bg-sky-950/60 font-mono font-bold text-sky-300">
               {counts.lstm_win}
             </span>
           </button>
@@ -383,7 +373,7 @@ export default function DatasetExplorerTab() {
                 ข้อความยาวความจำเลือนหาย
               </h4>
               <p className="text-xs text-[#ab9b87] mt-1.5 leading-relaxed">
-                รีวิวมีความยาวสูง (เฉลี่ย 114 คำ) สารสนเทศต้นประโยคเจือจางลงตาม Forget Gate จนเหลือ &lt;10% เวกเตอร์ $h_T$ สูญเสียใจความหลัก ส่วน BERT มี Path Length = 1 คงข้อมูลครบถ้วน
+                รีวิวมีความยาวสูง (เฉลี่ย 114 คำ) สารสนเทศต้นประโยคเจือจางลงตาม Forget Gate จนเหลือ &lt;10% เวกเตอร์ <span className="font-serif italic font-semibold text-[#fdfbf7]">h<sub>T</sub></span> สูญเสียใจความหลัก ส่วน BERT มี Path Length = 1 คงข้อมูลครบถ้วน
               </p>
             </div>
 
@@ -396,95 +386,115 @@ export default function DatasetExplorerTab() {
       </div>
 
       {/* Dataset Grid List */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {paginatedData.map((item) => {
-          const isBertCorrect = item.bert_pred === item.label;
-          const isLstmCorrect = item.lstm_pred === item.label;
+      {filteredData.length === 0 ? (
+        <div className="bg-[#16120e]/95 border border-[#2e251b] rounded-2xl p-10 text-center space-y-4">
+          <div className="w-12 h-12 rounded-full bg-[#2a1d0f] text-[#f0c674] flex items-center justify-center mx-auto">
+            <Search className="w-6 h-6" />
+          </div>
+          <div className="space-y-1">
+            <h4 className="text-base font-bold text-[#fdfbf7]">ไม่พบข้อมูลรีวิวที่ตรงกับเงื่อนไข</h4>
+            <p className="text-xs text-[#9e917f] max-w-md mx-auto">
+              ลองปรับเปลี่ยนคำค้นหา หรือรีเซ็ตตัวกรองเพื่อดูตัวอย่างทั้งหมดในชุดทดสอบ 500 ตัวอย่าง
+            </p>
+          </div>
+          <button
+            onClick={() => { setSearchTerm(''); setActiveFilter('all'); setPage(1); }}
+            className="px-4 py-2 bg-[#c58a2e] hover:bg-[#b07b27] text-[#0c0a08] font-bold text-xs rounded-lg transition-all cursor-pointer shadow touch-manipulation min-h-[38px]"
+          >
+            ล้างการค้นหา / แสดงทั้งหมด
+          </button>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {paginatedData.map((item) => {
+            const isBertCorrect = item.bert_pred === item.label;
+            const isLstmCorrect = item.lstm_pred === item.label;
 
-          return (
-            <div
-              key={item.id}
-              onClick={() => setSelectedSample(item)}
-              className="bg-[#16120e]/95 border border-[#2e251b] hover:border-[#c58a2e]/60 rounded-xl p-4 transition-all cursor-pointer flex flex-col justify-between group shadow-sm hover:shadow-md"
-            >
-              <div>
-                {/* Header row: ID & Actual Label */}
-                <div className="flex items-center justify-between gap-2 pb-2 mb-2 border-b border-[#2e251b] text-xs">
-                  <div className="flex items-center gap-1.5 flex-wrap">
-                    <span className="font-mono text-[#9e917f] font-bold">#{item.id}</span>
-                    <span className="text-[11px] font-mono text-[#ab9b87]">{item.token_count} tokens</span>
-                    {item.root_cause_group && (
-                      <span className={`px-1.5 py-0.5 rounded text-[10px] font-semibold font-mono flex items-center gap-1 ${
-                        item.root_cause_group === 'negation'
-                          ? 'bg-orange-500/20 text-orange-300 border border-orange-500/30'
-                          : item.root_cause_group === 'contrastive'
-                          ? 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/30'
-                          : 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
-                      }`}>
-                        {item.root_cause_group === 'negation' && <Flame className="w-2.5 h-2.5 text-orange-400" />}
-                        {item.root_cause_group === 'contrastive' && <Zap className="w-2.5 h-2.5 text-yellow-400" />}
-                        {item.root_cause_group === 'decay' && <Clock className="w-2.5 h-2.5 text-purple-400" />}
-                        <span>{item.root_cause_name}</span>
+            return (
+              <div
+                key={item.id}
+                onClick={() => setSelectedSample(item)}
+                className="bg-[#16120e]/95 border border-[#2e251b] hover:border-[#c58a2e]/60 rounded-xl p-4 transition-all cursor-pointer flex flex-col justify-between group shadow-sm hover:shadow-md"
+              >
+                <div>
+                  {/* Header row: ID & Actual Label */}
+                  <div className="flex items-center justify-between gap-2 pb-2 mb-2 border-b border-[#2e251b] text-xs">
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      <span className="font-mono text-[#9e917f] font-bold">#{item.id}</span>
+                      <span className="text-[11px] font-mono text-[#ab9b87]">{item.token_count} tokens</span>
+                      {item.root_cause_group && (
+                        <span className={`px-1.5 py-0.5 rounded text-[10px] font-semibold font-mono flex items-center gap-1 ${
+                          item.root_cause_group === 'negation'
+                            ? 'bg-orange-500/20 text-orange-300 border border-orange-500/30'
+                            : item.root_cause_group === 'contrastive'
+                            ? 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/30'
+                            : 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
+                        }`}>
+                          {item.root_cause_group === 'negation' && <Flame className="w-2.5 h-2.5 text-orange-400" />}
+                          {item.root_cause_group === 'contrastive' && <Zap className="w-2.5 h-2.5 text-yellow-400" />}
+                          {item.root_cause_group === 'decay' && <Clock className="w-2.5 h-2.5 text-purple-400" />}
+                          <span>{item.root_cause_name}</span>
+                        </span>
+                      )}
+                    </div>
+                    <span className={`px-2 py-0.5 rounded-full text-[11px] font-semibold shrink-0 ${
+                      item.label === 1 
+                        ? 'bg-emerald-500/15 text-[#34d399] border border-emerald-500/30' 
+                        : 'bg-rose-500/15 text-rose-300 border border-rose-500/30'
+                    }`}>
+                      Actual: {item.label_name}
+                    </span>
+                  </div>
+
+                  {/* Snippet */}
+                  <p className="text-xs text-[#e2d7c5] line-clamp-3 leading-relaxed">
+                    "{item.text}"
+                  </p>
+                </div>
+
+                {/* Prediction Comparison Footer */}
+                <div className="mt-4 pt-3 border-t border-[#2e251b] space-y-2">
+                  <div className="grid grid-cols-2 gap-2 text-[11px] font-mono">
+                    {/* LSTM Tag */}
+                    <div className={`p-1.5 rounded flex items-center justify-between border ${
+                      isLstmCorrect 
+                        ? 'bg-sky-500/10 border-sky-500/30 text-sky-300' 
+                        : 'bg-rose-500/10 border-rose-500/30 text-rose-400'
+                    }`}>
+                      <span className="flex items-center gap-1 font-sans">
+                        {isLstmCorrect ? <CheckCircle className="w-3 h-3 text-sky-400" /> : <XCircle className="w-3 h-3 text-rose-400" />}
+                        LSTM:
                       </span>
-                    )}
+                      <span>{item.lstm_pred === 1 ? 'Pos' : 'Neg'}</span>
+                    </div>
+
+                    {/* BERT Tag */}
+                    <div className={`p-1.5 rounded flex items-center justify-between border ${
+                      isBertCorrect 
+                        ? 'bg-[#c58a2e]/15 border-[#c58a2e]/40 text-[#f0c674]' 
+                        : 'bg-rose-500/10 border-rose-500/30 text-rose-400'
+                    }`}>
+                      <span className="flex items-center gap-1 font-sans">
+                        {isBertCorrect ? <CheckCircle className="w-3 h-3 text-[#d99f3d]" /> : <XCircle className="w-3 h-3 text-rose-400" />}
+                        BERT:
+                      </span>
+                      <span>{item.bert_pred === 1 ? 'Pos' : 'Neg'}</span>
+                    </div>
                   </div>
-                  <span className={`px-2 py-0.5 rounded-full text-[11px] font-semibold shrink-0 ${
-                    item.label === 1 
-                      ? 'bg-emerald-500/15 text-[#34d399] border border-emerald-500/30' 
-                      : 'bg-rose-500/15 text-rose-300 border border-rose-500/30'
-                  }`}>
-                    Actual: {item.label_name}
-                  </span>
-                </div>
 
-                {/* Snippet */}
-                <p className="text-xs text-[#e2d7c5] line-clamp-3 leading-relaxed">
-                  "{item.text}"
-                </p>
-              </div>
-
-              {/* Prediction Comparison Footer */}
-              <div className="mt-4 pt-3 border-t border-[#2e251b] space-y-2">
-                <div className="grid grid-cols-2 gap-2 text-[11px] font-mono">
-                  {/* LSTM Tag */}
-                  <div className={`p-1.5 rounded flex items-center justify-between border ${
-                    isLstmCorrect 
-                      ? 'bg-amber-500/10 border-amber-500/30 text-amber-300' 
-                      : 'bg-rose-500/10 border-rose-500/30 text-rose-400'
-                  }`}>
-                    <span className="flex items-center gap-1 font-sans">
-                      {isLstmCorrect ? <CheckCircle className="w-3 h-3 text-amber-400" /> : <XCircle className="w-3 h-3 text-rose-400" />}
-                      LSTM:
+                  {/* Category Pill Tag */}
+                  <div className="flex items-center justify-between text-[10px] text-[#9e917f]">
+                    <span className="capitalize">{item.category.replace('_', ' ')}</span>
+                    <span className="text-[#d99f3d] group-hover:underline flex items-center gap-0.5">
+                      เจาะลึก <Eye className="w-3 h-3" />
                     </span>
-                    <span>{item.lstm_pred === 1 ? 'Pos' : 'Neg'}</span>
                   </div>
-
-                  {/* BERT Tag */}
-                  <div className={`p-1.5 rounded flex items-center justify-between border ${
-                    isBertCorrect 
-                      ? 'bg-[#c58a2e]/15 border-[#c58a2e]/40 text-[#f0c674]' 
-                      : 'bg-rose-500/10 border-rose-500/30 text-rose-400'
-                  }`}>
-                    <span className="flex items-center gap-1 font-sans">
-                      {isBertCorrect ? <CheckCircle className="w-3 h-3 text-[#d99f3d]" /> : <XCircle className="w-3 h-3 text-rose-400" />}
-                      BERT:
-                    </span>
-                    <span>{item.bert_pred === 1 ? 'Pos' : 'Neg'}</span>
-                  </div>
-                </div>
-
-                {/* Category Pill Tag */}
-                <div className="flex items-center justify-between text-[10px] text-[#9e917f]">
-                  <span className="capitalize">{item.category.replace('_', ' ')}</span>
-                  <span className="text-[#d99f3d] group-hover:underline flex items-center gap-0.5">
-                    เจาะลึก <Eye className="w-3 h-3" />
-                  </span>
                 </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      )}
 
       {/* Pagination Controls */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-3 py-4 border-t border-[#2e251b] text-xs text-[#9e917f]">
@@ -521,8 +531,17 @@ export default function DatasetExplorerTab() {
 
       {/* Review Inspector Modal / Bottom Sheet on Mobile */}
       {selectedSample && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 animate-fadeIn">
-          <div className="bg-[#16120e] border border-[#4d3716] rounded-t-2xl sm:rounded-2xl max-w-2xl w-full p-4 sm:p-6 space-y-3.5 sm:space-y-5 shadow-2xl relative max-h-[88vh] sm:max-h-[90vh] overflow-y-auto">
+        <div 
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 animate-fadeIn"
+          onClick={() => setSelectedSample(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="sample-modal-title"
+        >
+          <div 
+            className="bg-[#16120e] border border-[#4d3716] rounded-t-2xl sm:rounded-2xl max-w-2xl w-full p-4 sm:p-6 space-y-3.5 sm:space-y-5 shadow-2xl relative max-h-[88vh] sm:max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* Mobile Sheet Drag Handle */}
             <div className="w-12 h-1 bg-[#4d3716] rounded-full mx-auto sm:hidden mb-1 shrink-0" />
 
@@ -543,7 +562,7 @@ export default function DatasetExplorerTab() {
                 <span className="text-[#5a4b3c]">•</span>
                 <span className="capitalize text-[#e2d7c5]">{selectedSample.category.replace('_', ' ')}</span>
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-[#fdfbf7] mt-1">
+              <h3 id="sample-modal-title" className="text-base sm:text-lg font-bold text-[#fdfbf7] mt-1">
                 การวิเคราะห์เจาะลึกตัวอย่างรีวิว (Sample Detail Inspector)
               </h3>
             </div>
@@ -619,7 +638,7 @@ export default function DatasetExplorerTab() {
               </div>
 
               {/* BERT Box */}
-              <div className="p-4 bg-[#0c0a08]/80 border border-[#2e251b] rounded-xl space-y-2">
+              <div className="p-3.5 sm:p-4 bg-[#0c0a08]/80 border border-[#c58a2e]/40 rounded-xl space-y-2">
                 <div className="flex items-center justify-between text-xs">
                   <span className="font-bold text-[#d99f3d]">BERT Fine-tuned:</span>
                   <span className={`px-2 py-0.5 rounded text-[11px] font-bold ${
@@ -630,7 +649,7 @@ export default function DatasetExplorerTab() {
                     {selectedSample.bert_pred === selectedSample.label ? '✓ ถูกต้อง' : '✕ ทำนายผิด'}
                   </span>
                 </div>
-                <div className="text-sm font-semibold text-[#fdfbf7]">
+                <div className="text-xs sm:text-sm font-semibold text-[#fdfbf7]">
                   ผลทำนาย: {selectedSample.bert_pred === 1 ? 'Positive (เชิงบวก)' : 'Negative (เชิงลบ)'}
                 </div>
                 <div className="text-xs text-[#9e917f] font-mono">

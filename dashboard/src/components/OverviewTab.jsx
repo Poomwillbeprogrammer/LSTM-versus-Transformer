@@ -1,18 +1,12 @@
 import React from 'react';
 import { 
   ArrowRight, 
-  CheckCircle2, 
-  AlertTriangle, 
   Zap, 
-  Clock, 
   GitCompare, 
   Binary, 
-  ShieldCheck, 
   HelpCircle,
-  TrendingUp,
-  Cpu
+  TrendingUp
 } from 'lucide-react';
-import { performanceMetrics, academicInfo } from '../data/benchmarkData';
 import { MathFraction, MathSqrt } from './MathView';
 
 export default function OverviewTab({ onExploreDataset, onOpenSimulator }) {
@@ -125,30 +119,30 @@ export default function OverviewTab({ onExploreDataset, onOpenSimulator }) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Old Paradigm: LSTM */}
-          <div className="bg-[#16120e]/95 border border-[#382f25] rounded-2xl p-6 relative overflow-hidden">
+          {/* Old Paradigm: LSTM (Harmonized Sky Blue Theme) */}
+          <div className="bg-[#16120e]/95 border border-sky-500/30 rounded-2xl p-6 relative overflow-hidden">
             <div className="flex items-center justify-between border-b border-[#2e251b] pb-4 mb-4">
               <div>
-                <span className="text-xs font-mono uppercase tracking-wider text-amber-500 font-bold">
+                <span className="text-xs font-mono uppercase tracking-wider text-sky-400 font-bold">
                   กระบวนทัศน์เดิม (Traditional Baseline)
                 </span>
                 <h3 className="text-xl font-bold text-white mt-1">Sequential Recurrent: LSTM</h3>
               </div>
-              <span className="px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-mono">
+              <span className="px-2.5 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-300 text-xs font-mono">
                 Hochreiter & Schmidhuber (1997)
               </span>
             </div>
 
             <div className="space-y-4 text-xs sm:text-sm text-[#d6c8b4]">
               <div className="flex items-start gap-3">
-                <div className="w-5 h-5 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">1</div>
+                <div className="w-5 h-5 rounded-full bg-sky-500/20 text-sky-300 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">1</div>
                 <div>
                   <strong className="text-white block">อ่านข้อมูลทีละคำตามลำดับเวลา (Step-by-step):</strong>
                   ประมวลผลคำจากซ้ายไปขวา (
-                  <span className="font-serif italic text-amber-300">
+                  <span className="font-serif italic text-sky-300">
                     x<sub>1</sub> → x<sub>2</sub> → … → x<sub>t</sub>
                   </span>
-                  ) ผ่าน Hidden State (<span className="font-serif italic text-amber-300">h<sub>t</sub></span>) และ Cell State (<span className="font-serif italic text-amber-300">C<sub>t</sub></span>)
+                  ) ผ่าน Hidden State (<span className="font-serif italic text-sky-300">h<sub>t</sub></span>) และ Cell State (<span className="font-serif italic text-sky-300">C<sub>t</sub></span>)
                 </div>
               </div>
 
@@ -177,7 +171,7 @@ export default function OverviewTab({ onExploreDataset, onOpenSimulator }) {
               </div>
 
               <div className="p-3 bg-[#100d0a] border border-[#2e251b] rounded-xl font-mono text-xs text-[#9e917f]">
-                <span className="text-amber-400 font-bold">จุดเด่นเชิงวิศวกรรม:</span> น้ำหนักเบา (4.04M พารามิเตอร์) และใช้เวลาฝึกเฉลี่ยเพียง <span className="text-white font-bold">0.82 วินาที/รอบ</span>
+                <span className="text-sky-400 font-bold">จุดเด่นเชิงวิศวกรรม:</span> น้ำหนักเบา (4.04M พารามิเตอร์) และใช้เวลาฝึกเฉลี่ยเพียง <span className="text-white font-bold">0.82 วินาที/รอบ</span>
               </div>
             </div>
           </div>
@@ -187,7 +181,7 @@ export default function OverviewTab({ onExploreDataset, onOpenSimulator }) {
             <div className="flex items-center justify-between border-b border-[#2e251b] pb-4 mb-4">
               <div>
                 <span className="text-xs font-mono uppercase tracking-wider text-[#f0c674] font-bold">
-                  กระบวนทัศน์ใหม่ (RMUTL Lanna Gold Paradigm)
+                  กระบวนทัศน์ใหม่: Transformer & Self-Attention
                 </span>
                 <h3 className="text-xl font-bold text-white mt-1">Self-Attention Transformer: BERT</h3>
               </div>
@@ -207,7 +201,7 @@ export default function OverviewTab({ onExploreDataset, onOpenSimulator }) {
                     <span className="font-sans font-semibold text-[#e5c158]">softmax</span>
                     <span>(</span>
                     <MathFraction
-                      num={<span className="italic font-bold text-[#fdfbf7]">Q × K<sup className="text-[10px] font-sans text-[#f0c674]">T</sup></span>}
+                      num={<span className="italic font-bold text-[#fdfbf7]">Q K<sup className="text-[10px] font-sans text-[#f0c674]">T</sup></span>}
                       den={<MathSqrt><span className="italic">d</span><sub className="font-sans text-[10px] text-[#f0c674]">k</sub></MathSqrt>}
                     />
                     <span>) V</span>

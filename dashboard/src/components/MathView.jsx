@@ -76,8 +76,7 @@ export function AttentionFormula({ className = '' }) {
           num={
             <span className="inline-flex items-center gap-0.5">
               <span className="italic font-bold text-[#fdfbf7]">Q</span>
-              <span className="mx-0.5 font-sans text-xs text-[#c58a2e]">×</span>
-              <span className="italic font-bold text-[#fdfbf7]">K</span>
+              <span className="italic font-bold text-[#fdfbf7] ml-0.5">K</span>
               <sup className="text-[11px] font-sans font-bold text-[#f0c674]">T</sup>
             </span>
           }
@@ -112,11 +111,11 @@ export function AttentionFormula({ className = '' }) {
  */
 export function LSTMMainFormulas({ className = '' }) {
   return (
-    <div className={`p-4 bg-[#140f0a] border border-[#d97706]/40 rounded-xl shadow-inner ${className}`}>
+    <div className={`p-4 bg-[#140f0a] border border-sky-500/30 rounded-xl shadow-inner ${className}`}>
       <div className="flex items-center justify-between border-b border-[#2e251b] pb-2 mb-3">
-        <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wide flex items-center gap-1.5">
+        <span className="text-xs font-mono font-bold text-sky-400 uppercase tracking-wide flex items-center gap-1.5">
           <span>สมการปรับปรุงสถานะหน่วยความจำ (Cell & Hidden State)</span>
-          <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-normal">
+          <span className="text-[10px] px-1.5 py-0.5 rounded bg-sky-500/10 text-sky-300 font-normal">
             Hochreiter & Schmidhuber (1997)
           </span>
         </span>
@@ -125,26 +124,26 @@ export function LSTMMainFormulas({ className = '' }) {
       <div className="space-y-3 py-1 font-serif text-sm sm:text-base text-[#fdfbf7]">
         {/* Cell State update: Ct = ft ⊙ C_(t-1) + it ⊙ C~t */}
         <div className="flex items-center justify-center flex-wrap gap-1.5 bg-[#0c0a08]/60 p-2.5 rounded-lg border border-[#2e251b]">
-          <span className="italic font-bold text-amber-400">C</span>
-          <sub className="text-[11px] font-sans text-amber-400 font-bold">t</sub>
-          <span className="mx-1 text-[#d97706] font-sans font-bold">=</span>
+          <span className="italic font-bold text-sky-400">C</span>
+          <sub className="text-[11px] font-sans text-sky-400 font-bold">t</sub>
+          <span className="mx-1 text-sky-400 font-sans font-bold">=</span>
 
           {/* ft ⊙ Ct-1 */}
           <span className="italic text-[#fdfbf7]">f</span>
           <sub className="text-[10px] font-sans text-[#ab9b87]">t</sub>
-          <span className="mx-1 text-amber-400 text-xs font-sans">⊙</span>
+          <span className="mx-1 text-sky-400 text-xs font-sans">⊙</span>
           <span className="italic text-[#fdfbf7]">C</span>
           <sub className="text-[10px] font-sans text-[#ab9b87]">t-1</sub>
 
-          <span className="mx-1.5 text-amber-500 font-sans font-bold">+</span>
+          <span className="mx-1.5 text-sky-400 font-sans font-bold">+</span>
 
           {/* it ⊙ C~t */}
           <span className="italic text-[#fdfbf7]">i</span>
           <sub className="text-[10px] font-sans text-[#ab9b87]">t</sub>
-          <span className="mx-1 text-amber-400 text-xs font-sans">⊙</span>
+          <span className="mx-1 text-sky-400 text-xs font-sans">⊙</span>
           <span className="inline-flex items-baseline">
             <span className="relative">
-              <span className="absolute -top-1.5 left-0 right-0 text-center text-xs font-bold text-amber-400">~</span>
+              <span className="absolute -top-1.5 left-0 right-0 text-center text-xs font-bold text-sky-400">~</span>
               <span className="italic text-[#fdfbf7]">C</span>
             </span>
             <sub className="text-[10px] font-sans text-[#ab9b87] ml-0.5">t</sub>
@@ -153,17 +152,17 @@ export function LSTMMainFormulas({ className = '' }) {
 
         {/* Hidden State update: ht = ot ⊙ tanh(Ct) */}
         <div className="flex items-center justify-center flex-wrap gap-1.5 bg-[#0c0a08]/60 p-2.5 rounded-lg border border-[#2e251b]">
-          <span className="italic font-bold text-amber-400">h</span>
-          <sub className="text-[11px] font-sans text-amber-400 font-bold">t</sub>
-          <span className="mx-1 text-[#d97706] font-sans font-bold">=</span>
+          <span className="italic font-bold text-sky-400">h</span>
+          <sub className="text-[11px] font-sans text-sky-400 font-bold">t</sub>
+          <span className="mx-1 text-sky-400 font-sans font-bold">=</span>
 
           <span className="italic text-[#fdfbf7]">o</span>
           <sub className="text-[10px] font-sans text-[#ab9b87]">t</sub>
-          <span className="mx-1 text-amber-400 text-xs font-sans">⊙</span>
+          <span className="mx-1 text-sky-400 text-xs font-sans">⊙</span>
           <span className="font-sans font-semibold text-[#e2d7c5]">tanh</span>
           <span>(</span>
-          <span className="italic text-amber-400">C</span>
-          <sub className="text-[10px] font-sans text-amber-400">t</sub>
+          <span className="italic text-sky-400">C</span>
+          <sub className="text-[10px] font-sans text-sky-400">t</sub>
           <span>)</span>
         </div>
       </div>
@@ -216,25 +215,25 @@ export function LSTMGateBreakdown({ className = '' }) {
 
   return (
     <div className={`space-y-2 ${className}`}>
-      <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider block">
+      <span className="text-xs font-mono font-bold text-sky-400 uppercase tracking-wider block">
         กลไกเกตควบคุม 4 ทิศทาง (4 Gating Mechanisms):
       </span>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
         {gates.map((g, idx) => (
           <div key={idx} className="p-3 bg-[#0c0a08]/80 border border-[#2e251b] rounded-xl space-y-1.5">
             <div className="flex items-center justify-between">
-              <span className="font-semibold text-amber-300 font-sans text-[11px]">{g.name}</span>
-              <span className="px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-400 text-[10px] font-mono">
+              <span className="font-semibold text-sky-300 font-sans text-[11px]">{g.name}</span>
+              <span className="px-1.5 py-0.5 rounded bg-sky-500/10 text-sky-400 text-[10px] font-mono">
                 {g.func} activation
               </span>
             </div>
 
             {/* Formula line */}
             <div className="font-serif text-[#fdfbf7] flex items-center gap-1 text-[13px] bg-[#16120e] p-1.5 rounded border border-[#2e251b]">
-              <span className="italic font-bold text-amber-400">{g.symbol}</span>
-              <sub className="text-[10px] font-sans text-amber-400">t</sub>
-              <span className="mx-1 text-[#d97706] font-sans">=</span>
-              <span className="font-sans font-bold text-[#f0c674]">{g.func}</span>
+              <span className="italic font-bold text-sky-400">{g.symbol}</span>
+              <sub className="text-[10px] font-sans text-sky-400">t</sub>
+              <span className="mx-1 text-sky-400 font-sans">=</span>
+              <span className="font-sans font-bold text-sky-300">{g.func}</span>
               <span>(</span>
               <span className="italic">{g.w.split('_')[0]}</span>
               <sub className="text-[9px] font-sans">{g.w.split('_')[1]}</sub>
@@ -266,7 +265,7 @@ export function LSTMGateBreakdown({ className = '' }) {
  * Metric Breakdown Cards for BenchmarkTab (Accuracy, Precision, Recall, F1)
  * Shows mathematical formulas + empirical substitution from 500 test reviews
  */
-export function MetricFormulaCard({ name, definition, symbolFormula, numFormula, result, diff, isBertWin }) {
+export function MetricFormulaCard({ name, definition, symbolFormula, numFormula, result, diff }) {
   return (
     <div className="p-4 bg-[#140f0a] border border-[#2e251b] hover:border-[#c58a2e]/50 rounded-2xl transition-all shadow-md space-y-3">
       <div className="flex items-center justify-between">

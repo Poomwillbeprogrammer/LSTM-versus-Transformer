@@ -158,9 +158,9 @@
 > 
 > *(เลื่อนลงมาชี้ส่วน Confusion Matrix และ Numerical Proof)*  
 > จาก Confusion Matrix บนข้อมูลทดสอบ 500 ตัวอย่าง:  
-> - **BERT:** ทำนายคลาสบวกถูกต้อง (True Positive) 215 ตัวอย่าง และทำนายคลาสลบถูกต้อง (True Negative) 213 ตัวอย่าง เกิด False Positive เพียง 35 ตัวอย่าง และ False Negative เพียง 37 ตัวอย่าง  
+> - **BERT:** ทำนายคลาสบวกถูกต้อง (True Positive) 216 ตัวอย่าง และทำนายคลาสลบถูกต้อง (True Negative) 212 ตัวอย่าง เกิด False Positive เพียง 42 ตัวอย่าง และ False Negative เพียง 30 ตัวอย่าง  
 > - **การ์ด Numerical Proof ด้านขวา:** ได้แสดงการแทนค่าสูตรทางคณิตศาสตร์ให้เห็นจริง เช่น:  
->   $$\text{Accuracy} = \frac{TP + TN}{Total} = \frac{215 + 213}{500} = 85.60\%$$  
+>   $$\text{Accuracy} = \frac{TP + TN}{Total} = \frac{216 + 212}{500} = 85.60\%$$  
 >   ทุกตัวเลขตรงกัน 100% ตรวจสอบได้เชิงพีชคณิตครับ"
 
 ---
@@ -293,4 +293,4 @@
   - Accuracy: BERT **85.60%** vs LSTM **55.20%** ($\Delta +30.40\%$)
   - Macro F1: BERT **85.71%** vs LSTM **54.66%** ($\Delta +31.05\%$)
   - Training Time: BERT **42.07 วินาที** vs LSTM **0.82 วินาที** (**51.3 เท่า**)
-  - Test Set: **500 ตัวอย่าง** (BERT ชนะ 183 เคส, เสมอ 294 เคส, LSTM ชนะ 23 เคส)
+  - Test Set: **500 ตัวอย่าง** (BERT ชนะ 183 เคส, เสมอ 286 เคส, LSTM ชนะ 31 เคส)

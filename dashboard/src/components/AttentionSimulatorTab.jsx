@@ -1,25 +1,18 @@
 import React, { useState, useMemo } from 'react';
 import { 
-  Layers, 
   ArrowRight, 
   RotateCcw, 
-  Play, 
-  Pause, 
   Info, 
   Activity, 
-  Eye, 
   Zap, 
-  Network,
-  Cpu,
-  Grid,
-  ListFilter,
-  Pin,
-  Sparkles,
-  HelpCircle,
-  Maximize2,
-  Minimize2,
-  CheckCircle,
-  XCircle
+  Grid, 
+  ListFilter, 
+  Pin, 
+  Sparkles, 
+  Maximize2, 
+  Minimize2, 
+  CheckCircle, 
+  XCircle 
 } from 'lucide-react';
 import { LSTMMainFormulas, LSTMGateBreakdown, AttentionFormula } from './MathView';
 
@@ -105,7 +98,7 @@ const HEAD_METADATA = {
     shortName: "Head 1: คำข้างเคียง",
     role: "จับคู่คำที่อยู่ติดกันตามไวยากรณ์ (Adjacent / Local Grammar)",
     desc: "โฟกัสความสัมพันธ์ระหว่างคำที่อยู่ติดกันเพื่อเก็บโครงสร้างกลุ่มคำและวลีเฉพาะที่",
-    color: "#d97706"
+    color: "#38bdf8"
   },
   2: {
     id: 2,
@@ -121,7 +114,7 @@ const HEAD_METADATA = {
     shortName: "Head 3: คำเชื่อมขัดแย้ง",
     role: "จับคำเชื่อมอนุประโยคขัดแย้ง (Discourse / Contrast)",
     desc: "เชื่อมโยงข้ามอนุประโยคผ่านคำเชื่อม 'but', 'although' เพื่อแยกแยะข้อความเกริ่นนำกับใจความสำคัญ",
-    color: "#eab308"
+    color: "#a855f7"
   },
   4: {
     id: 4,
@@ -129,7 +122,7 @@ const HEAD_METADATA = {
     shortName: "Head 4: แกนอารมณ์รวม",
     role: "รวบรวมแกนความรู้สึกหลักทั้งประโยค (Global Semantic Pooling)",
     desc: "กระจายความสนใจไปยังคำที่มีค่าน้ำหนักอารมณ์สูงทั่วทั้งประโยค เพื่อเตรียมส่งข้อมูลสรุปเข้าสู่ Classification Head",
-    color: "#c58a2e"
+    color: "#10b981"
   }
 };
 
@@ -138,7 +131,6 @@ export default function AttentionSimulatorTab() {
   const [customText, setCustomText] = useState(PRESET_SENTENCES[0].text);
   const [selectedTokenIdx, setSelectedTokenIdx] = useState(null);
   const [lstmStep, setLstmStep] = useState(0);
-  const [isPlayingLstm, setIsPlayingLstm] = useState(false);
   const [activeHead, setActiveHead] = useState(2); // Default to Head 2 (Negation) as requested
   const [viewMode, setViewMode] = useState('matrix'); // 'matrix' (2D Grid Heatmap) vs 'spotlight' (Token Spotlight)
   const [hoveredCell, setHoveredCell] = useState(null); // { r, c }
@@ -148,7 +140,7 @@ export default function AttentionSimulatorTab() {
 
   const tokens = useMemo(() => {
     return customText
-      .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
+      .replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, '')
       .split(/\s+/)
       .filter(Boolean);
   }, [customText]);
@@ -304,7 +296,6 @@ export default function AttentionSimulatorTab() {
     setPinnedCell(null);
     setHoveredCell(null);
     setLstmStep(0);
-    setIsPlayingLstm(false);
   };
 
   const handleNextStep = () => {
@@ -330,15 +321,15 @@ export default function AttentionSimulatorTab() {
     const isAdj = (t) => ['bad', 'watchable', 'good', 'stunning', 'great', 'boring', 'magnificent', 'masterpiece'].includes(t);
 
     if ((isNeg(tR) && isAdj(tC)) || (isNeg(tC) && isAdj(tR))) {
-      return `🔥 จุดปฏิเสธซ้อน (Negation Binding): โทเคน "${tokens[r]}" เชื่อมโยงโดยตรงกับ "${tokens[c]}" ด้วยน้ำหนักสูงถึง ${(w * 100).toFixed(0)}% ทำให้โมเดลเข้าใจว่าไม่ใช่ความหมายปกติ แต่เป็นการกลับขั้วอารมณ์`;
+      return `[Negation Binding] จุดปฏิเสธซ้อน: โทเคน "${tokens[r]}" เชื่อมโยงโดยตรงกับ "${tokens[c]}" ด้วยน้ำหนักสูงถึง ${(w * 100).toFixed(0)}% ทำให้โมเดลเข้าใจว่าไม่ใช่ความหมายปกติ แต่เป็นการกลับขั้วอารมณ์`;
     }
 
     if (isContrast(tR) || isContrast(tC)) {
-      return `⚡ จุดเชื่อมต่ออนุประโยค (Contrast Shift): คำเชื่อมขัดแย้ง "${tokens[r]}" สื่อสารข้ามประโยคกับ "${tokens[c]}" (${(w * 100).toFixed(0)}%) เพื่อถ่วงน้ำหนักใจความสำคัญของรีวิว`;
+      return `[Contrast Shift] จุดเชื่อมต่ออนุประโยค: คำเชื่อมขัดแย้ง "${tokens[r]}" สื่อสารข้ามประโยคกับ "${tokens[c]}" (${(w * 100).toFixed(0)}%) เพื่อถ่วงน้ำหนักใจความสำคัญของรีวิว`;
     }
 
     if (Math.abs(r - c) === 1) {
-      return `🔗 ความสัมพันธ์ทางไวยากรณ์เฉพาะที่ (Adjacent Syntax): คำข้างเคียง "${tokens[r]}" และ "${tokens[c]}" แลกเปลี่ยนข้อมูลไวยากรณ์ด้วยน้ำหนัก ${(w * 100).toFixed(0)}%`;
+      return `[Adjacent Syntax] ความสัมพันธ์ทางไวยากรณ์เฉพาะที่: คำข้างเคียง "${tokens[r]}" และ "${tokens[c]}" แลกเปลี่ยนข้อมูลไวยากรณ์ด้วยน้ำหนัก ${(w * 100).toFixed(0)}%`;
     }
 
     return `ความสัมพันธ์บริบทสองทิศทาง (Bidirectional Attention): เวกเตอร์ Query ของ "${tokens[r]}" ทำ Dot-Product กับ Key ของ "${tokens[c]}" ได้ค่าน้ำหนัก ${(w * 100).toFixed(0)}% โดยมีระยะทาง Path Length = 1 เสมอ`;
@@ -410,7 +401,7 @@ export default function AttentionSimulatorTab() {
             mobileTab === 'bert' ? 'bg-[#c58a2e] text-[#0c0a08] font-bold shadow' : 'text-[#f0c674]'
           }`}
         >
-          BERT Attention 🔥
+          BERT Attention
         </button>
         <button
           onClick={() => setMobileTab('lstm')}
@@ -458,7 +449,7 @@ export default function AttentionSimulatorTab() {
           <div>
             <div className="text-xs text-[#9e917f] mb-2 flex items-center justify-between">
               <span>สายพานลำดับคำ (Sequential Unrolling):</span>
-              <span className="text-[11px] font-mono text-amber-400">
+              <span className="text-[11px] font-mono text-sky-400">
                 ประมวลผลคำที่: <strong>{tokens[lstmStep] || '-'}</strong> (t = {lstmStep + 1})
               </span>
             </div>
@@ -475,7 +466,7 @@ export default function AttentionSimulatorTab() {
                     onClick={() => setLstmStep(idx)}
                     className={`px-2.5 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer relative border touch-manipulation min-h-[36px] flex items-center ${
                       isCurrent
-                        ? 'bg-[#d97706] text-[#0c0a08] font-bold border-[#fbbf24] shadow-md shadow-[#d97706]/30 scale-105'
+                        ? 'bg-sky-600 text-white font-bold border-sky-400 shadow-md shadow-sky-600/30 scale-105'
                         : isPast
                         ? 'bg-[#221a12] border-[#382f25] text-[#e2d7c5]'
                         : 'bg-[#0c0a08]/50 border-[#262019] text-[#716556]'
@@ -486,8 +477,8 @@ export default function AttentionSimulatorTab() {
                       <span 
                         className="absolute -top-1.5 -right-1.5 text-[9px] px-1 rounded-full font-bold"
                         style={{
-                          backgroundColor: `rgba(217, 119, 6, ${retention})`,
-                          color: retention > 0.4 ? '#0c0a08' : '#fdfbf7'
+                          backgroundColor: `rgba(2, 132, 199, ${retention})`,
+                          color: retention > 0.4 ? '#ffffff' : '#fdfbf7'
                         }}
                       >
                         {(retention * 100).toFixed(0)}%
@@ -503,30 +494,30 @@ export default function AttentionSimulatorTab() {
           <div className="p-4 bg-[#0c0a08]/80 border border-[#2e251b] rounded-xl space-y-3">
             <div className="flex items-center justify-between text-xs">
               <span className="font-semibold text-[#e2d7c5]">ระดับสัญญาณความจำของคำแรก (First Token Retention):</span>
-              <span className="font-mono text-amber-400 font-bold">
+              <span className="font-mono text-sky-400 font-bold">
                 {(lstmDecayAtStep(0, lstmStep) * 100).toFixed(1)}%
               </span>
             </div>
 
             <div className="w-full bg-[#16120e] h-3 rounded-full overflow-hidden border border-[#2e251b]">
               <div
-                className="h-full bg-gradient-to-r from-amber-500 to-rose-500 transition-all duration-300"
+                className="h-full bg-gradient-to-r from-sky-500 to-rose-500 transition-all duration-300"
                 style={{ width: `${lstmDecayAtStep(0, lstmStep) * 100}%` }}
               />
             </div>
 
             <p className="text-[11px] text-[#ab9b87] leading-relaxed">
-              เมื่อโมเดลอ่านมาถึงขั้นตอนที่ {lstmStep + 1} ข้อมูลของคำต้นประโยค (<strong>"{tokens[0]}"</strong>) จะถูกเจือจางลงเรื่อยๆ ตามฟังก์ชัน Forget Gate ($f_t$) หากมีข้อความยาวเกินกว่า 50-100 โทเคน สารสนเทศสำคัญจะลดลงจนแทบไม่มีอิทธิพลต่อผลลัพธ์สุดท้าย
+              เมื่อโมเดลอ่านมาถึงขั้นตอนที่ {lstmStep + 1} ข้อมูลของคำต้นประโยค (<strong>"{tokens[0]}"</strong>) จะถูกเจือจางลงเรื่อยๆ ตามฟังก์ชัน Forget Gate (<span className="font-serif italic font-semibold text-[#fdfbf7]">f<sub>t</sub></span>) หากมีข้อความยาวเกินกว่า 50-100 โทเคน สารสนเทศสำคัญจะลดลงจนแทบไม่มีอิทธิพลต่อผลลัพธ์สุดท้าย
             </p>
           </div>
 
           {/* LSTM Final Classification Verdict Card */}
-          <div className="p-4 bg-[#0c0a08]/90 border border-[#4d3716] rounded-xl space-y-3 shadow-md">
+          <div className="p-4 bg-[#0c0a08]/90 border border-sky-950/60 rounded-xl space-y-3 shadow-md">
             <div className="flex items-center justify-between flex-wrap gap-2">
               <div className="flex items-center gap-1.5">
-                <Activity className="w-4 h-4 text-amber-400" />
-                <span className="text-xs font-mono uppercase text-amber-400 font-bold">
-                  ผลลัพธ์ที่ Classification Head (h_T ➔ Dense):
+                <Activity className="w-4 h-4 text-sky-400" />
+                <span className="text-xs font-mono uppercase text-sky-400 font-bold">
+                  ผลลัพธ์ที่ Classification Head (<span className="font-serif italic">h<sub>T</sub></span> ➔ Dense):
                 </span>
               </div>
               <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold font-mono flex items-center gap-1 ${
@@ -534,7 +525,7 @@ export default function AttentionSimulatorTab() {
                   ? 'bg-emerald-500/20 text-[#34d399] border border-emerald-500/30'
                   : modelVerdicts.lstm.isCorrect === false
                   ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30 shadow-sm shadow-rose-500/20'
-                  : 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
+                  : 'bg-sky-500/20 text-sky-300 border border-sky-500/30'
               }`}>
                 {modelVerdicts.lstm.isCorrect === false && <XCircle className="w-3.5 h-3.5 text-rose-400" />}
                 {modelVerdicts.lstm.isCorrect === true && <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />}
@@ -548,7 +539,7 @@ export default function AttentionSimulatorTab() {
             <div className="space-y-1.5">
               <div className="flex items-center justify-between text-xs">
                 <span className="text-[#9e917f]">ความมั่นใจการตัดสินใจ (Confidence):</span>
-                <span className="font-mono font-bold text-amber-400">
+                <span className="font-mono font-bold text-sky-400">
                   {modelVerdicts.lstm.prediction}: {modelVerdicts.lstm.confidence}%
                 </span>
               </div>
@@ -575,7 +566,7 @@ export default function AttentionSimulatorTab() {
             </div>
 
             <p className="text-[11px] text-[#ab9b87] bg-[#1a140e]/60 p-2.5 rounded-lg border border-[#2e251b] leading-relaxed">
-              <strong className="text-amber-300">วิเคราะห์สาเหตุ:</strong> {modelVerdicts.lstm.reason}
+              <strong className="text-sky-300">วิเคราะห์สาเหตุ:</strong> {modelVerdicts.lstm.reason}
             </p>
           </div>
 
@@ -669,14 +660,15 @@ export default function AttentionSimulatorTab() {
                     setActiveHead(head);
                     setPinnedCell(null);
                   }}
-                  className={`px-2 py-2 rounded-xl text-xs font-mono cursor-pointer transition-all border flex flex-col items-center justify-center text-center ${
+                  style={activeHead === head ? { backgroundColor: HEAD_METADATA[head]?.color, borderColor: HEAD_METADATA[head]?.color } : {}}
+                  className={`px-2 py-2 rounded-xl text-xs font-mono cursor-pointer transition-all border flex flex-col items-center justify-center text-center touch-manipulation min-h-[40px] ${
                     activeHead === head
-                      ? 'bg-[#c58a2e] text-[#0c0a08] font-bold border-[#f0c674] shadow-md shadow-[#8d5c1a]/30'
+                      ? 'text-[#0c0a08] font-bold shadow-md'
                       : 'bg-[#221a12] text-[#9e917f] hover:text-[#fdfbf7] border-[#2e251b]'
                   }`}
                 >
                   <span className="font-bold text-[11px]">Head {head}</span>
-                  <span className="text-[9px] truncate max-w-full opacity-85">
+                  <span className="text-[9px] truncate max-w-full opacity-90">
                     {HEAD_METADATA[head]?.shortName.replace(`Head ${head}: `, '')}
                   </span>
                 </button>
@@ -718,7 +710,7 @@ export default function AttentionSimulatorTab() {
 
               {/* 2D Matrix Table Container: Responsive with smooth horizontal scroll for small mobile screens */}
               <div className="w-full overflow-x-auto border border-[#2e251b] rounded-xl bg-[#0c0a08]/90 shadow-inner">
-                <table className="w-full table-fixed border-collapse font-mono select-none">
+                <table className="w-full min-w-[560px] table-fixed border-collapse font-mono select-none">
                   <thead>
                     <tr>
                       <th className="p-1 sm:p-1.5 border border-[#2e251b] bg-[#1a140f] text-[#9e917f] text-[8px] sm:text-[9px] uppercase tracking-wider w-[15%] sm:w-[13%]">
@@ -845,13 +837,16 @@ export default function AttentionSimulatorTab() {
                   </p>
 
                   <div className="text-[10px] font-mono text-[#9e917f] flex items-center justify-between pt-1">
-                    <span>สูตรคำนวณตำแหน่ง: Softmax( (q_{activeCell.r + 1} · k_{activeCell.c + 1}^T) / √d_k )</span>
+                    <span>สูตรคำนวณตำแหน่ง: Softmax( (q<sub>{activeCell.r + 1}</sub> · k<sub>{activeCell.c + 1}</sub><sup>T</sup>) / √d<sub>k</sub> )</span>
                     <span className="text-amber-500/80">คลิกที่ช่องใดก็ได้เพื่อตรึงหมุดไว้</span>
                   </div>
                 </div>
               ) : (
                 <div className="p-3 bg-[#0c0a08]/70 border border-[#2e251b] rounded-xl text-xs text-[#9e917f] flex items-center justify-between">
-                  <span>💡 เลื่อนเมาส์ชี้ช่องตารางเพื่อส่องดูค่าน้ำหนักคู่คำ หรือคลิกเพื่อปักหมุดการวิเคราะห์</span>
+                  <span className="flex items-center gap-1.5">
+                    <Info className="w-3.5 h-3.5 text-[#d99f3d]" />
+                    <span>เลื่อนเมาส์ชี้ช่องตารางเพื่อส่องดูค่าน้ำหนักคู่คำ หรือคลิกเพื่อปักหมุดการวิเคราะห์</span>
+                  </span>
                   <span className="text-[10px] font-mono text-[#716556]">Scale: O(1) Path Length</span>
                 </div>
               )}
@@ -914,7 +909,7 @@ export default function AttentionSimulatorTab() {
                     </p>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 font-mono text-[11px]">
                       {tokens.map((targetTok, targetIdx) => {
-                        const w = attentionMatrix[selectedTokenIdx][targetIdx];
+                        const w = attentionMatrix[selectedTokenIdx]?.[targetIdx] ?? 0;
                         return (
                           <div 
                             key={targetIdx} 
