@@ -164,11 +164,11 @@ export default function DatasetExplorerTab() {
           </button>
         </div>
 
-        {/* Filter Pills */}
-        <div className="flex flex-wrap items-center gap-2 mt-6 pt-4 border-t border-[#2e251b]">
+        {/* Filter Pills with Horizontal Scroll on Mobile */}
+        <div className="flex items-center gap-1.5 sm:gap-2 mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-[#2e251b] overflow-x-auto no-scrollbar pb-1 touch-pan-x">
           <button
             onClick={() => { setActiveFilter('all'); setPage(1); }}
-            className={`px-3.5 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all touch-manipulation min-h-[38px] flex items-center ${
+            className={`px-3 sm:px-3.5 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all touch-manipulation min-h-[38px] flex items-center shrink-0 ${
               activeFilter === 'all'
                 ? 'bg-[#c58a2e] text-[#0c0a08] font-bold shadow-md shadow-[#8d5c1a]/30'
                 : 'bg-[#0c0a08] text-[#9e917f] hover:text-[#fdfbf7] border border-[#2e251b]'
@@ -179,7 +179,7 @@ export default function DatasetExplorerTab() {
 
           <button
             onClick={() => { setActiveFilter('bert_win'); setPage(1); }}
-            className={`px-3.5 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all flex items-center gap-1.5 touch-manipulation min-h-[38px] ${
+            className={`px-3 sm:px-3.5 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all flex items-center gap-1.5 touch-manipulation min-h-[38px] shrink-0 ${
               activeFilter === 'bert_win'
                 ? 'bg-[#c58a2e] text-[#0c0a08] font-bold shadow-md shadow-[#8d5c1a]/30'
                 : 'bg-[#0c0a08] text-[#f0c674] hover:bg-[#20170e] border border-[#c58a2e]/40'
@@ -193,21 +193,21 @@ export default function DatasetExplorerTab() {
 
           <button
             onClick={() => { setActiveFilter('lstm_win'); setPage(1); }}
-            className={`px-3.5 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all flex items-center gap-1.5 touch-manipulation min-h-[38px] ${
+            className={`px-3 sm:px-3.5 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all flex items-center gap-1.5 touch-manipulation min-h-[38px] shrink-0 ${
               activeFilter === 'lstm_win'
-                ? 'bg-[#d97706] text-[#0c0a08] font-bold shadow-md shadow-[#d97706]/30'
-                : 'bg-[#0c0a08] text-amber-400 hover:bg-amber-950/30 border border-amber-900/40'
+                ? 'bg-sky-600 text-white font-bold shadow-md shadow-sky-600/30'
+                : 'bg-[#0c0a08] text-sky-400 hover:bg-sky-950/30 border border-sky-900/40'
             }`}
           >
             <span>LSTM ชนะ (BERT ผิด)</span>
-            <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-amber-900/60 font-mono font-bold">
+            <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-sky-950/60 font-mono font-bold text-sky-300">
               {counts.lstm_win}
             </span>
           </button>
 
           <button
             onClick={() => { setActiveFilter('both_correct'); setPage(1); }}
-            className={`px-3.5 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all touch-manipulation min-h-[38px] flex items-center ${
+            className={`px-3 sm:px-3.5 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all touch-manipulation min-h-[38px] flex items-center shrink-0 ${
               activeFilter === 'both_correct'
                 ? 'bg-emerald-600 text-white font-bold shadow'
                 : 'bg-[#0c0a08] text-emerald-400 hover:bg-emerald-950/30 border border-emerald-900/40'
@@ -218,7 +218,7 @@ export default function DatasetExplorerTab() {
 
           <button
             onClick={() => { setActiveFilter('both_wrong'); setPage(1); }}
-            className={`px-3.5 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all touch-manipulation min-h-[38px] flex items-center ${
+            className={`px-3 sm:px-3.5 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all touch-manipulation min-h-[38px] flex items-center shrink-0 ${
               activeFilter === 'both_wrong'
                 ? 'bg-rose-600 text-white font-bold shadow'
                 : 'bg-[#0c0a08] text-rose-400 hover:bg-rose-950/30 border border-rose-900/40'
@@ -229,7 +229,7 @@ export default function DatasetExplorerTab() {
 
           <button
             onClick={() => { setActiveFilter('negation'); setPage(1); }}
-            className={`px-3.5 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all touch-manipulation min-h-[38px] flex items-center ${
+            className={`px-3 sm:px-3.5 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all touch-manipulation min-h-[38px] flex items-center shrink-0 ${
               activeFilter === 'negation'
                 ? 'bg-[#8d5c1a] text-[#fdfbf7] font-bold shadow'
                 : 'bg-[#0c0a08] text-[#e5c158] hover:bg-[#2a1e0f] border border-[#4d3716]'
@@ -240,7 +240,7 @@ export default function DatasetExplorerTab() {
 
           <button
             onClick={() => { setActiveFilter('long'); setPage(1); }}
-            className={`px-3.5 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all touch-manipulation min-h-[38px] flex items-center ${
+            className={`px-3 sm:px-3.5 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all touch-manipulation min-h-[38px] flex items-center shrink-0 ${
               activeFilter === 'long'
                 ? 'bg-[#382f25] text-[#fdfbf7] font-bold shadow'
                 : 'bg-[#0c0a08] text-[#9e917f] hover:text-[#fdfbf7] border border-[#2e251b]'
@@ -519,13 +519,17 @@ export default function DatasetExplorerTab() {
         </div>
       </div>
 
-      {/* Review Inspector Modal / Drawer */}
+      {/* Review Inspector Modal / Bottom Sheet on Mobile */}
       {selectedSample && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
-          <div className="bg-[#16120e] border border-[#4d3716] rounded-2xl max-w-2xl w-full p-4 sm:p-6 space-y-4 sm:space-y-5 shadow-2xl relative max-h-[85vh] sm:max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 animate-fadeIn">
+          <div className="bg-[#16120e] border border-[#4d3716] rounded-t-2xl sm:rounded-2xl max-w-2xl w-full p-4 sm:p-6 space-y-3.5 sm:space-y-5 shadow-2xl relative max-h-[88vh] sm:max-h-[90vh] overflow-y-auto">
+            {/* Mobile Sheet Drag Handle */}
+            <div className="w-12 h-1 bg-[#4d3716] rounded-full mx-auto sm:hidden mb-1 shrink-0" />
+
             <button
               onClick={() => setSelectedSample(null)}
               className="absolute top-3 right-3 sm:top-4 sm:right-4 min-w-[44px] min-h-[44px] p-2.5 rounded-lg bg-[#221a12] hover:bg-[#2e2319] text-[#9e917f] hover:text-[#fdfbf7] border border-[#2e251b] cursor-pointer flex items-center justify-center touch-manipulation"
+              aria-label="Close dialog"
             >
               <X className="w-4 h-4" />
             </button>
@@ -539,14 +543,14 @@ export default function DatasetExplorerTab() {
                 <span className="text-[#5a4b3c]">•</span>
                 <span className="capitalize text-[#e2d7c5]">{selectedSample.category.replace('_', ' ')}</span>
               </div>
-              <h3 className="text-lg font-bold text-[#fdfbf7] mt-1">
+              <h3 className="text-base sm:text-lg font-bold text-[#fdfbf7] mt-1">
                 การวิเคราะห์เจาะลึกตัวอย่างรีวิว (Sample Detail Inspector)
               </h3>
             </div>
 
             {/* Diagnostic Badge for Root Cause */}
             {selectedSample.root_cause_name && (
-              <div className={`p-3.5 rounded-xl border flex items-center justify-between text-xs flex-wrap gap-2 ${
+              <div className={`p-3 sm:p-3.5 rounded-xl border flex items-center justify-between text-xs flex-wrap gap-2 ${
                 selectedSample.root_cause_group === 'negation'
                   ? 'bg-orange-950/40 border-orange-500/50 text-orange-200'
                   : selectedSample.root_cause_group === 'contrastive'
@@ -559,45 +563,45 @@ export default function DatasetExplorerTab() {
                   {selectedSample.root_cause_group === 'decay' && <Clock className="w-4 h-4 text-purple-400" />}
                   <span>สาเหตุหลัก: {selectedSample.root_cause_name} ({selectedSample.root_cause_name_th})</span>
                 </div>
-                <span className="font-mono text-[11px] px-2 py-0.5 rounded bg-black/40 border border-white/10">
+                <span className="font-mono text-[10px] sm:text-[11px] px-2 py-0.5 rounded bg-black/40 border border-white/10">
                   1 ใน 3 Error Archetypes
                 </span>
               </div>
             )}
 
             {/* Actual Text with Highlights */}
-            <div className="p-4 bg-[#0c0a08] border border-[#2e251b] rounded-xl space-y-2.5">
+            <div className="p-3.5 sm:p-4 bg-[#0c0a08] border border-[#2e251b] rounded-xl space-y-2.5">
               <div className="flex items-center justify-between text-xs">
                 <span className="font-semibold text-[#9e917f]">ข้อความรีวิวพร้อมไฮไลต์คำกระตุ้น (Review Text & Key Triggers):</span>
                 <span className="text-[11px] font-mono text-[#716556]">{selectedSample.token_count} คำ</span>
               </div>
-              <p className="text-sm text-[#fdfbf7] leading-relaxed font-sans">
+              <p className="text-xs sm:text-sm text-[#fdfbf7] leading-relaxed font-sans">
                 "{renderHighlightedText(selectedSample.text)}"
               </p>
 
               {/* Highlighting Legend */}
-              <div className="flex flex-wrap items-center gap-3 pt-2 text-[10px] font-mono text-[#9e917f] border-t border-[#221a12]">
+              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-2 text-[10px] font-mono text-[#9e917f] border-t border-[#221a12]">
                 <span className="flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded bg-rose-500/30 border border-rose-500/60 inline-block" />
-                  <span>คำปฏิเสธ (Negators: not, never, barely)</span>
+                  <span>คำปฏิเสธ (Negators)</span>
                 </span>
                 <span className="flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded bg-amber-500/30 border border-amber-500/60 inline-block" />
-                  <span>คำเชื่อมขัดแย้ง (Contrast: but, however)</span>
+                  <span>คำเชื่อมขัดแย้ง (Contrast)</span>
                 </span>
                 <span className="flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded bg-cyan-500/30 border border-cyan-500/60 inline-block" />
-                  <span>คำบอกความรู้สึก (Sentiment Words)</span>
+                  <span>คำบอกความรู้สึก (Sentiment)</span>
                 </span>
               </div>
             </div>
 
             {/* Prediction Comparison Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {/* LSTM Box */}
-              <div className="p-4 bg-[#0c0a08]/80 border border-[#2e251b] rounded-xl space-y-2">
+              <div className="p-3.5 sm:p-4 bg-[#0c0a08]/80 border border-sky-500/30 rounded-xl space-y-2">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="font-bold text-amber-400">LSTM Baseline:</span>
+                  <span className="font-bold text-sky-400">LSTM Baseline:</span>
                   <span className={`px-2 py-0.5 rounded text-[11px] font-bold ${
                     selectedSample.lstm_pred === selectedSample.label 
                       ? 'bg-emerald-500/20 text-[#34d399]' 
@@ -606,7 +610,7 @@ export default function DatasetExplorerTab() {
                     {selectedSample.lstm_pred === selectedSample.label ? '✓ ถูกต้อง' : '✕ ทำนายผิด'}
                   </span>
                 </div>
-                <div className="text-sm font-semibold text-[#fdfbf7]">
+                <div className="text-xs sm:text-sm font-semibold text-[#fdfbf7]">
                   ผลทำนาย: {selectedSample.lstm_pred === 1 ? 'Positive (เชิงบวก)' : 'Negative (เชิงลบ)'}
                 </div>
                 <div className="text-xs text-[#9e917f] font-mono">

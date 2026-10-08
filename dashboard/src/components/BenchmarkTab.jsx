@@ -98,7 +98,7 @@ export default function BenchmarkTab() {
             <div className="h-64 sm:h-72 w-full overflow-hidden">
               {activeChart === 'bar' ? (
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={barChartData} margin={{ top: 20, right: 10, left: -15, bottom: 5 }}>
+                    <BarChart data={barChartData} margin={{ top: 20, right: 10, left: -15, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#2e251b" opacity={0.6} />
                     <XAxis dataKey="name" stroke="#9e917f" fontSize={11} />
                     <YAxis domain={[0, 100]} stroke="#9e917f" fontSize={11} unit="%" />
@@ -107,18 +107,36 @@ export default function BenchmarkTab() {
                       formatter={(value, name) => [`${value}%`, name]}
                     />
                     <Legend wrapperStyle={{ color: '#e2d7c5', fontSize: '11px' }} />
-                    <Bar dataKey="LSTM" fill="#d97706" radius={[4, 4, 0, 0]} name="LSTM (Baseline)" />
-                    <Bar dataKey="BERT" fill="#d99f3d" radius={[4, 4, 0, 0]} name="BERT (Fine-tuning)" />
+                    <Bar dataKey="LSTM" fill="#0284c7" radius={[4, 4, 0, 0]} name="LSTM (Baseline)" />
+                    <Bar dataKey="BERT" fill="#f59e0b" radius={[4, 4, 0, 0]} name="BERT (Fine-tuning)" />
                   </BarChart>
                 </ResponsiveContainer>
               ) : (
                 <ResponsiveContainer width="100%" height="100%">
                   <RadarChart data={radarData} margin={{ top: 10, right: 20, left: 20, bottom: 10 }}>
-                    <PolarGrid stroke="#2e251b" />
-                    <PolarAngleAxis dataKey="metric" stroke="#e2d7c5" fontSize={10} />
-                    <PolarRadiusAxis domain={[0, 100]} stroke="#5a4b3c" angle={30} />
-                    <Radar name="LSTM (Baseline)" dataKey="LSTM" stroke="#d97706" fill="#d97706" fillOpacity={0.3} />
-                    <Radar name="BERT (Fine-tuning)" dataKey="BERT" stroke="#d99f3d" fill="#d99f3d" fillOpacity={0.4} />
+                    <PolarGrid stroke="#443425" strokeDasharray="3 3" />
+                    <PolarAngleAxis dataKey="metric" stroke="#fdfbf7" fontSize={11} fontWeight={600} />
+                    <PolarRadiusAxis domain={[0, 100]} stroke="#716250" angle={30} />
+                    {/* LSTM in Crisp Sky Blue with High Distinction */}
+                    <Radar 
+                      name="LSTM (Baseline)" 
+                      dataKey="LSTM" 
+                      stroke="#0284c7" 
+                      fill="#38bdf8" 
+                      fillOpacity={0.35} 
+                      strokeWidth={2.5}
+                      dot={{ r: 4, fill: '#38bdf8', stroke: '#0369a1', strokeWidth: 1.5 }}
+                    />
+                    {/* BERT in RMUTL Radiant Gold with High Distinction */}
+                    <Radar 
+                      name="BERT (Fine-tuning)" 
+                      dataKey="BERT" 
+                      stroke="#d97706" 
+                      fill="#f59e0b" 
+                      fillOpacity={0.45} 
+                      strokeWidth={2.5}
+                      dot={{ r: 4, fill: '#fbbf24', stroke: '#b45309', strokeWidth: 1.5 }}
+                    />
                     <Legend wrapperStyle={{ color: '#e2d7c5', fontSize: '11px' }} />
                     <Tooltip contentStyle={{ backgroundColor: '#16120e', borderColor: '#382f25', borderRadius: '8px', color: '#fdfbf7' }} />
                   </RadarChart>
@@ -153,9 +171,9 @@ export default function BenchmarkTab() {
                 <thead>
                   <tr className="border-b border-[#2e251b] bg-[#221a12] text-[#e2d7c5] font-mono">
                     <th className="p-3">ตัวชี้วัด (Metrics)</th>
-                    <th className="p-3 text-amber-400 text-center">LSTM</th>
-                    <th className="p-3 text-[#d99f3d] text-center">BERT</th>
-                    <th className="p-3 text-[#f0c674] text-right">ผลต่าง (Δ)</th>
+                    <th className="p-3 text-sky-400 text-center font-bold">LSTM</th>
+                    <th className="p-3 text-[#f0c674] text-center font-bold">BERT</th>
+                    <th className="p-3 text-[#34d399] text-right font-bold">ผลต่าง (Δ)</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#2e251b]/60">
@@ -164,7 +182,7 @@ export default function BenchmarkTab() {
                       <td className="p-3 text-[#e2d7c5] font-medium">
                         {m.metricTh}
                       </td>
-                      <td className="p-3 text-center font-mono font-semibold text-amber-400/90">
+                      <td className="p-3 text-center font-mono font-semibold text-sky-400">
                         {m.lstm}{m.unit}
                       </td>
                       <td className="p-3 text-center font-mono font-semibold text-[#f0c674]">
@@ -216,18 +234,18 @@ export default function BenchmarkTab() {
                 <Line 
                   type="monotone" 
                   dataKey="lstm" 
-                  stroke="#d97706" 
+                  stroke="#0284c7" 
                   strokeWidth={2.5} 
                   name="LSTM Loss (5 Epochs)" 
-                  activeDot={{ r: 6 }} 
+                  activeDot={{ r: 6, fill: '#38bdf8' }} 
                 />
                 <Line 
                   type="monotone" 
                   dataKey="bert" 
-                  stroke="#d99f3d" 
+                  stroke="#f59e0b" 
                   strokeWidth={2.5} 
                   name="BERT Loss (3 Epochs)" 
-                  activeDot={{ r: 6 }} 
+                  activeDot={{ r: 6, fill: '#fbbf24' }} 
                   connectNulls={false}
                 />
               </LineChart>
@@ -235,8 +253,8 @@ export default function BenchmarkTab() {
           </div>
 
           <div className="grid grid-cols-2 gap-3 mt-4 pt-4 border-t border-[#2e251b] font-mono text-xs">
-            <div className="p-3 bg-amber-500/10 border border-amber-500/20 rounded-lg">
-              <span className="text-amber-400 font-bold block">LSTM Loss: 0.6976 → 0.3234</span>
+            <div className="p-3 bg-sky-950/30 border border-sky-500/30 rounded-lg">
+              <span className="text-sky-400 font-bold block">LSTM Loss: 0.6976 → 0.3234</span>
               <span className="text-[#ab9b87] text-[11px]">ลดลง 53.6% แต่เกิด Overfitting บนข้อมูลชุดเล็ก</span>
             </div>
             <div className="p-3 bg-[#c58a2e]/10 border border-[#c58a2e]/30 rounded-lg">
@@ -247,7 +265,7 @@ export default function BenchmarkTab() {
         </div>
 
         {/* RCA Explanation on Overfitting vs Transfer Learning */}
-        <div className="lg:col-span-5 bg-[#16120e]/95 border border-[#2e251b] rounded-2xl p-6 flex flex-col justify-between shadow-lg">
+        <div className="lg:col-span-5 bg-[#16120e]/95 border border-[#2e251b] rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-lg">
           <div>
             <h4 className="text-base font-bold text-[#fdfbf7] mb-3 flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-[#d99f3d]" />
@@ -255,7 +273,7 @@ export default function BenchmarkTab() {
             </h4>
             <div className="space-y-3 text-xs sm:text-sm text-[#e2d7c5] leading-relaxed">
               <div className="p-3 bg-[#0c0a08]/80 border border-[#2e251b] rounded-xl">
-                <strong className="text-amber-300 block mb-1">1. ภาวะการเรียนรู้มากเกินไป (Overfitting) ของ LSTM:</strong>
+                <strong className="text-sky-400 block mb-1">1. ภาวะการเรียนรู้มากเกินไป (Overfitting) ของ LSTM:</strong>
                 เมื่อฝึกสอนจากศูนย์ (Train from scratch) LSTM ต้องพยายามสร้าง Representation ของคลังคำศัพท์ขนาด 30,522 คำ ควบคู่กับการเรียนรู้ไวยากรณ์ด้วยข้อมูลฝึกเพียง 2,000 ตัวอย่าง โมเดลจึง "จำข้อความฝึกสอนได้" (Loss ลดลงเหลือ 0.3234) แต่ไม่สามารถ "สรุปความหมายทั่วไป" บนชุดทดสอบได้
               </div>
 
@@ -273,47 +291,47 @@ export default function BenchmarkTab() {
       </div>
 
       {/* Confusion Matrix Side-by-Side */}
-      <div className="bg-[#16120e]/95 border border-[#2e251b] rounded-2xl p-6 shadow-lg">
+      <div className="bg-[#16120e]/95 border border-[#2e251b] rounded-2xl p-4 sm:p-6 shadow-lg">
         <div className="flex items-center justify-between mb-4">
           <div>
             <span className="text-xs font-mono text-[#d99f3d] font-bold uppercase tracking-wider">
               Diagnostic Matrices
             </span>
-            <h3 className="text-lg font-bold text-[#fdfbf7] mt-1">
+            <h3 className="text-base sm:text-lg font-bold text-[#fdfbf7] mt-1">
               เมทริกซ์ความสับสน (Confusion Matrices) บนชุดทดสอบ 500 ตัวอย่าง
             </h3>
           </div>
-          <span className="text-xs font-mono text-[#9e917f]">Total: 500 Samples</span>
+          <span className="text-xs font-mono text-[#9e917f] hidden sm:inline">Total: 500 Samples</span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8">
           {/* LSTM Confusion Matrix */}
-          <div className="bg-[#0c0a08]/80 border border-[#4d3716] rounded-xl p-5">
+          <div className="bg-[#0c0a08]/80 border border-sky-500/30 rounded-xl p-4 sm:p-5">
             <div className="flex items-center justify-between border-b border-[#2e251b] pb-3 mb-4">
-              <span className="font-bold text-[#fdfbf7] text-sm">LSTM Baseline (Acc 55.20%)</span>
-              <span className="text-xs font-mono text-amber-400">Correct: 276 / 500</span>
+              <span className="font-bold text-sky-400 text-sm">LSTM Baseline (Acc 55.20%)</span>
+              <span className="text-xs font-mono text-sky-400">Correct: 276 / 500</span>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 text-center">
-              <div className="p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-xl">
+            <div className="grid grid-cols-2 gap-2 sm:gap-3 text-center">
+              <div className="p-3 sm:p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-xl">
                 <span className="text-[10px] text-[#9e917f] block uppercase font-mono">True Positive (TP)</span>
-                <span className="text-2xl font-bold font-mono text-[#34d399]">{confusionMatrices.lstm.tp}</span>
-                <span className="text-[11px] text-[#9e917f] block mt-1">บวกจริง / ทายบวก (54.9%)</span>
+                <span className="text-xl sm:text-2xl font-bold font-mono text-[#34d399]">{confusionMatrices.lstm.tp}</span>
+                <span className="text-[10px] sm:text-[11px] text-[#9e917f] block mt-1">บวกจริง / ทายบวก (54.9%)</span>
               </div>
-              <div className="p-4 bg-rose-500/10 border border-rose-500/30 rounded-xl">
+              <div className="p-3 sm:p-4 bg-rose-500/10 border border-rose-500/30 rounded-xl">
                 <span className="text-[10px] text-[#9e917f] block uppercase font-mono">False Negative (FN)</span>
-                <span className="text-2xl font-bold font-mono text-rose-400">{confusionMatrices.lstm.fn}</span>
-                <span className="text-[11px] text-[#9e917f] block mt-1">บวกจริง / ทายลบ (45.1%)</span>
+                <span className="text-xl sm:text-2xl font-bold font-mono text-rose-400">{confusionMatrices.lstm.fn}</span>
+                <span className="text-[10px] sm:text-[11px] text-[#9e917f] block mt-1">บวกจริง / ทายลบ (45.1%)</span>
               </div>
-              <div className="p-4 bg-rose-500/10 border border-rose-500/30 rounded-xl">
+              <div className="p-3 sm:p-4 bg-rose-500/10 border border-rose-500/30 rounded-xl">
                 <span className="text-[10px] text-[#9e917f] block uppercase font-mono">False Positive (FP)</span>
-                <span className="text-2xl font-bold font-mono text-rose-400">{confusionMatrices.lstm.fp}</span>
-                <span className="text-[11px] text-[#9e917f] block mt-1">ลบจริง / ทายบวก (44.5%)</span>
+                <span className="text-xl sm:text-2xl font-bold font-mono text-rose-400">{confusionMatrices.lstm.fp}</span>
+                <span className="text-[10px] sm:text-[11px] text-[#9e917f] block mt-1">ลบจริง / ทายบวก (44.5%)</span>
               </div>
-              <div className="p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-xl">
+              <div className="p-3 sm:p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-xl">
                 <span className="text-[10px] text-[#9e917f] block uppercase font-mono">True Negative (TN)</span>
-                <span className="text-2xl font-bold font-mono text-[#34d399]">{confusionMatrices.lstm.tn}</span>
-                <span className="text-[11px] text-[#9e917f] block mt-1">ลบจริง / ทายลบ (55.5%)</span>
+                <span className="text-xl sm:text-2xl font-bold font-mono text-[#34d399]">{confusionMatrices.lstm.tn}</span>
+                <span className="text-[10px] sm:text-[11px] text-[#9e917f] block mt-1">ลบจริง / ทายลบ (55.5%)</span>
               </div>
             </div>
 
@@ -323,32 +341,32 @@ export default function BenchmarkTab() {
           </div>
 
           {/* BERT Confusion Matrix */}
-          <div className="bg-[#0c0a08]/80 border border-[#c58a2e]/40 rounded-xl p-5">
+          <div className="bg-[#0c0a08]/80 border border-[#c58a2e]/40 rounded-xl p-4 sm:p-5">
             <div className="flex items-center justify-between border-b border-[#2e251b] pb-3 mb-4">
-              <span className="font-bold text-[#fdfbf7] text-sm">BERT Fine-tuned (Acc 85.60%)</span>
+              <span className="font-bold text-[#f0c674] text-sm">BERT Fine-tuned (Acc 85.60%)</span>
               <span className="text-xs font-mono text-[#d99f3d]">Correct: 428 / 500</span>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 text-center">
-              <div className="p-4 bg-[#c58a2e]/15 border border-[#c58a2e]/40 rounded-xl">
+            <div className="grid grid-cols-2 gap-2 sm:gap-3 text-center">
+              <div className="p-3 sm:p-4 bg-[#c58a2e]/15 border border-[#c58a2e]/40 rounded-xl">
                 <span className="text-[10px] text-[#9e917f] block uppercase font-mono">True Positive (TP)</span>
-                <span className="text-2xl font-bold font-mono text-[#f0c674]">{confusionMatrices.bert.tp}</span>
-                <span className="text-[11px] text-[#e2d7c5] block mt-1">บวกจริง / ทายบวก (87.8%)</span>
+                <span className="text-xl sm:text-2xl font-bold font-mono text-[#f0c674]">{confusionMatrices.bert.tp}</span>
+                <span className="text-[10px] sm:text-[11px] text-[#e2d7c5] block mt-1">บวกจริง / ทายบวก (87.8%)</span>
               </div>
-              <div className="p-4 bg-[#16120e] border border-[#2e251b] rounded-xl">
+              <div className="p-3 sm:p-4 bg-[#16120e] border border-[#2e251b] rounded-xl">
                 <span className="text-[10px] text-[#9e917f] block uppercase font-mono">False Negative (FN)</span>
-                <span className="text-2xl font-bold font-mono text-rose-400">{confusionMatrices.bert.fn}</span>
-                <span className="text-[11px] text-[#9e917f] block mt-1">บวกจริง / ทายลบ (12.2%)</span>
+                <span className="text-xl sm:text-2xl font-bold font-mono text-rose-400">{confusionMatrices.bert.fn}</span>
+                <span className="text-[10px] sm:text-[11px] text-[#9e917f] block mt-1">บวกจริง / ทายลบ (12.2%)</span>
               </div>
-              <div className="p-4 bg-[#16120e] border border-[#2e251b] rounded-xl">
+              <div className="p-3 sm:p-4 bg-[#16120e] border border-[#2e251b] rounded-xl">
                 <span className="text-[10px] text-[#9e917f] block uppercase font-mono">False Positive (FP)</span>
-                <span className="text-2xl font-bold font-mono text-rose-400">{confusionMatrices.bert.fp}</span>
-                <span className="text-[11px] text-[#9e917f] block mt-1">ลบจริง / ทายบวก (16.5%)</span>
+                <span className="text-xl sm:text-2xl font-bold font-mono text-rose-400">{confusionMatrices.bert.fp}</span>
+                <span className="text-[10px] sm:text-[11px] text-[#9e917f] block mt-1">ลบจริง / ทายบวก (16.5%)</span>
               </div>
-              <div className="p-4 bg-[#c58a2e]/15 border border-[#c58a2e]/40 rounded-xl">
+              <div className="p-3 sm:p-4 bg-[#c58a2e]/15 border border-[#c58a2e]/40 rounded-xl">
                 <span className="text-[10px] text-[#9e917f] block uppercase font-mono">True Negative (TN)</span>
-                <span className="text-2xl font-bold font-mono text-[#f0c674]">{confusionMatrices.bert.tn}</span>
-                <span className="text-[11px] text-[#e2d7c5] block mt-1">ลบจริง / ทายลบ (83.5%)</span>
+                <span className="text-xl sm:text-2xl font-bold font-mono text-[#f0c674]">{confusionMatrices.bert.tn}</span>
+                <span className="text-[10px] sm:text-[11px] text-[#e2d7c5] block mt-1">ลบจริง / ทายลบ (83.5%)</span>
               </div>
             </div>
 
@@ -390,7 +408,7 @@ export default function BenchmarkTab() {
               onClick={() => setFormulaModel('lstm')}
               className={`px-3 py-1.5 min-h-[36px] rounded-lg text-xs font-medium cursor-pointer transition-all touch-manipulation ${
                 formulaModel === 'lstm'
-                  ? 'bg-amber-600 text-[#0c0a08] font-bold shadow-md shadow-amber-600/30'
+                  ? 'bg-sky-600 text-white font-bold shadow-md shadow-sky-600/30'
                   : 'text-[#9e917f] hover:text-[#fdfbf7]'
               }`}
             >
@@ -409,7 +427,7 @@ export default function BenchmarkTab() {
                 <h4 className="text-base font-bold text-[#fdfbf7]">1. ความถูกต้อง (Accuracy)</h4>
               </div>
               <span className={`px-2.5 py-1 rounded-full text-xs font-bold font-mono ${
-                formulaModel === 'bert' ? 'bg-[#c58a2e]/20 text-[#f0c674] border border-[#c58a2e]/40' : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                formulaModel === 'bert' ? 'bg-[#c58a2e]/20 text-[#f0c674] border border-[#c58a2e]/40' : 'bg-sky-500/20 text-sky-300 border border-sky-500/40'
               }`}>
                 {formulaModel === 'bert' ? '85.60%' : '55.20%'}
               </span>

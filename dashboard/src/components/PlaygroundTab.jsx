@@ -190,12 +190,12 @@ export default function PlaygroundTab() {
       </div>
 
       {/* Side-by-Side Model Prediction Comparison */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         {/* LSTM Score Card */}
-        <div className="bg-[#16120e]/95 border border-[#4d3716] rounded-2xl p-6 space-y-4 shadow-lg">
+        <div className="bg-[#16120e]/95 border border-sky-500/30 rounded-2xl p-4 sm:p-6 space-y-4 shadow-lg">
           <div className="flex items-center justify-between border-b border-[#2e251b] pb-3">
             <div>
-              <span className="text-xs font-mono uppercase text-amber-400 font-bold">Baseline Model</span>
+              <span className="text-xs font-mono uppercase text-sky-400 font-bold">Baseline Model</span>
               <h3 className="text-lg font-bold text-[#fdfbf7]">LSTM Classifier</h3>
             </div>
             <span className={`px-2.5 py-1 rounded-full text-xs font-bold font-mono ${
@@ -210,26 +210,26 @@ export default function PlaygroundTab() {
           <div>
             <div className="flex items-center justify-between text-xs text-[#9e917f] mb-1.5">
               <span>ความน่าจะเป็นเชิงบวก (Positive Probability):</span>
-              <span className="font-mono text-amber-400 font-bold text-sm">
+              <span className="font-mono text-sky-400 font-bold text-sm">
                 {(analysis.lstmProb * 100).toFixed(1)}%
               </span>
             </div>
             <div className="w-full bg-[#0c0a08] h-3 rounded-full overflow-hidden border border-[#2e251b]">
               <div 
-                className="h-full bg-amber-500 transition-all duration-300"
+                className="h-full bg-sky-500 transition-all duration-300"
                 style={{ width: `${analysis.lstmProb * 100}%` }}
               />
             </div>
           </div>
 
-          <div className="p-3.5 bg-[#0c0a08]/80 border border-[#2e251b] rounded-xl text-xs text-[#e2d7c5] leading-relaxed">
-            <span className="text-amber-400 font-bold block mb-1">พฤติกรรมการตัดสินใจของ LSTM:</span>
+          <div className="p-3 sm:p-3.5 bg-[#0c0a08]/80 border border-[#2e251b] rounded-xl text-xs text-[#e2d7c5] leading-relaxed">
+            <span className="text-sky-400 font-bold block mb-1">พฤติกรรมการตัดสินใจของ LSTM:</span>
             ประมวลผลคำตามลำดับเวลาจากซ้ายไปขวา (Sequential Processing) ทำให้คำท้ายประโยคมีอิทธิพลต่อผลลัพธ์มากกว่าคำต้นประโยคจากภาวะข้อมูลเลือนหาย (Context Decay / Recency Bias) หากคำปฏิเสธ (เช่น "not") อยู่ห่างจากคำคุณศัพท์ โมเดลจะไม่สามารถเชื่อมโยงข้ามตำแหน่งได้ดีเท่า BERT
           </div>
         </div>
 
         {/* BERT Score Card */}
-        <div className="bg-[#16120e]/95 border border-[#c58a2e]/40 rounded-2xl p-6 space-y-4 shadow-lg">
+        <div className="bg-[#16120e]/95 border border-[#c58a2e]/40 rounded-2xl p-4 sm:p-6 space-y-4 shadow-lg">
           <div className="flex items-center justify-between border-b border-[#2e251b] pb-3">
             <div>
               <span className="text-xs font-mono uppercase text-[#d99f3d] font-bold">Fine-tuned Model</span>

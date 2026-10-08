@@ -144,6 +144,7 @@ export default function AttentionSimulatorTab() {
   const [hoveredCell, setHoveredCell] = useState(null); // { r, c }
   const [pinnedCell, setPinnedCell] = useState(null); // { r, c }
   const [isFullWidth, setIsFullWidth] = useState(false); // Full-width presentation mode
+  const [mobileTab, setMobileTab] = useState('both'); // 'both' | 'bert' | 'lstm' for mobile viewports
 
   const tokens = useMemo(() => {
     return customText
@@ -393,15 +394,43 @@ export default function AttentionSimulatorTab() {
         </div>
       </div>
 
+      {/* Mobile Paradigm Switcher (Visible on < lg viewports) */}
+      <div className="lg:hidden flex items-center bg-[#16120e] p-1 border border-[#2e251b] rounded-xl text-xs gap-1 shadow-md">
+        <button
+          onClick={() => setMobileTab('both')}
+          className={`flex-1 py-2 text-center rounded-lg font-medium transition-all touch-manipulation min-h-[42px] ${
+            mobileTab === 'both' ? 'bg-[#c58a2e] text-[#0c0a08] font-bold shadow' : 'text-[#9e917f]'
+          }`}
+        >
+          ดูทั้งสองโมเดล
+        </button>
+        <button
+          onClick={() => setMobileTab('bert')}
+          className={`flex-1 py-2 text-center rounded-lg font-medium transition-all touch-manipulation min-h-[42px] ${
+            mobileTab === 'bert' ? 'bg-[#c58a2e] text-[#0c0a08] font-bold shadow' : 'text-[#f0c674]'
+          }`}
+        >
+          BERT Attention 🔥
+        </button>
+        <button
+          onClick={() => setMobileTab('lstm')}
+          className={`flex-1 py-2 text-center rounded-lg font-medium transition-all touch-manipulation min-h-[42px] ${
+            mobileTab === 'lstm' ? 'bg-[#c58a2e] text-[#0c0a08] font-bold shadow' : 'text-sky-400'
+          }`}
+        >
+          LSTM Tape
+        </button>
+      </div>
+
       {/* Main Dual Simulation Cards */}
-      <div className={`grid gap-8 items-start transition-all duration-300 ${
+      <div className={`grid gap-6 sm:gap-8 items-start transition-all duration-300 ${
         isFullWidth ? 'grid-cols-1' : 'grid-cols-1 lg:grid-cols-2'
       }`}>
         
         {/* ===================== Left: LSTM Recurrent Tape ===================== */}
-        <div className={`bg-[#16120e]/95 border border-[#2e251b] rounded-2xl p-6 space-y-5 shadow-lg transition-all duration-300 ${
+        <div className={`bg-[#16120e]/95 border border-[#2e251b] rounded-2xl p-4 sm:p-6 space-y-5 shadow-lg transition-all duration-300 ${
           isFullWidth ? 'order-last' : ''
-        }`}>
+        } ${mobileTab === 'bert' ? 'hidden lg:block' : ''}`}>
           <div className="flex items-center justify-between border-b border-[#2e251b] pb-3">
             <div>
               <span className="text-xs font-mono uppercase text-[#9e917f]">กระบวนทัศน์ดั้งเดิม</span>
@@ -558,9 +587,9 @@ export default function AttentionSimulatorTab() {
         </div>
 
         {/* ===================== Right: BERT Self-Attention ===================== */}
-        <div className={`bg-[#16120e]/95 border border-[#c58a2e]/40 rounded-2xl p-6 space-y-5 shadow-lg transition-all duration-300 ${
+        <div className={`bg-[#16120e]/95 border border-[#c58a2e]/40 rounded-2xl p-4 sm:p-6 space-y-5 shadow-lg transition-all duration-300 ${
           isFullWidth ? 'order-first' : ''
-        }`}>
+        } ${mobileTab === 'lstm' ? 'hidden lg:block' : ''}`}>
           
           {/* Header with Title, View Mode Switcher and Full Width Toggle */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#2e251b] pb-3 gap-3">
@@ -687,8 +716,8 @@ export default function AttentionSimulatorTab() {
                 </div>
               </div>
 
-              {/* 2D Matrix Table Container: 100% full width, table-fixed, NO horizontal scroll */}
-              <div className="w-full overflow-hidden border border-[#2e251b] rounded-xl bg-[#0c0a08]/90 shadow-inner">
+              {/* 2D Matrix Table Container: Responsive with smooth horizontal scroll for small mobile screens */}
+              <div className="w-full overflow-x-auto border border-[#2e251b] rounded-xl bg-[#0c0a08]/90 shadow-inner">
                 <table className="w-full table-fixed border-collapse font-mono select-none">
                   <thead>
                     <tr>

@@ -17,87 +17,95 @@ import { MathFraction, MathSqrt } from './MathView';
 
 export default function OverviewTab({ onExploreDataset, onOpenSimulator }) {
   return (
-    <div className="space-y-8 animate-fadeIn">
-      {/* Hero Stat Dials (RMUTL Golden Brown Theme) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-[#16120e]/95 border border-[#2e251b] rounded-2xl p-5 relative overflow-hidden group hover:border-[#c58a2e]/50 transition-all shadow-lg">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-[#c58a2e]/10 rounded-full blur-2xl group-hover:bg-[#c58a2e]/20 transition-all" />
-          <div className="text-xs font-medium text-[#9e917f] uppercase tracking-wider">Accuracy Improvement</div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-3xl sm:text-4xl font-black text-[#fdfbf7] font-mono">+30.40%</span>
-            <span className="text-xs text-[#34d399] font-semibold flex items-center">
-              <TrendingUp className="w-3.5 h-3.5 mr-0.5" /> 85.60% vs 55.20%
-            </span>
+    <div className="space-y-6 sm:space-y-8 animate-fadeIn">
+      {/* Hero Stat Dials (RMUTL Golden Brown Theme - Compact 2x2 Grid on Mobile) */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
+        <div className="bg-[#16120e]/95 border border-[#2e251b] rounded-xl sm:rounded-2xl p-3.5 sm:p-5 relative overflow-hidden group hover:border-[#c58a2e]/50 transition-all shadow-lg flex flex-col justify-between">
+          <div className="absolute top-0 right-0 w-20 h-20 bg-[#c58a2e]/10 rounded-full blur-xl group-hover:bg-[#c58a2e]/20 transition-all pointer-events-none" />
+          <div>
+            <div className="text-[10px] sm:text-xs font-medium text-[#9e917f] uppercase tracking-wider">Accuracy Gain</div>
+            <div className="mt-1 sm:mt-2 flex items-baseline gap-1.5 flex-wrap">
+              <span className="text-2xl sm:text-4xl font-black text-[#fdfbf7] font-mono">+30.40%</span>
+              <span className="text-[10px] sm:text-xs text-[#34d399] font-semibold flex items-center">
+                <TrendingUp className="w-3 h-3 mr-0.5" /> 85.6% vs 55.2%
+              </span>
+            </div>
           </div>
-          <p className="text-xs text-[#ab9b87] mt-2">
+          <p className="text-[11px] sm:text-xs text-[#ab9b87] mt-2 line-clamp-2 sm:line-clamp-none">
             BERT บรรลุความถูกต้องเหนือกว่า LSTM 30.40% บนชุดทดสอบ 500 ตัวอย่าง
           </p>
         </div>
 
-        <div className="bg-[#16120e]/95 border border-[#2e251b] rounded-2xl p-5 relative overflow-hidden group hover:border-[#c58a2e]/50 transition-all shadow-lg">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/20 transition-all" />
-          <div className="text-xs font-medium text-[#9e917f] uppercase tracking-wider">F1-Score Gain</div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-3xl sm:text-4xl font-black text-[#f0c674] font-mono">+31.05%</span>
-            <span className="text-xs text-[#e5c158] font-semibold">85.71% vs 54.66%</span>
+        <div className="bg-[#16120e]/95 border border-[#2e251b] rounded-xl sm:rounded-2xl p-3.5 sm:p-5 relative overflow-hidden group hover:border-[#c58a2e]/50 transition-all shadow-lg flex flex-col justify-between">
+          <div className="absolute top-0 right-0 w-20 h-20 bg-amber-500/10 rounded-full blur-xl group-hover:bg-amber-500/20 transition-all pointer-events-none" />
+          <div>
+            <div className="text-[10px] sm:text-xs font-medium text-[#9e917f] uppercase tracking-wider">F1-Score Gain</div>
+            <div className="mt-1 sm:mt-2 flex items-baseline gap-1.5 flex-wrap">
+              <span className="text-2xl sm:text-4xl font-black text-[#f0c674] font-mono">+31.05%</span>
+              <span className="text-[10px] sm:text-xs text-[#e5c158] font-semibold">85.7% vs 54.7%</span>
+            </div>
           </div>
-          <p className="text-xs text-[#ab9b87] mt-2">
-            ความสมดุลระหว่าง Precision (83.72%) และ Recall (87.80%) ของ BERT สูงกว่าอย่างชัดเจน
+          <p className="text-[11px] sm:text-xs text-[#ab9b87] mt-2 line-clamp-2 sm:line-clamp-none">
+            ความสมดุลระหว่าง Precision (83.72%) และ Recall (87.80%) เหนือกว่าชัดเจน
           </p>
         </div>
 
-        <div className="bg-[#16120e]/95 border border-[#2e251b] rounded-2xl p-5 relative overflow-hidden group hover:border-[#c58a2e]/50 transition-all shadow-lg">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-[#c58a2e]/10 rounded-full blur-2xl group-hover:bg-[#c58a2e]/20 transition-all" />
-          <div className="text-xs font-medium text-[#9e917f] uppercase tracking-wider">Fast Convergence</div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-3xl sm:text-4xl font-black text-[#d99f3d] font-mono">3 Epochs</span>
-            <span className="text-xs text-[#9e917f]">vs 5 Epochs</span>
+        <div className="bg-[#16120e]/95 border border-[#2e251b] rounded-xl sm:rounded-2xl p-3.5 sm:p-5 relative overflow-hidden group hover:border-[#c58a2e]/50 transition-all shadow-lg flex flex-col justify-between">
+          <div className="absolute top-0 right-0 w-20 h-20 bg-[#c58a2e]/10 rounded-full blur-xl group-hover:bg-[#c58a2e]/20 transition-all pointer-events-none" />
+          <div>
+            <div className="text-[10px] sm:text-xs font-medium text-[#9e917f] uppercase tracking-wider">Fast Convergence</div>
+            <div className="mt-1 sm:mt-2 flex items-baseline gap-1.5 flex-wrap">
+              <span className="text-2xl sm:text-4xl font-black text-[#d99f3d] font-mono">3 Epochs</span>
+              <span className="text-[10px] sm:text-xs text-[#9e917f]">vs 5 Epochs</span>
+            </div>
           </div>
-          <p className="text-xs text-[#ab9b87] mt-2">
-            พลังของ Transfer Learning ทำให้ Loss ลดเหลือ 0.1369 ในเวลาเพียง 3 รอบ
+          <p className="text-[11px] sm:text-xs text-[#ab9b87] mt-2 line-clamp-2 sm:line-clamp-none">
+            Transfer Learning ทำให้ Loss ลดเหลือ 0.1369 ในเวลาเพียง 3 รอบ
           </p>
         </div>
 
-        <div className="bg-[#16120e]/95 border border-[#2e251b] rounded-2xl p-5 relative overflow-hidden group hover:border-[#c58a2e]/50 transition-all shadow-lg">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-orange-500/10 rounded-full blur-2xl group-hover:bg-orange-500/20 transition-all" />
-          <div className="text-xs font-medium text-[#9e917f] uppercase tracking-wider">Engineering Trade-off</div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-3xl sm:text-4xl font-black text-amber-500 font-mono">51.3×</span>
-            <span className="text-xs text-[#9e917f]">Training Time</span>
+        <div className="bg-[#16120e]/95 border border-[#2e251b] rounded-xl sm:rounded-2xl p-3.5 sm:p-5 relative overflow-hidden group hover:border-[#c58a2e]/50 transition-all shadow-lg flex flex-col justify-between">
+          <div className="absolute top-0 right-0 w-20 h-20 bg-orange-500/10 rounded-full blur-xl group-hover:bg-orange-500/20 transition-all pointer-events-none" />
+          <div>
+            <div className="text-[10px] sm:text-xs font-medium text-[#9e917f] uppercase tracking-wider">Engineering Cost</div>
+            <div className="mt-1 sm:mt-2 flex items-baseline gap-1.5 flex-wrap">
+              <span className="text-2xl sm:text-4xl font-black text-amber-500 font-mono">51.3×</span>
+              <span className="text-[10px] sm:text-xs text-[#9e917f]">Training Time</span>
+            </div>
           </div>
-          <p className="text-xs text-[#ab9b87] mt-2">
-            แลกเวลาฝึกสอน 42.07s vs 0.82s เพื่อความแม่นยำที่เพิ่มขึ้นกว่า 30.40 จุด คุ้มค่ามากในงานจริง
+          <p className="text-[11px] sm:text-xs text-[#ab9b87] mt-2 line-clamp-2 sm:line-clamp-none">
+            เวลาฝึกสอน 42.07s vs 0.82s แลกความแม่นยำเพิ่มขึ้น 30.40 จุด คุ้มค่ามาก
           </p>
         </div>
       </div>
 
       {/* Research Question & Core Premise */}
-      <div className="bg-gradient-to-br from-[#2a1c09]/70 via-[#18130e] to-[#1f170e]/80 border border-[#4d3716] rounded-2xl p-6 sm:p-8">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="space-y-3 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c58a2e]/20 border border-[#c58a2e]/30 text-[#f0c674] text-xs font-medium">
-              <HelpCircle className="w-3.5 h-3.5" />
-              คำถามการวิจัยหลัก (Central Research Question)
+      <div className="bg-gradient-to-br from-[#2a1c09]/70 via-[#18130e] to-[#1f170e]/80 border border-[#4d3716] rounded-2xl p-4 sm:p-8">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-5 sm:gap-6">
+          <div className="space-y-2.5 sm:space-y-3 max-w-3xl">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#c58a2e]/20 border border-[#c58a2e]/30 text-[#f0c674] text-[11px] sm:text-xs font-medium">
+              <HelpCircle className="w-3.5 h-3.5 shrink-0" />
+              <span>คำถามการวิจัยหลัก (Central Research Question)</span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-bold text-[#fdfbf7] tracking-tight leading-snug">
+            <h2 className="text-base sm:text-2xl font-bold text-[#fdfbf7] tracking-tight leading-snug">
               "เมื่อให้ LSTM (Baseline) และ BERT (Fine-tuned) แก้โจทย์เดียวกัน บนชุดข้อมูล IMDb ภายใต้การควบคุมตัวแปรที่เที่ยงตรง ฝ่ายใดจะมีประสิทธิภาพเหนือกว่า และต้องแลกมาด้วยต้นทุนการคำนวณเท่าไร?"
             </h2>
-            <p className="text-sm text-[#e2d7c5] leading-relaxed">
-              งานวิจัยนี้พิสูจน์เชิงประจักษ์ถึง **การเปลี่ยนผ่านของกระบวนทัศน์ (Paradigm Shift)** ในสาขาการรู้จำรูปแบบ (Pattern Recognition) จากการประมวลผลข้อมูลลำดับตามเวลาทีละขั้นตอน (Step-by-step Recurrence) สู่การคำนวณความสัมพันธ์ระหว่างทุกตำแหน่งพร้อมกันด้วยกลไก Self-Attention แบบขนาน
+            <p className="text-xs sm:text-sm text-[#e2d7c5] leading-relaxed">
+              งานวิจัยนี้พิสูจน์เชิงประจักษ์ถึง <strong>การเปลี่ยนผ่านของกระบวนทัศน์ (Paradigm Shift)</strong> จากการประมวลผลข้อมูลลำดับตามเวลาทีละขั้นตอน (Step-by-step Recurrence) สู่การคำนวณความสัมพันธ์ระหว่างทุกตำแหน่งพร้อมกันด้วยกลไก Self-Attention แบบขนาน
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0">
+          <div className="flex flex-col sm:flex-row md:flex-col gap-2.5 sm:gap-3 shrink-0 w-full sm:w-auto">
             <button
               onClick={onExploreDataset}
-              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#b87d24] to-[#d99f3d] hover:from-[#c58a2e] hover:to-[#e5b65e] text-[#0c0a08] font-bold text-sm transition-all shadow-lg shadow-[#8d5c1a]/30 cursor-pointer touch-manipulation min-h-[44px]"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#b87d24] to-[#d99f3d] hover:from-[#c58a2e] hover:to-[#e5b65e] text-[#0c0a08] font-bold text-xs sm:text-sm transition-all shadow-lg shadow-[#8d5c1a]/30 cursor-pointer touch-manipulation min-h-[46px] w-full"
             >
               <span>สำรวจชุดข้อมูล 500 ตัวอย่าง</span>
               <ArrowRight className="w-4 h-4" />
             </button>
             <button
               onClick={onOpenSimulator}
-              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#221a12] hover:bg-[#2e2319] text-[#f0c674] font-medium text-sm border border-[#3d2e1c] transition-all cursor-pointer touch-manipulation min-h-[44px]"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#221a12] hover:bg-[#2e2319] text-[#f0c674] font-medium text-xs sm:text-sm border border-[#3d2e1c] transition-all cursor-pointer touch-manipulation min-h-[46px] w-full"
             >
               <span>ทดลอง Attention Simulator</span>
               <Zap className="w-4 h-4 text-[#d99f3d]" />
